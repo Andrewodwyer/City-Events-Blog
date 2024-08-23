@@ -7,26 +7,19 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 # Create your models here.
 
-# Category model for EventCategory ForeignKey
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-# AddEvents model
-class AddEvents(models.Model):
+# AddEvent model
+class AddEvent(models.Model):
     """
     Stores a single event post related to :model:`auth.User`.
     """
     title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    event_image = CloudinaryField('event_image', default='placeholder')
+    # event_image = CloudinaryField('event_image', default='placeholder')
     organiser = models.ForeignKey(
     User, on_delete=models.CASCADE, related_name="event_addevent"
     )  # ForeignKey to User model
     description = models.TextField()
-    event_category = models.ForeignKey(Category, on_delete=models.CASCADE)  # ForeignKey to Category model
+    # event_category = models.ForeignKey(Category, on_delete=models.CASCADE)  # ForeignKey to Category model
     start_date_time = models.DateTimeField()
     end_date = models.DateField()
     location = models.CharField(max_length=255)
