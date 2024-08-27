@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone #local time 
+
 """
 A draft zero and published is one, default is to save as a draft
 """
@@ -33,14 +35,15 @@ class AddEvent(models.Model):
     description = models.TextField()
     event_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events')  # ForeignKey to Category model
     start_date_time = models.DateTimeField()
-    end_date = models.DateField()
+    end_date_time = models.DateTimeField(default=timezone.now)
     location = models.CharField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    link_to_event_page = models.URLField(max_length=1024)
+    is_free = models.BooleanField(default=False)  # Add a free option
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, blank=True) #price can be blank
+    link_to_event_page = models.URLField(max_length=1024, blank=True)
     status = models.IntegerField(choices=STATUS, default=0) 
     # integerField is a number picker but is overridden to a string drop down
     excerpt = models.TextField(blank=True)  # Optional summary or preview of the posted event
-    updated_on = models.DateTimeField(auto_now=True) #sets the time the event was created
+    updated_on = models.DateTimeField(default=timezone.now) #sets the time the event was created
 
     class Meta:
         ordering = ['start_date_time']  # Orders by start_date_time in ascending order (soonest first)
@@ -49,6 +52,18 @@ class AddEvent(models.Model):
 
     def __str__(self):
         return f"{self.title} | organised by {self.author}"
+
+# Comment model for user comments on events
+class Comment(models.Model):
+    event = models.ForeignKey(AddEvent, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+    is_approved = models.BooleanField(default=False) # requires admin approval
+
+    def __str__(self):
+        return f'Comment by {self.user.username} on {self.event.title}'
+
 
 # Attending model to track which users are attending which events
 class Attending(models.Model):
@@ -61,7 +76,7 @@ class Attending(models.Model):
     """
     attending_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='User_attending')
     event = models.ForeignKey(AddEvent, on_delete=models.CASCADE, related_name='event_attendees')
-    timestamp = models.DateTimeField(auto_now_add=True)  # Automatically records when the user attends
+    timestamp = models.DateTimeField(default=timezone.now)  # Automatically records when the user attends
 
     class Meta:
         unique_together = ('attending_user', 'event')  # Ensure a user can attend the same event only once
