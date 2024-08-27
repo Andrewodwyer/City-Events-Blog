@@ -28,6 +28,8 @@ class AddEvent(models.Model):
     link_to_event_page = models.URLField(max_length=1024)
     status = models.IntegerField(choices=STATUS, default=0) 
     # integerField is a number picker but is overridden to a string drop down
+    excerpt = models.TextField(blank=True)  # Optional summary or preview of the posted event
+    updated_on = models.DateTimeField(auto_now=True) #sets the time the event was created
 
     class Meta:
         ordering = ['start_date_time']  # Orders by start_date_time in ascending order (soonest first)
@@ -37,8 +39,15 @@ class AddEvent(models.Model):
 
 # Attending model to track which users are attending which events
 class Attending(models.Model):
-    attending_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='attending_events')
-    event = models.ForeignKey(AddEvent, on_delete=models.CASCADE, related_name='attendees')
+    """ 
+    Stores the User that is attending
+    User is foreign key for the attending_user. 
+    AddEvents is the foreign key for the event.
+    on_delete=models.CASCADE will delete all indications 
+    of attending if user is deleted
+    """
+    attending_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='User_attending')
+    event = models.ForeignKey(AddEvent, on_delete=models.CASCADE, related_name='event_attendees')
     timestamp = models.DateTimeField(auto_now_add=True)  # Automatically records when the user attends
 
     class Meta:
