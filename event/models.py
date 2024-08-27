@@ -7,6 +7,17 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 # Create your models here.
 
+# Category model for EventCategory ForeignKey
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = "Event Category" #to use instead of class name in admin panel
+        verbose_name_plural = "Event Categories"
+
+    def __str__(self):
+        return self.name
+
 # AddEvent model
 class AddEvent(models.Model):
     """
@@ -20,10 +31,10 @@ class AddEvent(models.Model):
     User, on_delete=models.CASCADE, related_name="event_addevent"
     )  # ForeignKey to User model
     description = models.TextField()
-    # event_category = models.ForeignKey(Category, on_delete=models.CASCADE)  # ForeignKey to Category model
+    event_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events')  # ForeignKey to Category model
     start_date_time = models.DateTimeField()
     end_date = models.DateField()
-    location = models.CharField(max_length=255)
+    location = models.CharField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     link_to_event_page = models.URLField(max_length=1024)
     status = models.IntegerField(choices=STATUS, default=0) 
@@ -33,6 +44,8 @@ class AddEvent(models.Model):
 
     class Meta:
         ordering = ['start_date_time']  # Orders by start_date_time in ascending order (soonest first)
+        verbose_name = "Add Event"
+        verbose_name_plural = "Add Events"
 
     def __str__(self):
         return f"{self.title} | organised by {self.author}"
@@ -53,13 +66,9 @@ class Attending(models.Model):
     class Meta:
         unique_together = ('attending_user', 'event')  # Ensure a user can attend the same event only once
         ordering = ['-timestamp']  # Newest attendance first
+        verbose_name = "User Attending"
+        verbose_name_plural = "Users Attending"
 
     def __str__(self):
         return f'{self.attending_user.username} attending {self.event.title}' #for the admin panel
 
-# Category model for EventCategory ForeignKey
-# class Category(models.Model):
-#     name = models.CharField(max_length=255)
-
-#     def __str__(self):
-#         return self.name
