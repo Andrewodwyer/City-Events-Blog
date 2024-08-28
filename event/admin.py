@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AddEvent, Attending, Category, Comment #import models from the current directory
+from .models import AddEvent, Attending, Category, Comment  #import models from the current directory  
 
 # Register your models here.
 """

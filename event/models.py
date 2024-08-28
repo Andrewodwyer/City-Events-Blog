@@ -33,7 +33,8 @@ class AddEvent(models.Model):
     User, on_delete=models.CASCADE, related_name="event_addevent"
     )  # ForeignKey to User model
     description = models.TextField()
-    event_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events')  # ForeignKey to Category model
+    event_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events', default=1)
+    # ForeignKey to Category model, Default=1 is the id for Music
     start_date_time = models.DateTimeField()
     end_date_time = models.DateTimeField(default=timezone.now)
     location = models.CharField(blank=True)
