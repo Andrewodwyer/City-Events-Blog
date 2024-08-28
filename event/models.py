@@ -52,7 +52,7 @@ class AddEvent(models.Model):
         verbose_name_plural = "Add Events"
 
     def __str__(self):
-        return f"{self.title} | organised by {self.author}"
+        return f"{self.title} | organised by {self.organiser}"
 
 # Comment model for user comments on events
 class Comment(models.Model):
