@@ -1,0 +1,202 @@
+[
+{
+    "model": "event.addevent",
+    "pk": 3,
+    "fields": {
+        "title": "Jazz Nights at Riverside Park",
+        "slug": "Jazz-Nights-Riverside-Park",
+        "organiser": 2,
+        "description": "Join us for an evening of smooth jazz under the stars at Riverside Park! Featuring local musicians and special guests, this free concert offers a blend of classic and contemporary jazz styles. Enjoy gourmet food trucks, bring your blankets, and experience an unforgettable evening by the river.",
+        "event_category": 1,
+        "start_date_time": "2024-09-07T19:00:00Z",
+        "end_date_time": "2024-09-07T21:00:00Z",
+        "location": "Riverside Park",
+        "is_free": true,
+        "price": "0.00",
+        "link_to_event_page": "",
+        "status": 1,
+        "excerpt": "Enjoy a relaxing evening with live jazz at Riverside Park. Free entry and food trucks available!",
+        "updated_on": "2024-08-28T11:07:06Z"
+    }
+},
+{
+    "model": "event.addevent",
+    "pk": 4,
+    "fields": {
+        "title": "Indie Rock Fest 2024",
+        "slug": "Indie-Rock-Fest-2024",
+        "organiser": 3,
+        "description": "This all-day music festival showcases the best indie rock bands from the region. Located at the Central Plaza, attendees can explore food stalls, craft beer stands, and live art installations. With over ten bands lined up, this is the event for all rock lovers!",
+        "event_category": 1,
+        "start_date_time": "2024-09-21T12:00:00Z",
+        "end_date_time": "2024-09-21T23:00:00Z",
+        "location": "City Park",
+        "is_free": true,
+        "price": "0.00",
+        "link_to_event_page": "",
+        "status": 1,
+        "excerpt": "An indie rock music festival with local bands, food stalls, and live art. Don't miss it!",
+        "updated_on": "2024-08-28T11:08:45Z"
+    }
+},
+{
+    "model": "event.addevent",
+    "pk": 5,
+    "fields": {
+        "title": "Urban Art Expo",
+        "slug": "Urban-Art-Expo",
+        "organiser": 4,
+        "description": "The Urban Art Expo brings together street artists, graffiti experts, and muralists for a day of live painting, workshops, and art displays. Whether you’re an artist or an admirer, come see incredible talent transforming the city landscape at this outdoor gallery in City Square.",
+        "event_category": 4,
+        "start_date_time": "2024-09-27T11:00:00Z",
+        "end_date_time": "2024-09-27T18:00:00Z",
+        "location": "City Square",
+        "is_free": true,
+        "price": "0.00",
+        "link_to_event_page": "",
+        "status": 1,
+        "excerpt": "Street art meets community in this live art expo featuring graffiti and murals. Perfect for art lovers!",
+        "updated_on": "2024-08-28T11:11:04Z"
+    }
+},
+{
+    "model": "event.addevent",
+    "pk": 6,
+    "fields": {
+        "title": "Contemporary Art Gallery Opening",
+        "slug": "Contemporary-Art",
+        "organiser": 5,
+        "description": "Be the first to view stunning new works by emerging artists at the grand opening of the Downtown Contemporary Art Gallery. This event includes a wine reception and guided tours by the curators. Meet the artists, and immerse yourself in cutting-edge pieces across various media.",
+        "event_category": 4,
+        "start_date_time": "2024-10-10T19:00:00Z",
+        "end_date_time": "2024-10-10T22:00:00Z",
+        "location": "Downtown Contemporary Art Gallery",
+        "is_free": true,
+        "price": "0.00",
+        "link_to_event_page": "",
+        "status": 1,
+        "excerpt": "Celebrate new contemporary art at this gallery opening with a wine reception and artist meet-ups.",
+        "updated_on": "2024-08-28T11:13:12Z"
+    }
+},
+{
+    "model": "event.addevent",
+    "pk": 7,
+    "fields": {
+        "title": "Shakespeare in the Park: Macbeth",
+        "slug": "Shakespeare-in-the-Park",
+        "organiser": 6,
+        "description": "Experience Shakespeare's Macbeth like never before in this outdoor production held at Greenfield Park. This classic tale of ambition and power comes alive under the open sky with a talented local cast. Bring lawn chairs or blankets to enjoy a dramatic evening!",
+        "event_category": 4,
+        "start_date_time": "2024-11-08T19:00:00Z",
+        "end_date_time": "2024-11-08T21:00:00Z",
+        "location": "Greenfield Park",
+        "is_free": true,
+        "price": "0.00",
+        "link_to_event_page": "",
+        "status": 0,
+        "excerpt": "Watch Macbeth performed outdoors at Greenfield Park, free to the public! Bring your own chairs or blankets.",
+        "updated_on": "2024-08-28T11:15:21Z"
+    }
+},
+{
+    "model": "event.addevent",
+    "pk": 8,
+    "fields": {
+        "title": "Broadway Classics",
+        "slug": "Broadway-Classics",
+        "organiser": 7,
+        "description": "Love Broadway? Join fellow theatre enthusiasts at the Community Center for an interactive night of Broadway sing-alongs. From Les Misérables to The Phantom of the Opera, sing your heart out to all your favorite show tunes with live piano accompaniment. Costumes encouraged!",
+        "event_category": 4,
+        "start_date_time": "2024-11-13T20:00:00Z",
+        "end_date_time": "2024-11-13T23:00:00Z",
+        "location": "Community Center",
+        "is_free": true,
+        "price": "0.00",
+        "link_to_event_page": "",
+        "status": 0,
+        "excerpt": "A fun night of Broadway sing-alongs for all ages with live piano accompaniment. Costumes welcome!",
+        "updated_on": "2024-08-28T11:18:04Z"
+    }
+},
+{
+    "model": "event.addevent",
+    "pk": 9,
+    "fields": {
+        "title": "Pottery Workshop for Beginners",
+        "slug": "Pottery-Workshop",
+        "organiser": 1,
+        "description": "Get your hands dirty at this introductory pottery workshop! Held at the Artisan Studio, participants will learn basic wheel throwing techniques and take home their handmade pieces. All materials are provided, and no prior experience is needed. Pre-registration required!",
+        "event_category": 3,
+        "start_date_time": "2024-11-08T12:00:00Z",
+        "end_date_time": "2024-11-08T14:00:00Z",
+        "location": "Artisan Studio",
+        "is_free": false,
+        "price": "20.00",
+        "link_to_event_page": "",
+        "status": 1,
+        "excerpt": "A hands-on pottery workshop for beginners, where you can create and keep your handmade items.",
+        "updated_on": "2024-08-28T11:19:47Z"
+    }
+},
+{
+    "model": "event.addevent",
+    "pk": 10,
+    "fields": {
+        "title": "Photography for Beginners",
+        "slug": "Photography-for-Beginners",
+        "organiser": 8,
+        "description": "Discover the basics of photography in this half-day workshop, designed for those who want to understand camera settings, composition, and lighting. Held at City Park, participants will practice shooting in the natural environment with a professional photographer guiding them.",
+        "event_category": 4,
+        "start_date_time": "2024-10-09T19:00:00Z",
+        "end_date_time": "2024-10-09T21:00:00Z",
+        "location": "City Park",
+        "is_free": false,
+        "price": "18.00",
+        "link_to_event_page": "",
+        "status": 1,
+        "excerpt": "Learn photography essentials in this outdoor workshop, perfect for beginners looking to improve their skills.",
+        "updated_on": "2024-08-28T11:34:13Z"
+    }
+},
+{
+    "model": "event.addevent",
+    "pk": 11,
+    "fields": {
+        "title": "City Marathon 2024",
+        "slug": "City-Marathon-2024",
+        "organiser": 9,
+        "description": "Join runners from across the region in this annual city marathon! Starting at the Patrick's Street and winding through scenic streets and parks, the marathon offers 5k, 10k, and full marathon options. Whether you're a serious runner or casual jogger, there's a race for everyone.",
+        "event_category": 2,
+        "start_date_time": "2024-10-04T07:00:00Z",
+        "end_date_time": "2024-10-04T15:00:00Z",
+        "location": "Patrick's Street",
+        "is_free": false,
+        "price": "24.00",
+        "link_to_event_page": "",
+        "status": 1,
+        "excerpt": "Run the City Marathon with options for 5k, 10k, and full distances. Open to all levels of runners!",
+        "updated_on": "2024-08-28T11:36:36Z"
+    }
+},
+{
+    "model": "event.addevent",
+    "pk": 14,
+    "fields": {
+        "title": "Annual Community Soccer Tournament",
+        "slug": "Soccer-Tournament",
+        "organiser": 9,
+        "description": "Gather your team and compete in the annual community soccer tournament at the local sports complex! Open to all ages and skill levels, this fun-filled event includes youth and adult divisions, with prizes for the winning teams. Registration required in advance.",
+        "event_category": 2,
+        "start_date_time": "2024-10-12T09:00:00Z",
+        "end_date_time": "2024-10-12T17:00:00Z",
+        "location": "City Sports Complex",
+        "is_free": false,
+        "price": "12.00",
+        "link_to_event_page": "",
+        "status": 1,
+        "excerpt": "A day-long soccer tournament with divisions for all ages and prizes for top teams. Fun for everyone!",
+        "updated_on": "2024-08-28T11:41:27Z"
+    }
+}
+]
