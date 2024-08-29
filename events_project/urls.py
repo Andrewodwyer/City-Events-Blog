@@ -15,9 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include #include allows us to import and use another urls.py file
 
 urlpatterns = [
-    path("", include("event.urls"), name="event-urls"), #This pattern tells Django to look in the blog app URL file for any blog urlpatterns.
+    path("events_project/", include("event.urls"), name="event-urls"), 
     path('admin/', admin.site.urls),
 ]
+"""
+events_project is now the top level of the url path, the app name will now come after this
+"""
