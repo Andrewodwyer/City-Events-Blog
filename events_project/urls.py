@@ -16,10 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from event.views import my_events
 
 urlpatterns = [
-    # path('', index_views.index, name='index'),
+    path("", include("event.urls"), name="event-urls"), #This pattern tells Django to look in the blog app URL file for any blog urlpatterns.
     path('admin/', admin.site.urls),
-    path('event/', my_events, name='event'),
 ]

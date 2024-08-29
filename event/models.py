@@ -62,8 +62,11 @@ class Comment(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     is_approved = models.BooleanField(default=False) # requires admin approval
 
+    class Meta:
+        ordering = ["created_at"] # newest first
+
     def __str__(self):
-        return f'Comment by {self.user.username} on {self.event.title}'
+        return f'Comment {self.content} by {self.user.username} on {self.event.title}'
 
 
 # Attending model to track which users are attending which events
@@ -86,5 +89,5 @@ class Attending(models.Model):
         verbose_name_plural = "Users Attending"
 
     def __str__(self):
-        return f'{self.attending_user.username} attending {self.event.title}' #for the admin panel
+        return f'{self.attending_user.username} attending {self.event.title}' #for the admin panel. to easly know which post is which
 
