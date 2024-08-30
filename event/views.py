@@ -10,4 +10,6 @@ class EventList(generic.ListView):
     Displaying events from the AddEvent model
     """
     queryset = AddEvent.objects.all() # Gets all 'AddEvent' objects from the database and sends them to the template.
-    template_name = "addevent_list.html" # Specifies the template that should be rendered
+    # template_name = "addevent_list.html" # Specifies the template that should be rendered
+    template_name = "event/index.html"
+    paginate_by = 6
