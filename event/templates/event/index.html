@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load static %}
+
 <!-- index.html content starts here -->
 <!-- Container for the blog posts -->
 <div class="container my-5">
@@ -12,7 +14,7 @@
             <!-- event_detail come from the urls path slug-->
             <div class="card h-100">
                 <!-- Card image -->
-                <img src="{{ event.image_url }}" class="card-img-top" alt="Event image" style="height: 200px; object-fit: cover;">
+                <img src="{% static 'images/3pieceband.png' %}" class="card-img-top" alt="Event image" style="height: 200px; object-fit: cover;">
                 <a href="{% url 'addevent_detail' event.slug %}" class="post-link">
                     <!-- Card body with content -->
                     <div class="card-body">
