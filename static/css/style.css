@@ -26,12 +26,12 @@ body {
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #1B4965;
 }
 
 .card {
     border: none;
-    background-color: transparent;
+    background-color: white;
 }
 
 .image-container {
@@ -98,7 +98,8 @@ body {
 
 .post-link:hover,
 .page-link {
-    color: #E84610;
+    background-color: #E84610;
+    color: #fff;
 }
 
 .post-title {
@@ -158,4 +159,8 @@ body {
 
 .approval {
     color: rgb(222, 146, 168);
+}
+
+.round-corner {
+    border-radius: 15px 50px;
 }
