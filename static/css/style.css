@@ -96,10 +96,9 @@ body {
     color: #445261;
 }
 
-.post-link:hover,
-.page-link {
-    background-color: #E84610;
-    color: #fff;
+.post-link:hover {
+    /* background-color: #E84610; */
+    color: grey;
 }
 
 .post-title {
@@ -110,6 +109,16 @@ body {
 .post-subtitle {
     margin-left: 5%;
     color: lightgray;
+}
+
+.page-link:hover {
+    background-color: #fff;
+    color: #E84610;
+}
+
+.page-link {
+    background-color: #E84610;
+    color: #fff;
 }
 
 .btn-signup,
