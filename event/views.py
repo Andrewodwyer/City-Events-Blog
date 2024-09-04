@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic 
-from .models import AddEvent
+from django.http import JsonResponse
+from .models import AddEvent # Import the AddEvent model
 
 # Create your views here.
 class EventList(generic.ListView): 
@@ -36,3 +37,27 @@ def addevent_detail(request, slug):
         "event/addevent_detail.html",
         {"event": addevent},
     )
+
+def get_events(request):
+    """
+    This will retrieve all events from the AddEvent model
+    After the loop finishes building the events_list,
+    the function returns it as a JSON response using Django JsonResponse
+    FullCalendar can use JSON to display events in the calendar
+    """
+    events = AddEvent.objects.all()  # Fetch events from AddEvent model
+    # Create a list of events in the format required by FullCalendar
+    events_list = []
+
+    for event in events:
+        # The for loop adds title and start(date) to the event_list array for the FullCalendar to use
+        events_list.append({
+            'title': event.title,
+            'start': event.start_date_time.isoformat(),  # FullCalendar expects date in ISO format
+            'url': f'/event/{event.slug}/',  # Provide the URL to the event detail page
+        })
+
+    return JsonResponse(events_list, safe=False)
+
+def calendar_view(request):
+    return render(request, 'event/calendar.html')
