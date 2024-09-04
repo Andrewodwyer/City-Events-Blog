@@ -35,7 +35,7 @@ def addevent_detail(request, slug):
     return render(
         request,
         "event/addevent_detail.html",
-        {"event": addevent},
+        {"event": addevent,},
     )
 
 def get_events(request):
