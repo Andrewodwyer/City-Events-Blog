@@ -24,5 +24,5 @@ urlpatterns = [
 ]
 """
 "add-name" is now the top level of the url path, the app name will now come after this
-Arrange aplhabetically
+Arrange aplhabetically, eg. "event" or "about" etc
 """
