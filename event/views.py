@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required #use decorator for login users
 from django.views import generic 
 from django.http import JsonResponse
 from .models import AddEvent # Import the AddEvent model
+from .forms import AddEventForm # function taken from the forms.py file
 
 # Create your views here.
 class EventList(generic.ListView): 
@@ -14,6 +16,27 @@ class EventList(generic.ListView):
     template_name = "event/index.html"
     paginate_by = 6
     # paginate by 6 tells Django to display 6 posts at a time
+
+
+@login_required
+def add_event(request):
+    """
+    Create a view that allows authenticated users to submit their events.
+    Handles file uploads also
+    """
+    if request.method == 'POST':
+        form = AddEventForm(request.POST, request.FILES)  # Handle file uploads
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.organiser = request.user  # Set the current user as the organiser
+            event.status = 0  # Mark event as "Draft" by default
+            event.save()
+            return redirect('home')  # Redirect to the home page after submission
+    else:
+        form = AddEventForm()
+    
+    return render(request, 'add_event.html', {'form': form})
+
 
 def addevent_detail(request, slug):
     """

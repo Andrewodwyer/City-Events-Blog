@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 from django.utils import timezone #local time 
 
 """
@@ -45,6 +46,8 @@ class AddEvent(models.Model):
     # integerField is a number picker but is overridden to a string drop down
     excerpt = models.TextField(blank=True)  # Optional summary or preview of the posted event
     updated_on = models.DateTimeField(default=timezone.now) #sets the time the event was created
+    # Add Cloudinary image field
+    event_image = CloudinaryField('image', default='placeholder')
 
     class Meta:
         ordering = ['start_date_time']  # Orders by start_date_time in ascending order (soonest first)

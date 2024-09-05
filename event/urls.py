@@ -6,4 +6,5 @@ urlpatterns = [
     path('calendar/', views.calendar_view, name='calendar'),  # Path for the calendar page
     path('api/events/', views.get_events, name='get_events'),  # API to fetch events from the database
     path('event/<slug:slug>/', views.addevent_detail, name='addevent_detail'),
+    path('add-event/', add_event, name='add_event'),
 ]
