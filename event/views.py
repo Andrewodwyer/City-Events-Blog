@@ -37,6 +37,15 @@ def add_event(request):
     
     return render(request, 'add_event.html', {'form': form})
 
+@login_required
+def my_events(request):
+    """
+    Users can view and manage their own events,
+    It lists only the events created by this logged-in user
+    """
+    events = AddEvent.objects.filter(organiser=request.user)
+    return render(request, 'my_events.html', {'events': events})
+
 
 def addevent_detail(request, slug):
     """

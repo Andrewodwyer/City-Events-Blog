@@ -9,6 +9,80 @@ body {
     color: #4A4A4F;
 }
 
+.half-white-half-blue {
+    background: linear-gradient(to bottom, white 50%, #1B4965 50%);
+    display: flex;
+    height: 350px; /* Adjust height as needed */
+    position: relative;
+}
+
+/* Image container with a fixed height and centered image */
+.image-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* the image fills the container and maintains the center focus */
+.image-container img {
+    object-fit: cover;  /* Ensures the image fills the space without stretching */
+    object-position: center; /* Focus on the center of the image */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height to cover the container */
+}
+
+/* White box positioned on the right, centered vertically */
+.white-box {
+    position: absolute;
+    left: 0; /* Adjust as necessary */
+    transform: translate(0, -50%);
+    background-color: white;
+    padding: 10px 40px;
+    border-radius: 0px 5px 5px 0px;
+    z-index: 2; /* Ensure it's above the image */
+    width: auto; /* Adjust width as needed */
+}
+
+.white-box p {
+    margin: 0;
+    font-size: 18px;
+    color: #585858; /* Text color */
+}
+
+/* white bar under the image */
+.white-bar {
+    background-color: white;
+    text-align: center;
+}
+
+/* circular buttons */
+.icon-button {
+    background-color: #f8f9fa;
+    border: .5px solid #585858;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+    font-size: 20px;
+    color: #585858;
+    transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: #1B4965;
+    color: #fff;
+}
+
+.icons-container {
+    margin-right: 100px; /* Adds space between icons */
+    margin-left: 100px;  /* Adds space between icons (if needed) */
+}
+
 .red-o {
     color: #E84610;
 }
@@ -176,4 +250,13 @@ body {
 
 .round-corner-back {
     border-radius: 50px 15px;
+}
+
+.log-box {
+    background-color: #fff;
+    color: #585858;
+    width: 250px;
+    margin-left: auto;
+    padding: 0 20px 0 0;
+    border-radius: 5px 0 0 5px;
 }
