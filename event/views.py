@@ -35,7 +35,7 @@ def add_event(request):
     else:
         form = AddEventForm()
     
-    return render(request, 'add_event.html', {'form': form})
+    return render(request, 'event/add_event.html', {'form': form})
 
 @login_required
 def my_events(request):
