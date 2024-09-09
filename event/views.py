@@ -101,7 +101,7 @@ def event_list_by_category(request, category_id):
     """
     category = get_object_or_404(Category, id=category_id)
     events = AddEvent.objects.filter(event_category=category)
-    return render(request, 'events_by_category.html', {'category': category, 'events': events})
+    return render(request, 'event/events_by_category.html', {'category': category, 'events': events})
 
 # class EventListByCategoryView(generic.ListView): 
 #     """
@@ -114,6 +114,6 @@ def event_list_by_category(request, category_id):
 #     paginate_by = 6
 #     # paginate by 6 tells Django to display 6 posts at a time
 
-def homepage(request):
-    categories = Category.objects.all()
-    return render(request, 'index.html', {'categories': categories})
+# def homepage(request):
+#     categories = Category.objects.all()
+#     return render(request, 'index.html', {'categories': categories})
