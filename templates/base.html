@@ -13,11 +13,16 @@
 <head>
     <title>The Word</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
 
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Bodoni+Moda+SC:ital,opsz,wght@300&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet"> -->
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -46,28 +51,28 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'home' %}">Home</a>
+                        <a class="nav-link small {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'home' %}">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == calendar_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'calendar' %}">Calendar</a>
+                        <a class="nav-link small {% if request.path == calendar_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'calendar' %}">CALENDAR</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == add_event_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'add_event' %}">Create an Event</a>
+                        <a class="nav-link small {% if request.path == add_event_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'add_event' %}">CREATE AN EVENT</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                        <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">LOGOUT</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_signup' %}">Register</a>
+                        <a class="nav-link small {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'account_signup' %}">REGISTER</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+                        <a class="nav-link small {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">LOGIN</a>
                     </li>
                     {% endif %}
 
@@ -85,7 +90,7 @@
                 <img src="{% static 'images/Events-header.jpg' %}" alt="event image" class="img-fluid">
                 <!-- White box positioned at the right center -->
                 <div class="white-box">
-                    <p>FIND YOUR EVENT</p>
+                    <h6>FIND YOUR EVENT</h6>
                 </div>
             </div>
         </div>
