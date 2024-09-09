@@ -37,13 +37,14 @@ body {
 /* White box positioned on the right, centered vertically */
 .white-box {
     position: absolute;
-    left: 0; /* Adjust as necessary */
+    right: 0; /* right side */
     transform: translate(0, -50%);
     background-color: white;
     padding: 10px 40px;
-    border-radius: 0px 5px 5px 0px;
+    border: 5px solid #fff;
+    border-radius: 5px 0px 0px 5px;
     z-index: 2; /* Ensure it's above the image */
-    width: auto; /* Adjust width as needed */
+    width: auto;
 }
 
 .white-box h6 {

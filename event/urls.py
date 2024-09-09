@@ -8,4 +8,5 @@ urlpatterns = [
     path('api/events/', views.get_events, name='get_events'),  # API to fetch events from the database
     path('event/<slug:slug>/', views.addevent_detail, name='addevent_detail'),
     path('add-event/', add_event, name='add_event'),
+    path('events/category/<int:category_id>/', views.event_list_by_category, name='events_by_category'), #Users can filter events by category
 ]

@@ -99,18 +99,18 @@
 <!-- White bar with circular buttons (no carousel) -->
 <div class="white-bar py-2">
     <div class="d-flex justify-content-around">
-        <button class="icon-button">
+        <a href="{% url 'events_by_category' category_id=1 %}" class="icon-button">
             <i class="fas fa-futbol"></i> <!-- Sports Icon -->
-        </button>
-        <button class="icon-button">
+        </a>
+        <a href="{% url 'events_by_category' category_id=2 %}" class="icon-button">
             <i class="fas fa-paint-brush"></i> <!-- Art Icon -->
-        </button>
-        <button class="icon-button">
+        </a>
+        <a href="{% url 'events_by_category' category_id=3 %}" class="icon-button">
             <i class="fas fa-theater-masks"></i> <!-- Theater Icon -->
-        </button>
-        <button class="icon-button">
+        </a>
+        <a href="{% url 'events_by_category' category_id=4 %}" class="icon-button">
             <i class="fas fa-music"></i> <!-- Music Icon -->
-        </button>
+        </a>
     </div>
 </div>
 

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required #use decorator for login users
 from django.views import generic 
 from django.http import JsonResponse
-from .models import AddEvent # Import the AddEvent model
+from .models import AddEvent, Category # Import the AddEvent model
 from .forms import AddEventForm # function taken from the forms.py file
 
 # Create your views here.
@@ -93,3 +93,27 @@ def get_events(request):
 
 def calendar_view(request):
     return render(request, 'event/calendar.html')
+
+def event_list_by_category(request, category_id):
+    """
+    Filtering by Category. Passes the selected category to the view and filter the AddEvent objects.
+    Like the my_events function it sends the filtered events to the 
+    """
+    category = get_object_or_404(Category, id=category_id)
+    events = AddEvent.objects.filter(event_category=category)
+    return render(request, 'events_by_category.html', {'category': category, 'events': events})
+
+# class EventListByCategoryView(generic.ListView): 
+#     """
+#     All events in the database are displayed
+#     This ListView is a generic django view
+#     Displaying events from the AddEvent model
+#     """
+#     queryset = AddEvent.objects.filter(Category, id=category_id)
+#     template_name = "event/events_by_category.html"
+#     paginate_by = 6
+#     # paginate by 6 tells Django to display 6 posts at a time
+
+def homepage(request):
+    categories = Category.objects.all()
+    return render(request, 'index.html', {'categories': categories})

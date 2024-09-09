@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- events_by_category.html content starts here -->
+<h2>Events in {{ category.name }}</h2>
+<!-- Container for the blog posts -->
+<div class="container my-3">
+    <div class="row">
+        <!-- Start of each blog post -->
+        {% for category in categories %}
+        <div class="col-md-6 col-12 mb-4">
+            <!-- event_detail come from the urls path slug-->
+            <div class="card h-100">
+                <!-- Card image -->
+                <img src="{% static 'images/3pieceband.png' %}" class="card-img-top" alt="Event image" style="height: 200px; object-fit: cover;">
+                <a href="{% url 'addevent_detail' event.slug %}" class="post-link">
+                    <!-- Card body with content -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="card-text">{{ event.description }}</p>
+                        <p class="card-text text-muted">Organiser: {{ event.organiser }}</p>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+        <li>No events found in this category.</li>  
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    {% if is_paginated %}
+    <!-- is_paginated True more than the paginate number that was set to 6, add pagination. -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <!-- has_prev True if there is a prev page, so False for the first page. -->
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}"
+                  class="page-link round-corner-back">&laquo; PREV</a>
+            </li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <!-- has_next True if there is a next page, so False for the last page. -->
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link round-corner"> NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+<!-- index.html content ends here -->
+{% endblock %}
