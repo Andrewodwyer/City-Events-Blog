@@ -65,9 +65,7 @@ def addevent_detail(request, slug):
     addevent = get_object_or_404(queryset, slug=slug)
 
     return render(
-        request,
-        "event/addevent_detail.html",
-        {"event": addevent,},
+        request, "event/addevent_detail.html", {"event": addevent,},
     )
 
 def get_events(request):
@@ -97,7 +95,9 @@ def calendar_view(request):
 def event_list_by_category(request, category_id):
     """
     Filtering by Category. Passes the selected category to the view and filter the AddEvent objects.
-    Like the my_events function it sends the filtered events to the 
+    This view function response/return, renders a template (HTML file) and sends it back to the users browser
+    using this format render(request, template_name, context=None, content_type=None, status=None, using=None)
+    context: This is a dictionary containing data i want to pass to the html template.
     """
     category = get_object_or_404(Category, id=category_id)
     events = AddEvent.objects.filter(event_category=category)
