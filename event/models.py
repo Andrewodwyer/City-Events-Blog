@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
+from cloudinary.models import CloudinaryField #use cloudinary for images
 from django.utils import timezone #local time 
 
 """
