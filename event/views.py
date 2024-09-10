@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required #use decorator for login users
 from django.views import generic 
 from django.http import JsonResponse
+# from django.core.paginator import Paginator #add pagination to list view
 from .models import AddEvent, Category # Import the AddEvent model
 from .forms import AddEventForm # function taken from the forms.py file
 
@@ -103,17 +104,29 @@ def event_list_by_category(request, category_id):
     events = AddEvent.objects.filter(event_category=category)
     return render(request, 'event/events_by_category.html', {'category': category, 'events': events})
 
-# class EventListByCategoryView(generic.ListView): 
-#     """
-#     All events in the database are displayed
-#     This ListView is a generic django view
-#     Displaying events from the AddEvent model
-#     """
-#     queryset = AddEvent.objects.filter(Category, id=category_id)
-#     template_name = "event/events_by_category.html"
-#     paginate_by = 6
-#     # paginate by 6 tells Django to display 6 posts at a time
+def event_list(request):
+    event_list = AddEvent.objects.all()
+    paginator = Paginator(event_list, 6)
+    # Get the current page number from the request
+    page_number = request.GET.get('page', 1)
+    events = paginator.page(page_number)
+    return render(request, 'event/events_by_category.html', {'events: events'})
+
+
+class EventListByCategoryView(generic.ListView):
+    model = AddEvent
+    template_name = 'event/events_by_category.html'  # The template that will display the events
+    context_object_name = 'events'  # The name of the object list in the template (optional, default is 'object_list')
+    paginate_by = 6  # Number of events to display per page
+
+    def get_queryset(self):
+        """
+        Override the get_queryset method to filter the events by category.
+        """
+        category_id = self.kwargs.get('category_id')
+        return AddEvent.objects.filter(event_category_id=category_id)
 
 # def homepage(request):
 #     categories = Category.objects.all()
 #     return render(request, 'index.html', {'categories': categories})
+
