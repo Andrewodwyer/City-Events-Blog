@@ -270,6 +270,16 @@ body {
     border-radius: 5px 0 0 5px;
 }
 
+.transparent-color {
+    background-color: #445261;
+}
+
+.object-fit-cover {
+    height: 200px; 
+    object-fit: cover;
+    width: 100%;
+}
+
 /* Media query */
 /* 
 @media screen and (min-width:992px) {
