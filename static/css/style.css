@@ -9,17 +9,17 @@ body {
 
 .brand {
     font-size: 1.4rem;
-    font-weight: 700;
+    /* font-weight: 700; */
     color: #4A4A4F;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%); /* centre logo brand*/
 }
 
 .half-white-half-blue {
     background: linear-gradient(to bottom, white 50%, #1B4965 50%);
     display: flex;
-    height: 350px; /* Adjust height as needed */
+    height: 350px; 
     position: relative;
 }
 
@@ -261,8 +261,9 @@ body {
 }
 
 .log-box {
-    background-color: #fff;
-    color: #585858;
+    /* background-color: #fff; */
+    /* color: #585858; */
+    color: #fff;
     width: 250px;
     margin-left: auto;
     padding: 0 20px 0 0;
@@ -270,7 +271,7 @@ body {
 }
 
 /* Media query */
-
+/* 
 @media screen and (min-width:992px) {
     .navbar-collapse{
         flex-grow: 0;
@@ -278,4 +279,4 @@ body {
     .container-fluid.my-container-fluid{
         justify-content: center;
     }
-}
+} */

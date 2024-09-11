@@ -5,6 +5,7 @@ from django.http import JsonResponse
 # from django.core.paginator import Paginator #add pagination to list view
 from .models import AddEvent, Category # Import the AddEvent model
 from .forms import AddEventForm # function taken from the forms.py file
+from .commentforms import CommentForm
 
 # Create your views here.
 class EventList(generic.ListView): 
@@ -64,9 +65,17 @@ def addevent_detail(request, slug):
 
     queryset = AddEvent.objects.filter(status=1)
     addevent = get_object_or_404(queryset, slug=slug)
+    comments = addevent.comments.all().order_by("-created_at")
+    comment_count = addevent.comments.filter(is_approved=True).count()
+    comment_form = CommentForm()
 
     return render(
-        request, "event/addevent_detail.html", {"event": addevent,},
+        request, "event/addevent_detail.html", 
+        {"event": addevent,
+        "comments": comments,
+        "comment_count": comment_count,
+        "comment_form": comment_form,
+        },
     )
 
 def get_events(request):

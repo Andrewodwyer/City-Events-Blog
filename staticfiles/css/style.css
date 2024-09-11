@@ -3,18 +3,23 @@ body {
     font-family: "Bodoni Moda SC", serif;
 }
 
-.brand {
-    /* font-family: Lato, sans-serif; */
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #4A4A4F;
+.navbar {
+    position: relative;
 }
 
+.brand {
+    font-size: 1.4rem;
+    /* font-weight: 700; */
+    color: #4A4A4F;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%); /* centre logo brand*/
+}
 
 .half-white-half-blue {
     background: linear-gradient(to bottom, white 50%, #1B4965 50%);
     display: flex;
-    height: 350px; /* Adjust height as needed */
+    height: 350px; 
     position: relative;
 }
 
@@ -38,13 +43,14 @@ body {
 /* White box positioned on the right, centered vertically */
 .white-box {
     position: absolute;
-    left: 0; /* Adjust as necessary */
+    right: 0; /* right side */
     transform: translate(0, -50%);
     background-color: white;
     padding: 10px 40px;
-    border-radius: 0px 5px 5px 0px;
+    border: 5px solid #fff;
+    border-radius: 5px 0px 0px 5px;
     z-index: 2; /* Ensure it's above the image */
-    width: auto; /* Adjust width as needed */
+    width: auto;
 }
 
 .white-box h6 {
@@ -255,12 +261,22 @@ body {
 }
 
 .log-box {
-    background-color: #fff;
-    color: #585858;
+    /* background-color: #fff; */
+    /* color: #585858; */
+    color: #fff;
     width: 250px;
     margin-left: auto;
     padding: 0 20px 0 0;
     border-radius: 5px 0 0 5px;
 }
 
-/* footer  */
+/* Media query */
+/* 
+@media screen and (min-width:992px) {
+    .navbar-collapse{
+        flex-grow: 0;
+    }
+    .container-fluid.my-container-fluid{
+        justify-content: center;
+    }
+} */
