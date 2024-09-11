@@ -16,8 +16,8 @@
                 <p class="post-subtitle">{{ event.organiser }} | {{ event.updated_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-              {% if "placeholder" in event.featured_image.url %}
-              <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder">
+              {% if "placeholder" in event.event_image.url %}
+              <img src="{% static 'images/3pieceband.png' %}" class="scale" alt="placeholder">
               {% else %}
               <img src="{{ event.event_image.url }}" class="scale" alt="{{ event.title }}">
               {% endif %}
@@ -71,7 +71,7 @@
                         {{ comment.body | linebreaks }}
                     </div>
                     {% if not comment.approved and comment.organiser == user %}
-                    <p class="approval">
+                    <p class="approval text-light">
                         This comment is awaiting approval
                     </p>
                     {% endif %}

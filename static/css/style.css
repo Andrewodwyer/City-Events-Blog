@@ -270,6 +270,10 @@ body {
     border-radius: 5px 0 0 5px;
 }
 
+.transparent-color {
+    background-color: #445261;
+}
+
 /* Media query */
 /* 
 @media screen and (min-width:992px) {

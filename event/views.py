@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required #use decorator for login users
 from django.views import generic 
+from django.contrib import messages
 from django.http import JsonResponse
 # from django.core.paginator import Paginator #add pagination to list view
 from .models import AddEvent, Category # Import the AddEvent model
@@ -67,6 +68,18 @@ def addevent_detail(request, slug):
     addevent = get_object_or_404(queryset, slug=slug)
     comments = addevent.comments.all().order_by("-created_at")
     comment_count = addevent.comments.filter(is_approved=True).count()
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = request.user
+            comment.event = addevent
+            comment.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Comment submitted and awaiting approval'
+    )
+
     comment_form = CommentForm()
 
     return render(

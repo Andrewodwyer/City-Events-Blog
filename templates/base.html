@@ -96,23 +96,38 @@
         </div>
     </div>
 
-<!-- White bar with circular buttons (no carousel) -->
-<div class="white-bar py-2">
-    <div class="d-flex justify-content-around">
-        <a href="{% url 'events_by_category' category_id=1 %}" class="icon-button">
-            <i class="fas fa-music"></i> <!-- Sports Icon -->
-        </a>
-        <a href="{% url 'events_by_category' category_id=2 %}" class="icon-button">
-            <i class="fas fa-futbol"></i> <!-- Art Icon -->
-        </a>
-        <a href="{% url 'events_by_category' category_id=3 %}" class="icon-button">
-            <i class="fas fa-paint-brush"></i> <!-- Theater Icon -->
-        </a>
-        <a href="{% url 'events_by_category' category_id=4 %}" class="icon-button">
-            <i class="fas fa-theater-masks"></i> <!-- Music Icon -->
-        </a>
+    <!-- White bar with circular buttons (no carousel) -->
+    <div class="white-bar py-2">
+        <div class="d-flex justify-content-around">
+            <a href="{% url 'events_by_category' category_id=1 %}" class="icon-button">
+                <i class="fas fa-music"></i> <!-- Sports Icon -->
+            </a>
+            <a href="{% url 'events_by_category' category_id=2 %}" class="icon-button">
+                <i class="fas fa-futbol"></i> <!-- Art Icon -->
+            </a>
+            <a href="{% url 'events_by_category' category_id=3 %}" class="icon-button">
+                <i class="fas fa-paint-brush"></i> <!-- Theater Icon -->
+            </a>
+            <a href="{% url 'events_by_category' category_id=4 %}" class="icon-button">
+                <i class="fas fa-theater-masks"></i> <!-- Music Icon -->
+            </a>
+        </div>
     </div>
-</div>
+
+    <!-- displaying Django messages -->
+    <div class="container">
+        <div class="row text-light">
+            <div class="col-md-8 offset-md-2 mt-2">
+                {% for message in messages %}
+                <div class="alert transparent-color {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                    {{ message | safe }}
+                    <button type="button" class="btn-close btn-close-white"
+                        data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
     <main class="flex-shrink-0 main-bg">
         {% if user.is_authenticated %}
@@ -132,9 +147,6 @@
     </main>
 
     <!-- Footer -->
-    <!-- Remove the container if you want to extend the Footer to full width. -->
-
-
 
     <footer class="footer mt-auto py-3 dark-grey">
         <div class="container-fluid">
