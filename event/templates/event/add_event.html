@@ -6,16 +6,59 @@
 
 {% load crispy_forms_tags %}
 
-<div class="container mt-5">
+<div class="container mt-5 text-white">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 my-3">
             <h2>Add New Event</h2>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %} 
                 <!-- csrf protects against cross-site request forgery. Its a unique token that django checks -->
-                <!-- {{ form.as_p }}  -->
-                <!-- _p in form.as_p Renders the Django form as a series of HTML <p> elements -->
-                {{ form|crispy }}
+
+                {{ form.title|as_crispy_field }}
+                {{ form.description|as_crispy_field }}
+                
+                <!-- category and location fields side by side -->
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form.event_category|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form.location|as_crispy_field }}
+                    </div>
+                </div>
+
+                <!-- Date fields side by side -->
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form.start_date_time|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form.end_date_time|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <!-- Free and Price fields side by side -->
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form.is_free|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form.price|as_crispy_field }}
+                    </div>
+                </div>
+
+                {{ form.excerpt|as_crispy_field }}
+
+                <!-- image and links -->
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form.event_image|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form.link_to_event_page|as_crispy_field }}
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Submit Event</button>
             </form>
         </div>

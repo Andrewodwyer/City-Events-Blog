@@ -30,15 +30,19 @@ def add_event(request):
     if request.method == 'POST':
         form = AddEventForm(request.POST, request.FILES)  # Handle file uploads
         if form.is_valid():
-            event = form.save(commit=False)
+            event = form.save(commit=False)  # Do not save to the database yet
             event.organiser = request.user  # Set the current user as the organiser
             event.status = 0  # Mark event as "Draft" by default
-            event.save()
-            messages.add_message(request, messages.SUCCESS, "Add event request received!, request reviewed within 2 days.")
+            
+            # Automatically generate the slug from the title
+            event.slug = slugify(event.title)
+            
+            event.save()  # Save the event to the database
+            messages.add_message(request, messages.SUCCESS, "Add event request received! It will be reviewed within 2 days.")
             return redirect('home')  # Redirect to the home page after submission
     else:
         form = AddEventForm()
-    
+
     return render(request, 'event/add_event.html', {'form': form})
 
 @login_required

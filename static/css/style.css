@@ -279,6 +279,10 @@ body {
     object-fit: cover;
     width: 100%;
 }
+/* Crispy Forms text */
+.form-text {
+    color: 	#C9C8C7/* Light grey color */
+}
 
 /* Media query */
 /* 
