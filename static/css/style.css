@@ -253,12 +253,9 @@ body {
 }
 
 .round-corner {
-    border-radius: 15px 50px;
+    border-radius: 5px;
 }
 
-.round-corner-back {
-    border-radius: 50px 15px;
-}
 
 .log-box {
     /* background-color: #fff; */
@@ -283,6 +280,7 @@ body {
 .form-text {
     color: 	#C9C8C7/* Light grey color */
 }
+
 
 /* Media query */
 /* 

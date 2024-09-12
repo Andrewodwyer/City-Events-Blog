@@ -126,7 +126,8 @@ def get_events(request):
     return JsonResponse(events_list, safe=False)
 
 def calendar_view(request):
-    return render(request, 'event/calendar.html')
+    # events = AddEvent.objects.all()  # Fetch all events
+    return render(request, 'event/calendar.html') #{'events': events})
 
 def event_list_by_category(request, category_id):
     """

@@ -253,11 +253,7 @@ body {
 }
 
 .round-corner {
-    border-radius: 15px 50px;
-}
-
-.round-corner-back {
-    border-radius: 50px 15px;
+    border-radius: 5px;
 }
 
 .log-box {

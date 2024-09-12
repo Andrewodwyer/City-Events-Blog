@@ -4,8 +4,8 @@
 
 {% load static %}
 
-<div class="container mt-4">
-    <h1 class="text-center mb-4">Event Calendar</h1>
+<div class="container bg-light mt-4 pb-4 mb-2 rounded">
+    <h1 class="text-center mb-4 pt-2">Event Calendar</h1>
     <div id="calendar"></div>
 </div>
 
@@ -23,9 +23,9 @@
             initialView: 'dayGridMonth',  // Default view
             events: '/api/events/',  // Fetch events from the backend
             headerToolbar: {
-                left: 'prev,next today',
+                left: 'prev',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                right: 'next'
             },
             eventClick: function(info) {
                 // eventClick redirect to the event detail page, by changing the current href
