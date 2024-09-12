@@ -83,7 +83,7 @@
             </div>
         </div>
     </nav>
-
+    <!-- Hero image -->
     <div class="container-fluid p-0"> 
         <div class="no-gutters align-items-center half-white-half-blue">
             <div class="col-md-10 offset-md-1 p-0 d-flex justify-content-center align-items-center image-container">
@@ -128,11 +128,11 @@
             </div>
         </div>
     </div>
-
+    <!-- logged in message -->
     <main class="flex-shrink-0 main-bg">
         {% if user.is_authenticated %}
         <div class="log-box">
-            <p class="m-3">You are logged in as {{ user }}</p>
+            <p class="m-2">You are logged in as {{ user }}</p>
         </div>
         {% else %}
         <div class="log-box">

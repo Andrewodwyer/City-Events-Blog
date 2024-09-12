@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required #use decorator for login users
 from django.views import generic 
 from django.contrib import messages
@@ -34,6 +34,7 @@ def add_event(request):
             event.organiser = request.user  # Set the current user as the organiser
             event.status = 0  # Mark event as "Draft" by default
             event.save()
+            messages.add_message(request, messages.SUCCESS, "Add event request received!, request reviewed within 2 days.")
             return redirect('home')  # Redirect to the home page after submission
     else:
         form = AddEventForm()
@@ -55,7 +56,7 @@ def addevent_detail(request, slug):
     Display an individual :model:`event.AddEvent`.
 
     **Context**
-
+    status=1 selects the published events, status=0 is draft and admin publishes them
     ``addevent``
         An instance of :model:`event.AddEvent`.
 
@@ -64,23 +65,30 @@ def addevent_detail(request, slug):
     :template:`event/addevent_detail.html`
     """
 
-    queryset = AddEvent.objects.filter(status=1)
+    queryset = AddEvent.objects.filter(status=1) 
     addevent = get_object_or_404(queryset, slug=slug)
     comments = addevent.comments.all().order_by("-created_at")
     comment_count = addevent.comments.filter(is_approved=True).count()
     if request.method == "POST":
+        print("Received a POST request")
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
+            # is_valid() has it been fill in correctly
             comment = comment_form.save(commit=False)
+            # .save() save to the database, comment=False returns an object that hasn't been save
             comment.user = request.user
+            # request.user is the logged in user, relating current user to comments model field user
             comment.event = addevent
             comment.save()
+            # comments now saved
             messages.add_message(
                 request, messages.SUCCESS,
                 'Comment submitted and awaiting approval'
+                # messages to be used in base.html
     )
 
     comment_form = CommentForm()
+    print("About to render template")
 
     return render(
         request, "event/addevent_detail.html", 
@@ -127,10 +135,14 @@ def event_list_by_category(request, category_id):
     return render(request, 'event/events_by_category.html', {'category': category, 'events': events})
 
 def event_list(request):
+    """
+    Displays all the events in a page with pagination set to 6.
+    first page set to page 1 
+    """
     event_list = AddEvent.objects.all()
     paginator = Paginator(event_list, 6)
-    # Get the current page number from the request
     page_number = request.GET.get('page', 1)
+    # Get the current page number from the request
     events = paginator.page(page_number)
     return render(request, 'event/events_by_category.html', {'events: events'})
 
