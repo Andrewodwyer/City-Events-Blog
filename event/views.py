@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required #use decorator for log
 from django.views import generic 
 from django.contrib import messages
 from django.http import JsonResponse
+# from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # from django.core.paginator import Paginator #add pagination to list view
 from django.http import HttpResponseRedirect
 from .models import AddEvent, Category, Comment # Import the AddEvent, Category, Comment model
@@ -15,8 +16,10 @@ class EventList(generic.ListView):
     All events in the database are displayed
     This ListView is a generic django view
     Displaying events from the AddEvent model
+    .future_events() comes from the AddEventManager class in the models.py
+    It filters on time and has a status of 1 (published)
     """
-    queryset = AddEvent.objects.all() # Gets all 'AddEvent' objects from the database and sends them to the template.
+    queryset = AddEvent.objects.future_events() # Gets all 'AddEvent' objects from the database and sends them to the template.
     template_name = "event/index.html"
     paginate_by = 6
     # paginate by 6 tells Django to display 6 posts at a time
@@ -129,42 +132,23 @@ def calendar_view(request):
     # events = AddEvent.objects.all()  # Fetch all events
     return render(request, 'event/calendar.html') #{'events': events})
 
-def event_list_by_category(request, category_id):
-    """
-    Filtering by Category. Passes the selected category to the view and filter the AddEvent objects.
-    This view function response/return, renders a template (HTML file) and sends it back to the users browser
-    using this format render(request, template_name, context=None, content_type=None, status=None, using=None)
-    context: This is a dictionary containing data i want to pass to the html template.
-    """
-    category = get_object_or_404(Category, id=category_id)
-    events = AddEvent.objects.filter(event_category=category)
-    return render(request, 'event/events_by_category.html', {'category': category, 'events': events})
 
-def event_list(request):
+def get_filtered_events_by_category(category):
     """
-    Displays all the events in a page with pagination set to 6.
-    first page set to page 1 
+    Filters current or future events first
+    Filtering by Category next.
+    The .future_events()
     """
-    event_list = AddEvent.objects.all()
-    paginator = Paginator(event_list, 6)
-    page_number = request.GET.get('page', 1)
-    # Get the current page number from the request
-    events = paginator.page(page_number)
-    return render(request, 'event/events_by_category.html', {'events: events'})
+    return AddEvent.objects.future_events().filter(event_category=category)
 
-
-class EventListByCategoryView(generic.ListView):
+class EventListByCategory(generic.ListView):
     model = AddEvent
-    template_name = 'event/events_by_category.html'  # The template that will display the events
-    context_object_name = 'events'  # The name of the object list in the template (optional, default is 'object_list')
-    paginate_by = 6  # Number of events to display per page
+    template_name = 'event/events_by_category.html'
+    paginate_by = 6
 
     def get_queryset(self):
-        """
-        Override the get_queryset method to filter the events by category.
-        """
-        category_id = self.kwargs.get('category_id')
-        return AddEvent.objects.filter(event_category_id=category_id)
+        category = get_object_or_404(Category, id=self.kwargs['category_id'])
+        return get_filtered_events_by_category(category)
 
 def comment_edit(request, slug, comment_id):
     """

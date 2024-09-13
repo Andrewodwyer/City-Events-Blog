@@ -11,7 +11,7 @@ body {
     font-size: 1.4rem;
     /* font-weight: 700; */
     color: #4A4A4F;
-    position: absolute;
+    /* position: absolute; */
     left: 50%;
     transform: translateX(-50%) translateY(-50%); /* centre logo brand*/
 }
@@ -281,6 +281,9 @@ body {
     color: 	#C9C8C7/* Light grey color */
 }
 
+.navbar-link-smaller {
+    font-size: 0.5rem; /* Half the default size */
+}
 
 /* Media query */
 /* 

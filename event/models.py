@@ -20,10 +20,18 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+        
+class AddEventManager(models.Manager):
+    def future_events(self):
+        """
+        Returns events that are in the future or today.
+        """
+        return self.filter(start_date_time__gte=timezone.now(), status=1)  # Only published events
 
-# AddEvent model
+
 class AddEvent(models.Model):
     """
+    AddEvent model
     Stores a single event post related to :model:`auth.User`.
     """
     title = models.CharField(max_length=255, unique=True)
@@ -31,8 +39,8 @@ class AddEvent(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     # event_image = CloudinaryField('event_image', default='placeholder')
     organiser = models.ForeignKey(
-    User, on_delete=models.CASCADE, related_name="event_addevent"
-    )  # ForeignKey to User model
+        User, on_delete=models.CASCADE, related_name="event_addevent")
+    # ForeignKey to User model
     description = models.TextField()
     event_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events', default=1)
     # ForeignKey to Category model, Default=1 is the id for Music
@@ -48,6 +56,9 @@ class AddEvent(models.Model):
     updated_on = models.DateTimeField(default=timezone.now) #sets the time the event was created
     # Add Cloudinary image field
     event_image = CloudinaryField('image', default='placeholder')
+
+    # Use the custom manager
+    objects = AddEventManager()
 
     class Meta:
         ordering = ['start_date_time']  # Orders by start_date_time in ascending order (soonest first)
