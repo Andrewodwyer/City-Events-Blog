@@ -10,4 +10,5 @@ urlpatterns = [
     path('event/<slug:slug>/', views.addevent_detail, name='addevent_detail'),
     path('add-event/', views.add_event, name='add_event'),
     path('events/category/<int:category_id>/', EventListByCategory.as_view(), name='events_by_category'), #Users can filter events by category id int number
+    path('toggle-attendance/', views.toggle_attendance, name='toggle_attendance'),  # Added URL pattern
 ]

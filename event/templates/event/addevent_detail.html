@@ -1,9 +1,8 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 
 {% load static %}
-
 {% load crispy_forms_tags %}
 
 <div class="masthead">
@@ -15,13 +14,29 @@
                 <!-- Post author goes before the | the post's created date goes after -->
                 <h5 class="post-subtitle">Date: {{ event.start_date_time }}</h5>
                 <h5 class="post-subtitle">Organiser: {{ event.organiser }}</h5>
+                <!-- Toggle attendance button -->
+                <form action="{% url 'toggle_attendance' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="event_id" value="{{ event.id }}">
+
+                    {% if user.is_authenticated %}
+                        {% if user in event.attendees.all %}
+                            <button type="submit" class="btn btn-danger">Cancel Attendance</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-primary">Mark as Attending</button>
+                        {% endif %}
+                    {% else %}
+                        <p>Please log in to mark attendance.</p>
+                    {% endif %}
+                </form>
+                <p class="mt-2">{{ attending_count }} other people are attending</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-              {% if "placeholder" in event.event_image.url %}
-              <img src="{% static 'images/3pieceband.png' %}" class="scale" alt="placeholder">
-              {% else %}
-              <img src="{{ event.event_image.url }}" class="scale" alt="{{ event.title }}">
-              {% endif %}
+                {% if "placeholder" in event.event_image.url %}
+                    <img src="{% static 'images/3pieceband.png' %}" class="scale" alt="placeholder">
+                {% else %}
+                    <img src="{{ event.event_image.url }}" class="scale" alt="{{ event.title }}">
+                {% endif %}
             </div>
         </div>
     </div>
@@ -29,10 +44,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
+        <div class="col card mb-4 mt-3 left top">
             <div class="card-body">
                 <!-- The post content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text">
                     <h5>{{ event.title }}</h5>
                     {{ event.description | linebreaks }}
@@ -53,11 +67,10 @@
     </div>
     <!-- Displaying Comments -->
     <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
+        <div class="col-md-8 card mb-4 mt-3">
             <h3>Comments:</h3>
             <div class="card-body">
-                <!-- We want a for loop inside the empty control tags
-                to iterate through each comment in comments -->
+                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                 {% for comment in comments %}
                 <div class="p-2 comments
                     {% if not comment.is_approved and comment.organiser == user %}
@@ -77,7 +90,6 @@
                     </p>
                     {% endif %}
                 </div>
-                <!-- Our for loop ends here -->
                 {% endfor %}
             </div>
         </div>
@@ -87,12 +99,10 @@
                 {% if user.is_authenticated %}
                 <h3>Leave a comment:</h3>
                 <p>Posting as: {{ user.username }}</p>
-                <form id="commentForm" method="post"
-                    style="margin-top: 1.3em;">
+                <form id="commentForm" method="post" style="margin-top: 1.3em;">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
-                    <button id="submitButton" type="submit"
-                    class="btn btn-signup btn-lg">Submit</button>
+                    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
                 {% else %}
                 <p>Log in to leave a comment</p>

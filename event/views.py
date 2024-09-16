@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from slugify import slugify
 from .models import AddEvent, Category, Comment, Attending # Import the AddEvent, Category, Comment model
-from .forms import AddEventForm, CommentForm, AttendForm # function taken from the forms.py file
+from .forms import AddEventForm, CommentForm # function taken from the forms.py file
 
 
 # Create your views here.
@@ -191,29 +191,32 @@ def comment_edit(request, slug, comment_id):
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
+
 @login_required
-def toggle_attendance(request, event_id):
-    """
-    Toggle the attendance status for the logged-in user on the given event.
-    """
-    event = get_object_or_404(AddEvent, id=event_id)
-    user = request.user
+def toggle_attendance(request):
+    if request.method == 'POST':
+        event_id = request.POST.get('event_id')
+        event = get_object_or_404(AddEvent, id=event_id)
+        user = request.user
 
-    # Check if the user is already attending
-    attending, created = Attending.objects.get_or_create(attending_user=user, event=event)
+        attending = Attending.objects.filter(event=event, attending_user=user).first()
 
-    if not created:
-        # If an entry already exists, it means the user was attending, so remove the attendance
-        attending.delete()
-        attending_status = False
-    else:
-        # New entry created, user is now attending
-        attending_status = True
+        if attending:
+            # If attending, delete the record
+            attending.delete()
+            is_attending = False
+        else:
+            # If not attending, create a new record
+            Attending.objects.create(event=event, attending_user=user)
+            is_attending = True
 
-    # Count the number of attendees
-    attending_count = Attending.objects.filter(event=event).count()
+        # Update the attendance count
+        count = Attending.objects.filter(event=event).count()
 
-    return JsonResponse({
-        'attending': attending_status,
-        'attending_count': attending_count,
-    })
+        if request.is_ajax():
+            return JsonResponse({'is_attending': is_attending, 'count': count})
+
+        # Redirect back to the event detail page
+        return redirect('addevent_detail', slug=event.slug)
+    
+    return redirect('home')

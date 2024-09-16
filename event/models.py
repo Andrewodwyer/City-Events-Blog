@@ -69,7 +69,8 @@ class AddEvent(models.Model):
     updated_on = models.DateTimeField(default=timezone.now) #sets the time the event was created
     # Add Cloudinary image field
     event_image = CloudinaryField('image', default='placeholder')
-    attending = models.ManyToManyField(User, related_name= 'post_events')
+    event_attendees = models.ManyToManyField('Attending', related_name='attended_events', blank=True)
+
 
     # Use the custom manager
     objects = AddEventManager()
@@ -113,7 +114,7 @@ class Attending(models.Model):
     of attending if user is deleted
     """
     attending_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='User_attending')
-    event = models.ForeignKey(AddEvent, on_delete=models.CASCADE, related_name='event_attendees')
+    event = models.ForeignKey(AddEvent, on_delete=models.CASCADE, related_name='attendees')
     timestamp = models.DateTimeField(default=timezone.now)  # Automatically records when the user attends
 
     class Meta:
