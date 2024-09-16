@@ -7,9 +7,9 @@ from django.http import JsonResponse
 # from django.core.paginator import Paginator #add pagination to list view
 from django.http import HttpResponseRedirect
 from slugify import slugify
-from .models import AddEvent, Category, Comment # Import the AddEvent, Category, Comment model
-from .forms import AddEventForm # function taken from the forms.py file
-from .commentforms import CommentForm
+from .models import AddEvent, Category, Comment, Attending # Import the AddEvent, Category, Comment model
+from .forms import AddEventForm, CommentForm, AttendForm # function taken from the forms.py file
+
 
 # Create your views here.
 class EventList(generic.ListView): 
@@ -129,6 +129,8 @@ def get_events(request):
 
     return JsonResponse(events_list, safe=False)
 
+    
+
 def calendar_view(request):
     # events = AddEvent.objects.all()  # Fetch all events
     return render(request, 'event/calendar.html') #{'events': events})
@@ -141,6 +143,8 @@ def get_filtered_events_by_category(category):
     The .future_events() from the model
     """
     return AddEvent.objects.future_events().filter(event_category=category)
+
+
 
 class EventListByCategory(generic.ListView):
     """
@@ -161,6 +165,8 @@ class EventListByCategory(generic.ListView):
         """
         category = get_object_or_404(Category, id=self.kwargs['category_id'])
         return get_filtered_events_by_category(category)
+
+
 
 def comment_edit(request, slug, comment_id):
     """
@@ -184,3 +190,30 @@ def comment_edit(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
+
+@login_required
+def toggle_attendance(request, event_id):
+    """
+    Toggle the attendance status for the logged-in user on the given event.
+    """
+    event = get_object_or_404(AddEvent, id=event_id)
+    user = request.user
+
+    # Check if the user is already attending
+    attending, created = Attending.objects.get_or_create(attending_user=user, event=event)
+
+    if not created:
+        # If an entry already exists, it means the user was attending, so remove the attendance
+        attending.delete()
+        attending_status = False
+    else:
+        # New entry created, user is now attending
+        attending_status = True
+
+    # Count the number of attendees
+    attending_count = Attending.objects.filter(event=event).count()
+
+    return JsonResponse({
+        'attending': attending_status,
+        'attending_count': attending_count,
+    })

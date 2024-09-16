@@ -1,5 +1,5 @@
 from django import forms
-from .models import AddEvent
+from .models import AddEvent, Comment
 
 class AddEventForm(forms.ModelForm):
     class Meta:
@@ -38,3 +38,14 @@ class AddEventForm(forms.ModelForm):
             'excerpt': '"Optional" Add a short summary or highlight of the event.',
             'event_image': 'Upload an image that represents the event.',
         }
+
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)
+
+
+class AttendForm(forms.Form):
+    event_id = forms.IntegerField(widget=forms.HiddenInput())
