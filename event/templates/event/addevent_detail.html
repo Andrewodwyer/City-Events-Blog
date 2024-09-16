@@ -35,7 +35,7 @@
                 <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text">
                     <h5>{{ event.title }}</h5>
-                    {{ event.description | safe }}
+                    {{ event.description |linesbreaks }}
                 </p>
             </div>
         </div>

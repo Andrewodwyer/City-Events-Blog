@@ -6,6 +6,7 @@ from django.http import JsonResponse
 # from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # from django.core.paginator import Paginator #add pagination to list view
 from django.http import HttpResponseRedirect
+from slugify import slugify
 from .models import AddEvent, Category, Comment # Import the AddEvent, Category, Comment model
 from .forms import AddEventForm # function taken from the forms.py file
 from .commentforms import CommentForm
@@ -38,7 +39,7 @@ def add_event(request):
             event.organiser = request.user  # Set the current user as the organiser
             event.status = 0  # Mark event as "Draft" by default
             
-            # Automatically generate the slug from the title
+            # Automatically generate the slug from the title. python app called slugify
             event.slug = slugify(event.title)
             
             event.save()  # Save the event to the database
@@ -137,16 +138,27 @@ def get_filtered_events_by_category(category):
     """
     Filters current or future events first
     Filtering by Category next.
-    The .future_events()
+    The .future_events() from the model
     """
     return AddEvent.objects.future_events().filter(event_category=category)
 
 class EventListByCategory(generic.ListView):
+    """
+    Using Djangos ListView it will show the model (AddEvent) in the template (events_by_category.html)
+    paginated by 6.
+    """
     model = AddEvent
     template_name = 'event/events_by_category.html'
     paginate_by = 6
 
     def get_queryset(self):
+        """
+        A custom queryset overriding the the default ListView querset. This function defines
+        the set of objects (the "queryset") that will be displayed in the list.
+        The default ListView queryset would return all objects of the specifiied model.
+        Now customised to filter events by category
+        self.kwargs['category_id'] will extract the category_id from the URL
+        """
         category = get_object_or_404(Category, id=self.kwargs['category_id'])
         return get_filtered_events_by_category(category)
 

@@ -10,8 +10,11 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 # Create your models here.
 
-# Category model for EventCategory ForeignKey
+# Category model
 class Category(models.Model):
+    """
+    Stores categories. Foreign key field event_cateory in AddEvent model
+    """
     name = models.CharField(max_length=255)
 
     class Meta:
@@ -22,9 +25,18 @@ class Category(models.Model):
         return self.name
         
 class AddEventManager(models.Manager):
+    """
+    This is a custom manager seperate to all() .filter() .get(). models.Manager extends Djangos
+    base models.Manager.
+    The model is called future_events() that returns events that are in the future or today
+    This keeps the functions in the views simpler and more readable.
+    """
     def future_events(self):
         """
-        Returns events that are in the future or today.
+        Looks at the filed start_date_time, then used gte to see if it greater or equal to the
+        timezone.now() filter and if so, gives it a status of 1
+        gte: greater than or equal to
+        This function future_events is used in EventList and get_filtered_events_by_category in the view
         """
         return self.filter(start_date_time__gte=timezone.now(), status=1)  # Only published events
 
@@ -32,7 +44,8 @@ class AddEventManager(models.Manager):
 class AddEvent(models.Model):
     """
     AddEvent model
-    Stores a single event post related to :model:`auth.User`.
+    Stores a single event post related to :model:`auth.User`
+    It has a custom manger to filter by date
     """
     title = models.CharField(max_length=255, unique=True)
     # slug is a semantic URL path rather than an integer or database row ID
@@ -70,6 +83,12 @@ class AddEvent(models.Model):
 
 # Comment model for user comments on events
 class Comment(models.Model):
+    """" 
+    Stores comments on an event
+    The event the comment relates to
+    The user that made the comment
+    When it was dreated and if it is approved by the admin
+    """
     event = models.ForeignKey(AddEvent, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
