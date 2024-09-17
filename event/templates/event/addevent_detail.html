@@ -68,21 +68,22 @@
                 <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                 {% for comment in comments %}
                 <div class="p-2 comments
-                    {% if not comment.is_approved and comment.organiser == user %}
+                    {% if not comment.is_approved and comment.user == user %}
                     faded{% elif not comment.is_approved %} d-none{% endif %}">
                     <p class="font-weight-bold">
-                        {{ comment.organiser }}
+                        {{ comment.uder.usernamr }}
                         <span class="font-weight-normal">
                         {{ comment.updated_on }}
                         </span> wrote:
                     </p>
                     <div id="comment{{ comment.id }}">
-                        {{ comment.body | linebreaks }}
+                        {{ comment.content | linebreaks }}
                     </div>
-                    {% if not comment.approved and comment.organiser == user %}
-                    <p class="approval text-light">
-                        This comment is awaiting approval
-                    </p>
+                    {% if not comment.is_approved and comment.user == user %}
+                    <p class="approval text-light">This comment is awaiting approval</p>
+                    {% endif %}
+                    {% if user.is_authenticated and comment.user == user %}
+                    <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -109,3 +110,6 @@
 
 {% endblock content %}
 
+{% block extras %}
+<script src="{% static 'js/comments.js' %}"></script>
+{% endblock %}
