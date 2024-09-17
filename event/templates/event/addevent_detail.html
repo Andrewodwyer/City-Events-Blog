@@ -44,7 +44,7 @@
                 <!-- The post content goes inside the card-text. -->
                 <p class="card-text">
                     <h5>{{ addevent.title }}</h5>
-                    {{ addevent.description | linebreaks }}
+                    {{ addevent.description | safe }}
                 </p>
             </div>
         </div>
@@ -71,7 +71,7 @@
                     {% if not comment.is_approved and comment.user == user %}
                     faded{% elif not comment.is_approved %} d-none{% endif %}">
                     <p class="font-weight-bold">
-                        {{ comment.uder.usernamr }}
+                        {{ comment.user.usernamr }}
                         <span class="font-weight-normal">
                         {{ comment.updated_on }}
                         </span> wrote:
