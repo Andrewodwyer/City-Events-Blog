@@ -285,6 +285,21 @@ body {
     font-size: 0.5rem; /* Half the default size */
 }
 
+/* Icon button colour */
+.attendance-icon {
+    font-size: 32px;
+    cursor: pointer;
+    color: lightgrey;
+}
+.attending {
+    color: green;
+}
+.not-attending {
+    color: lightgrey;
+}
+
+
+
 /* Media query */
 /* 
 @media screen and (min-width:992px) {

@@ -78,6 +78,16 @@ def addevent_detail(request, slug):
     addevent = get_object_or_404(queryset, slug=slug)
     comments = addevent.comments.all().order_by("-created_at")
     comment_count = addevent.comments.filter(is_approved=True).count()
+
+    # Check if the user is attending the event
+    if request.user.is_authenticated:
+        user_attending = Attending.objects.filter(attending_user=request.user, event=addevent).exists()
+    else:
+        user_attending = False
+
+    # Get the number of people attending
+    attending_count = Attending.objects.filter(event=addevent).count()
+
     if request.method == "POST":
         print("Received a POST request")
         comment_form = CommentForm(data=request.POST)
@@ -101,8 +111,10 @@ def addevent_detail(request, slug):
 
     return render(
         request, "event/addevent_detail.html", 
-        {"event": addevent,
+        {"addevent": addevent,
         "comments": comments,
+        "user_attending": user_attending,
+        "attending_count": attending_count,
         "comment_count": comment_count,
         "comment_form": comment_form,
         },
@@ -194,29 +206,26 @@ def comment_edit(request, slug, comment_id):
 
 @login_required
 def toggle_attendance(request):
-    if request.method == 'POST':
-        event_id = request.POST.get('event_id')
-        event = get_object_or_404(AddEvent, id=event_id)
-        user = request.user
+    if request.method == "POST":
+        event_id = request.POST.get("event_id")
+        try:
+            addevent = AddEvent.objects.get(id=event_id)
 
-        attending = Attending.objects.filter(event=event, attending_user=user).first()
+            # Check if the user is already attending
+            attending = Attending.objects.filter(attending_user=request.user, event=addevent)
+            if attending.exists():
+                # User is attending, remove them
+                attending.delete()
+                attending_status = False
+            else:
+                # User is not attending, add them
+                Attending.objects.create(attending_user=request.user, event=addevent)
+                attending_status = True
 
-        if attending:
-            # If attending, delete the record
-            attending.delete()
-            is_attending = False
-        else:
-            # If not attending, create a new record
-            Attending.objects.create(event=event, attending_user=user)
-            is_attending = True
-
-        # Update the attendance count
-        count = Attending.objects.filter(event=event).count()
-
-        if request.is_ajax():
-            return JsonResponse({'is_attending': is_attending, 'count': count})
-
-        # Redirect back to the event detail page
-        return redirect('addevent_detail', slug=event.slug)
+            # Return a JSON response
+            return JsonResponse({"attending": attending_status, "attending_count": addevent.attendees.count()})
+        
+        except AddEvent.DoesNotExist:
+            return JsonResponse({"error": "Event not found"}, status=404)
     
-    return redirect('home')
+    return JsonResponse({"error": "Invalid request"}, status=400)

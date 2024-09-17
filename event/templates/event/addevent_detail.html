@@ -10,32 +10,27 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <!-- Post title goes in these h1 tags -->
-                <h1 class="post-title">{{ event.title }}</h1>
+                <h1 class="post-title">{{ addevent.title }}</h1>
                 <!-- Post author goes before the | the post's created date goes after -->
-                <h5 class="post-subtitle">Date: {{ event.start_date_time }}</h5>
-                <h5 class="post-subtitle">Organiser: {{ event.organiser }}</h5>
+                <h5 class="post-subtitle">Date: {{ addevent.start_date_time }}</h5>
+                <h5 class="post-subtitle">Organiser: {{ addevent.organiser }}</h5>
                 <!-- Toggle attendance button -->
-                <form action="{% url 'toggle_attendance' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="event_id" value="{{ event.id }}">
-
-                    {% if user.is_authenticated %}
-                        {% if user in event.attendees.all %}
-                            <button type="submit" class="btn btn-danger">Cancel Attendance</button>
+                <div class="attending-section post-subtitle">
+                    <button id="attendance-btn" data-event-id="{{ addevent.id }}">
+                        {% if user_attending %}
+                            Unattend
                         {% else %}
-                            <button type="submit" class="btn btn-primary">Mark as Attending</button>
+                            Attend
                         {% endif %}
-                    {% else %}
-                        <p>Please log in to mark attendance.</p>
-                    {% endif %}
-                </form>
-                <p class="mt-2">{{ attending_count }} other people are attending</p>
+                    </button>
+                    <p id="attendance-count">{{ attending_count }} attending</p>
+                </div>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 {% if "placeholder" in event.event_image.url %}
                     <img src="{% static 'images/3pieceband.png' %}" class="scale" alt="placeholder">
                 {% else %}
-                    <img src="{{ event.event_image.url }}" class="scale" alt="{{ event.title }}">
+                    <img src="{{ addevent.event_image.url }}" class="scale" alt="{{ addevent.title }}">
                 {% endif %}
             </div>
         </div>
@@ -48,8 +43,8 @@
             <div class="card-body">
                 <!-- The post content goes inside the card-text. -->
                 <p class="card-text">
-                    <h5>{{ event.title }}</h5>
-                    {{ event.description | linebreaks }}
+                    <h5>{{ addevent.title }}</h5>
+                    {{ addevent.description | linebreaks }}
                 </p>
             </div>
         </div>
@@ -113,3 +108,4 @@
 </div>
 
 {% endblock content %}
+

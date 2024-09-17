@@ -69,6 +69,7 @@ class AddEvent(models.Model):
     updated_on = models.DateTimeField(default=timezone.now) #sets the time the event was created
     # Add Cloudinary image field
     event_image = CloudinaryField('image', default='placeholder')
+    # This line links the AddEvent model to User through the Attending model.
     event_attendees = models.ManyToManyField('Attending', related_name='attended_events', blank=True)
 
 

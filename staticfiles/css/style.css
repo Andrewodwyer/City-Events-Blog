@@ -276,6 +276,19 @@ body {
     width: 100%;
 }
 
+/* Icon button colour */
+.attendance-icon {
+    font-size: 32px;
+    cursor: pointer;
+    color: lightgrey;
+}
+.attending {
+    color: green;
+}
+.not-attending {
+    color: lightgrey;
+}
+
 /* Media query */
 /* 
 @media screen and (min-width:992px) {
