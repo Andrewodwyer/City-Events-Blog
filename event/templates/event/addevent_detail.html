@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                {% if "placeholder" in event.event_image.url %}
+                {% if "placeholder" in addevent.event_image.url %}
                     <img src="{% static 'images/3pieceband.png' %}" class="scale" alt="placeholder">
                 {% else %}
                     <img src="{{ addevent.event_image.url }}" class="scale" alt="{{ addevent.title }}">

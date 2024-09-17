@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: {
                     "X-CSRFToken": getCSRFToken(),  // Include the CSRF token for security
                     "Content-Type": "application/x-www-form-urlencoded"
+                    // application/x-www-form-urlencoded is a way of encoding data to be sent
+                    // to the server in a format that is simple and commonly used for web forms
                 },
                 body: new URLSearchParams({
                     "event_id": eventId
