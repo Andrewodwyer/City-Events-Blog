@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required #use decorator for login users
-from django.views import generic 
+from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.http import JsonResponse
 # from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -208,24 +209,25 @@ def comment_edit(request, slug, comment_id):
 def toggle_attendance(request):
     if request.method == "POST":
         event_id = request.POST.get("event_id")
-        try:
-            addevent = AddEvent.objects.get(id=event_id)
-
-            # Check if the user is already attending
-            attending = Attending.objects.filter(attending_user=request.user, event=addevent)
-            if attending.exists():
-                # User is attending, remove them
-                attending.delete()
-                attending_status = False
-            else:
-                # User is not attending, add them
-                Attending.objects.create(attending_user=request.user, event=addevent)
-                attending_status = True
-
-            # Return a JSON response
-            return JsonResponse({"attending": attending_status, "attending_count": addevent.attendees.count()})
+        event = AddEvent.objects.get(id=event_id)
+        user = request.user
         
-        except AddEvent.DoesNotExist:
-            return JsonResponse({"error": "Event not found"}, status=404)
-    
+        if Attending.objects.filter(attending_user=user, event=event).exists():
+            # If the user is already attending, remove their attendance
+            Attending.objects.filter(attending_user=user, event=event).delete()
+            attending = False
+        else:
+            # Otherwise, mark them as attending
+            Attending.objects.create(attending_user=user, event=event)
+            attending = True
+
+        # Get updated count of attendees
+        attending_count = Attending.objects.filter(event=event).count()
+
+        # Return the response as JSON
+        return JsonResponse({
+            "attending": attending,
+            "attending_count": attending_count,
+        })
+
     return JsonResponse({"error": "Invalid request"}, status=400)
