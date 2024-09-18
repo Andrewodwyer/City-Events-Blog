@@ -1,53 +1,24 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // DOMContentLoaded event ensures that the DOM is fully loaded before executing the JS
-    // A listener is attached to the attendance-btn in the addevent_detail.html
-    const attendanceBtn = document.getElementById("attendance-btn");
+const attendanceForm = document.getElementById('attendance-form');
+const attendanceButton = document.getElementById('attendance-btn');
+const attendanceCount = document.getElementById('attendance-count');
 
-    if (attendanceBtn) {
-        attendanceBtn.addEventListener("click", function () {
-            const eventId = this.getAttribute("data-event-id");
-            
-            // Perform AJAX request to toggle attendance, POST request to send data to the server
-            fetch("/toggle-attendance/", {
-                method: "POST",
-                headers: {
-                    "X-CSRFToken": getCSRFToken(),  // Include the CSRF token for security
-                    "Content-Type": "application/x-www-form-urlencoded"
-                    // application/x-www-form-urlencoded is a way of encoding data to be sent
-                    // to the server in a format that is simple and commonly used for web forms
-                },
-                body: new URLSearchParams({
-                    "event_id": eventId
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.attending !== undefined) {
-                    // Update the button text based on the attendance state
-                    attendanceBtn.textContent = data.attending ? "Unattend" : "Attend";
-                    
-                    // Update the count of people attending
-                    const attendanceCountElement = document.getElementById("attendance-count");
-                    attendanceCountElement.textContent = `${data.attending_count} attending`;
-                }
-            })
-            .catch(error => console.error("Error:", error));
-        });
+attendanceForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  const formData = new FormData(attendanceForm);
+
+  fetch(attendanceForm.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-CSRFToken': formData.get('csrfmiddlewaretoken')
     }
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Update button text and attendance count based on response
+    attendanceButton.textContent = data.user_attending ? 'Unattend' : 'Attend';
+    attendanceCount.textContent = `${data.attending_count} attending`;
+  })
+  .catch(error => console.error('Error:', error));
 });
-
-// Function to get the CSRF token from the cookies
-function getCSRFToken() {
-    let cookieValue = null;
-    const cookies = document.cookie.split(";");
-
-    for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.startsWith("csrftoken=")) {
-            cookieValue = cookie.substring("csrftoken=".length);
-            break;
-        }
-    }
-
-    return cookieValue;
-}

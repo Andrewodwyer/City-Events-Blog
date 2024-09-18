@@ -298,6 +298,10 @@ body {
     color: lightgrey;
 }
 
+.attending-section {
+    margin-top: 5%;
+}
+
 
 
 /* Media query */

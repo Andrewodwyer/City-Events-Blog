@@ -16,13 +16,18 @@
                 <h5 class="post-subtitle">Organiser: {{ addevent.organiser }}</h5>
                 <!-- Toggle attendance button -->
                 <div class="attending-section post-subtitle">
-                    <button id="attendance-btn" data-event-id="{{ addevent.id }}">
-                        {% if user_attending %}
-                            Unattend
-                        {% else %}
-                            Attend
-                        {% endif %}
-                    </button>
+                    <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="event_id" value="{{ addevent.id }}">
+                
+                        <button id="attendance-btn" class="btn mb-2 {% if user_attending %}btn-success{% else %}btn-primary{% endif %}" type="submit">
+                            {% if user_attending %}
+                                Unattend
+                            {% else %}
+                                Attend
+                            {% endif %}
+                        </button>
+                    </form>
                     <p id="attendance-count">{{ attending_count }} attending</p>
                 </div>
             </div>
