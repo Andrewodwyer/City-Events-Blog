@@ -1,22 +1,27 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 
 {% load static %}
-
 {% load crispy_forms_tags %}
 
 <div class="container mt-5 text-white">
     <div class="row justify-content-center">
         <div class="col-md-8 my-3">
-            <h2>Add New Event</h2>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %} 
-                <!-- csrf protects against cross-site request forgery. Its a unique token that django checks -->
+            <!-- Title of the Form - Add or Edit -->
+            {% if addevent %}
+                <h2>Edit Event: {{ addevent.title }}</h2>
+            {% else %}
+                <h2>Add New Event</h2>
+            {% endif %}
 
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Form fields for the event -->
                 {{ form.title|as_crispy_field }}
                 {{ form.description|as_crispy_field }}
-                
+
                 <!-- category and location fields side by side -->
                 <div class="row">
                     <div class="col-md-6">
@@ -36,7 +41,7 @@
                         {{ form.end_date_time|as_crispy_field }}
                     </div>
                 </div>
-                
+
                 <!-- Free and Price fields side by side -->
                 <div class="row">
                     <div class="col-md-6">
@@ -49,7 +54,7 @@
 
                 {{ form.excerpt|as_crispy_field }}
 
-                <!-- image and links -->
+                <!-- Image and external link fields -->
                 <div class="row">
                     <div class="col-md-6">
                         {{ form.event_image|as_crispy_field }}
@@ -59,8 +64,32 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit Event</button>
+                <!-- Submit button for creating or updating the event -->
+                <button type="submit" class="btn btn-primary">
+                    {% if addevent %}
+                        Update Event
+                    {% else %}
+                        Submit Event
+                    {% endif %}
+                </button>
             </form>
+
+            <!-- Event approval notice (only for the creator) -->
+            {% if addevent and not addevent.is_approved and addevent.user == request.user %}
+                <p class="text-warning mt-3">This event is awaiting approval.</p>
+            {% endif %}
+
+            <!-- Edit/Delete buttons (only for the event creator) -->
+            {% if addevent and addevent.user == request.user %}
+                <div class="mt-4">
+                    <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
+                    <form method="POST" action="{% url 'delete_event' addevent.slug %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete Event</button>
+                    </form>
+                </div>
+            {% endif %}
+
         </div>
     </div>
 </div>

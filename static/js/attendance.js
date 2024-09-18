@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.user_attending) {
                 attendanceIcon.classList.remove('icon-primary');
                 attendanceIcon.classList.add('icon-success');
-                attendanceText.classList.remove('text-primary');
-                attendanceText.classList.add('text-success');
+                attendanceText.classList.remove('text-primary1');
+                attendanceText.classList.add('text-success1');
                 attendanceText.textContent = 'Attending';
             } else {
                 attendanceIcon.classList.remove('icon-success');
                 attendanceIcon.classList.add('icon-primary');
-                attendanceText.classList.remove('text-success');
-                attendanceText.classList.add('text-primary');
+                attendanceText.classList.remove('text-success1');
+                attendanceText.classList.add('text-primary1');
                 attendanceText.textContent = 'Attend?';
             }
             attendanceCount.textContent = `${data.attending_count} attending`;

@@ -238,8 +238,8 @@ body {
 
 /* Icon colors when not attending */
 .icon-primary {
-    background-color: #007bff;
-    color: white;
+    background-color: white;
+    color: #28a745; /* Bootstrap success color (green) */
 }
 
 /* Icon colors when attending */
@@ -250,8 +250,8 @@ body {
 
 /* Hover state for the icon */
 .icon-primary:hover {
-    background-color: white;
-    color: #007bff; /* Bootstrap primary color (blue) */
+    background-color: #28a745;
+    color: white;
 }
 
 .icon-success:hover {
@@ -264,15 +264,29 @@ body {
     margin-left: 10px;
     font-size: 16px;
     transition: color 0.3s;
+    border-radius: 5px;
+    padding: 0 .2em;
 }
 
 /* Text color when not attending */
-.text-primary {
-    color: #007bff; /* Bootstrap primary color (blue) */
+.text-primary1 {
+    background-color: white;
+    color: #28a745; /* Bootstrap success color (green) */
+}
+
+.text-primary1:hover {
+    background-color: #28a745;
+    color: white;
 }
 
 /* Text color when attending */
-.text-success {
+.text-success1 {
+    background-color: #28a745;
+    color: white;
+}
+
+.text-success1:hover {
+    background-color: white;
     color: #28a745; /* Bootstrap success color (green) */
 }
 

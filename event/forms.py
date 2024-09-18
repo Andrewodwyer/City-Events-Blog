@@ -50,4 +50,3 @@ class CommentForm(forms.ModelForm):
 class AttendForm(forms.Form):
     event_id = forms.IntegerField(widget=forms.HiddenInput())
 
-

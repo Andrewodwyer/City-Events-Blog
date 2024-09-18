@@ -27,7 +27,30 @@ class EventList(generic.ListView):
     # paginate by 6 tells Django to display 6 posts at a time
 
 
-@login_required
+# @login_required
+# def add_event(request):
+#     """
+#     Create a view that allows authenticated users to submit their events.
+#     Handles file uploads also
+#     """
+#     if request.method == 'POST':
+#         form = AddEventForm(request.POST, request.FILES)  # Handle file uploads
+#         if form.is_valid():
+#             event = form.save(commit=False)  # Do not save to the database yet
+#             event.organiser = request.user  # Set the current user as the organiser
+#             event.status = 0  # Mark event as "Draft" by default
+            
+#             # Automatically generate the slug from the title. python app called slugify
+#             event.slug = slugify(event.title)
+            
+#             event.save()  # Save the event to the database
+#             messages.add_message(request, messages.SUCCESS, "Add event request received! It will be reviewed within 2 days.")
+#             return redirect('home')  # Redirect to the home page after submission
+#     else:
+#         form = AddEventForm()
+
+#     return render(request, 'event/add_event.html', {'form': form})
+
 def add_event(request):
     """
     Create a view that allows authenticated users to submit their events.
@@ -50,6 +73,39 @@ def add_event(request):
         form = AddEventForm()
 
     return render(request, 'event/add_event.html', {'form': form})
+
+def edit_event(request, slug):
+    event = get_object_or_404(AddEvent, slug=slug)
+
+    if request.method == 'POST':
+        form = AddEventForm(request.POST, request.FILES, instance=event)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Event updated successfully!')
+            return redirect(reverse('event_detail', args=[slug]))  # Redirect to the event detail page
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = AddEventForm(instance=event)
+
+    context = {
+        'event': event,
+        'form': form
+    }
+    return render(request, 'addevent_detail.html', context)
+
+
+def delete_event(request, slug):
+    event = get_object_or_404(AddEvent, slug=slug)
+
+    if request.user != event.organiser:
+        messages.error(request, 'You are not authorized to delete this event.')
+        return redirect('addevent_detail', slug=slug)
+
+    event.delete()
+    messages.success(request, 'Event deleted successfully!')
+    return redirect('home') 
+    
 
 @login_required
 def my_events(request):
