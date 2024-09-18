@@ -19,14 +19,19 @@
                     <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
                         {% csrf_token %}
                         <input type="hidden" name="event_id" value="{{ addevent.id }}">
-                
-                        <button id="attendance-btn" class="btn mb-2 {% if user_attending %}btn-success{% else %}btn-primary{% endif %}" type="submit">
-                            {% if user_attending %}
-                                Unattend
-                            {% else %}
-                                Attend
-                            {% endif %}
-                        </button>
+                    
+                        <div id="attendance-container" aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
+                            <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
+                                <i class="fa fa-user-circle"></i>
+                            </div>
+                            <span id="attendance-text" class="{% if user_attending %}text-success{% else %}text-primary{% endif %}">
+                                {% if user_attending %}
+                                    Attending
+                                {% else %}
+                                    Attend?
+                                {% endif %}
+                            </span>
+                        </div>
                     </form>
                     <p id="attendance-count">{{ attending_count }} attending</p>
                 </div>
