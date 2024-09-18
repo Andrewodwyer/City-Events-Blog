@@ -229,8 +229,8 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     font-size: 24px; /* Adjusted size for new icon */
     transition: background-color 0.3s, color 0.3s;

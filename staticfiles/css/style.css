@@ -215,6 +215,81 @@ body {
     color: #23BBBB;
 }
 
+/* General styles for the icon container */
+#attendance-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative; /* Ensure positioning context for tooltips */
+}
+
+/* Icon styles */
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 24px; /* Adjusted size for new icon */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Icon colors when not attending */
+.icon-primary {
+    background-color: white;
+    color: #28a745; /* Bootstrap success color (green) */
+}
+
+/* Icon colors when attending */
+.icon-success {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Hover state for the icon */
+.icon-primary:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.icon-success:hover {
+    background-color: white;
+    color: #28a745; /* Bootstrap success color (green) */
+}
+
+/* Text beside the icon */
+#attendance-text {
+    margin-left: 10px;
+    font-size: 16px;
+    transition: color 0.3s;
+    border-radius: 5px;
+    padding: 0 .2em;
+}
+
+/* Text color when not attending */
+.text-primary1 {
+    background-color: white;
+    color: #28a745; /* Bootstrap success color (green) */
+}
+
+.text-primary1:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Text color when attending */
+.text-success1 {
+    background-color: #28a745;
+    color: white;
+}
+
+.text-success1:hover {
+    background-color: white;
+    color: #28a745; /* Bootstrap success color (green) */
+}
+
 .link {
     color: #23BBBB;
     text-decoration: none;
@@ -256,6 +331,7 @@ body {
     border-radius: 5px;
 }
 
+
 .log-box {
     /* background-color: #fff; */
     /* color: #585858; */
@@ -275,6 +351,14 @@ body {
     object-fit: cover;
     width: 100%;
 }
+/* Crispy Forms text */
+.form-text {
+    color: 	#C9C8C7/* Light grey color */
+}
+
+.navbar-link-smaller {
+    font-size: 0.5rem; /* Half the default size */
+}
 
 /* Icon button colour */
 .attendance-icon {
@@ -288,6 +372,12 @@ body {
 .not-attending {
     color: lightgrey;
 }
+
+.attending-section {
+    margin-top: 5%;
+}
+
+
 
 /* Media query */
 /* 
