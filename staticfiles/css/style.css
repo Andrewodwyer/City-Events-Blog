@@ -360,32 +360,100 @@ body {
     font-size: 0.5rem; /* Half the default size */
 }
 
-/* Icon button colour */
-.attendance-icon {
-    font-size: 32px;
-    cursor: pointer;
-    color: lightgrey;
-}
-.attending {
-    color: green;
-}
-.not-attending {
-    color: lightgrey;
+/* General Styles */
+body {
+    background-color: #F9FAFC;
+    font-family: "Bodoni Moda SC", serif;
 }
 
+/* Event image styling */
+.event-header .event-image {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+
+/* Comment form */
+.card {
+    border: none;
+    background-color: white;
+}
+
+/* Attendance icon and text */
+#attendance-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.icon-primary {
+    background-color: white;
+    color: #28a745;
+}
+
+.icon-success {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Full-width white container */
+.full-width-container {
+    width: 100%;
+    background-color: white;
+    padding-bottom: 30px;
+}
+
+/* Floating event info container */
+.event-info-container {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 66.66667%; /* 8 columns (out of 12) in Bootstrap */
+}
+
+.event-info {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Event title */
+.event-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Event date and location */
+.event-date-location {
+    font-size: 1rem;
+    text-align: left;
+}
+
+/* Attending section */
 .attending-section {
-    margin-top: 5%;
+    display: flex;
+    align-items: center;
 }
 
-
-
-/* Media query */
-/* 
-@media screen and (min-width:992px) {
-    .navbar-collapse{
-        flex-grow: 0;
-    }
-    .container-fluid.my-container-fluid{
-        justify-content: center;
-    }
-} */
+/* Comment section */
+.comments {
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
