@@ -22,103 +22,106 @@
     </div>
 </div>
 
-<!-- White container for the event details -->
-<div class="container mt-5 p-4 bg-white rounded shadow-sm">
-    <!-- Event description -->
-    <div class="row">
-        <div class="col-md-12">
-            <p>{{ addevent.description | safe }}</p>
+<!-- white div containing all content -->
+<div class="bg-white">
+    <!-- White container for the event details -->
+    <div class=" top-padding bg-white">
+        <!-- Event description -->
+        <div class="row">
+            <div class="col-md-12">
+                <p>{{ addevent.description | safe }}</p>
+            </div>
         </div>
-    </div>
 
-    <!-- Organiser -->
-    <div class="row mt-3">
-        <div class="col-md-12">
-            <h6>Organiser: {{ addevent.organiser }}</h6>
+        <!-- Organiser -->
+        <div class="row">
+            <div class="col-md-12">
+                <h6>Organiser: {{ addevent.organiser }}</h6>
+            </div>
         </div>
-    </div>
 
-    <!-- Attending section -->
-    <div class="row mt-3">
-        <div class="col-md-6 d-flex align-items-center">
-            <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
-                {% csrf_token %}
-                <input type="hidden" name="event_id" value="{{ addevent.id }}">
-                <div id="attendance-container" class="d-flex align-items-center" aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
-                    <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
-                        <i class="fa fa-user-circle"></i>
+        <!-- Attending section -->
+        <div class="row mt-3">
+            <div class="col-md-6 d-flex align-items-center">
+                <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="event_id" value="{{ addevent.id }}">
+                    <div id="attendance-container" class="d-flex align-items-center" aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
+                        <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
+                            <i class="fa fa-user-circle"></i>
+                        </div>
+                        <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}text-primary1{% endif %}">
+                            {% if user_attending %}
+                                Attending
+                            {% else %}
+                                Attend?
+                            {% endif %}
+                        </span>
                     </div>
-                    <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}text-primary1{% endif %}">
-                        {% if user_attending %}
-                            Attending
-                        {% else %}
-                            Attend?
-                        {% endif %}
-                    </span>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-6 text-left">
-            <p id="attendance-count">{{ attending_count }} attending</p>
+                </form>
+            </div>
+            <div class="col-md-6 text-left">
+                <p id="attendance-count">{{ attending_count }} attending</p>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Comments Section and Leave a Comment form -->
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-8">
-            <h3>Comments:</h3>
-            <hr>
-            {% for comment in comments %}
-            <div class="p-2 comments {% if not comment.is_approved and comment.user == user %}faded{% elif not comment.is_approved %} d-none{% endif %}">
-                <p class="font-weight-bold">
-                    {{ comment.user.username }}
-                    <span class="font-weight-normal">{{ comment.updated_on }}</span> wrote:
-                </p>
-                <div id="comment{{ comment.id }}">
-                    {{ comment.content | linebreaks }}
+    <!-- Comments Section and Leave a Comment form -->
+    <div class="container mt-4 bg-white">
+        <hr>
+        <div class="row">
+            <div class="col-md-8">
+                <h5>Comments:</h5>
+                {% for comment in comments %}
+                <div class="p-2 comments {% if not comment.is_approved and comment.user == user %}faded{% elif not comment.is_approved %} d-none{% endif %}">
+                    <p class="font-weight-bold">
+                        {{ comment.user.username }}
+                        <span class="font-weight-normal">{{ comment.updated_on }}</span> wrote:
+                    </p>
+                    <div id="comment{{ comment.id }}">
+                        {{ comment.content | linebreaks }}
+                    </div>
+                    {% if not comment.is_approved and comment.user == user %}
+                    <p class="approval text-muted">This comment is awaiting approval</p>
+                    {% endif %}
+                    {% if user.is_authenticated and comment.user == user %}
+                    <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
+                    <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                    {% endif %}
                 </div>
-                {% if not comment.is_approved and comment.user == user %}
-                <p class="approval text-muted">This comment is awaiting approval</p>
-                {% endif %}
-                {% if user.is_authenticated and comment.user == user %}
-                <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
-                <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                {% endfor %}
+            </div>
+
+            <!-- Comment form for authenticated users -->
+            <div class="col-md-4">
+                {% if user.is_authenticated %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Leave a comment:</h5>
+                        <p>Posting as: {{ user.username }}</p>
+                        <form id="commentForm" method="post">
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                {% else %}
+                <p>Log in to leave a comment</p>
                 {% endif %}
             </div>
-            {% endfor %}
-        </div>
-
-        <!-- Comment form for authenticated users -->
-        <div class="col-md-4">
-            {% if user.is_authenticated %}
-            <div class="card">
-                <div class="card-body">
-                    <h3>Leave a comment:</h3>
-                    <p>Posting as: {{ user.username }}</p>
-                    <form id="commentForm" method="post">
-                        {{ comment_form | crispy }}
-                        {% csrf_token %}
-                        <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-                    </form>
-                </div>
-            </div>
-            {% else %}
-            <p>Log in to leave a comment</p>
-            {% endif %}
         </div>
     </div>
-</div>
 
-<!-- Edit and delete buttons (visible only to the organizer) -->
-{% if addevent and addevent.organiser == request.user %}
-<div class="container mt-4">
-    <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
-    <form method="POST" action="{% url 'delete_event' addevent.slug %}" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Delete Event</button>
-    </form>
+    <!-- Edit and delete buttons (visible only to the organizer) -->
+    {% if addevent and addevent.organiser == request.user %}
+    <div class="container mt-4">
+        <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
+        <form method="POST" action="{% url 'delete_event' addevent.slug %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete Event</button>
+        </form>
+    </div>
 </div>
 {% endif %}
 

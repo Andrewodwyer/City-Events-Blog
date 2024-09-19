@@ -408,6 +408,11 @@ body {
     color: white;
 }
 
+/* top padding for event page */
+.top-padding {
+    padding: 7rem 2.5rem 1rem 2.5rem;
+}
+
 /* Full-width white container */
 .full-width-container {
     width: 100%;
