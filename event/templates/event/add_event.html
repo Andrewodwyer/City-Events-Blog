@@ -80,10 +80,9 @@
             {% endif %}
 
             <!-- Edit/Delete buttons (only for the event creator) -->
-            {% if addevent and addevent.user == request.user %}
+            {% if event and event.user == request.user %}
                 <div class="mt-4">
-                    <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
-                    <form method="POST" action="{% url 'delete_event' addevent.slug %}" style="display:inline;">
+                    <form method="POST" action="{% url 'delete_event' event.slug %}" style="display:inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Delete Event</button>
                     </form>

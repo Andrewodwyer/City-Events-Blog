@@ -11,6 +11,8 @@
             <div class="col-md-6 masthead-text">
                 <!-- Post title goes in these h1 tags -->
                 <h1 class="post-title">{{ addevent.title }}</h1>
+                <p>Organiser: {{ addevent.organiser.username }}</p>
+                <p>Current User: {{ request.user.username }}</p>
                 <!-- Post author goes before the | the post's created date goes after -->
                 <h5 class="post-subtitle">Date: {{ addevent.start_date_time }}</h5>
                 <h5 class="post-subtitle">Organiser: {{ addevent.organiser }}</h5>
@@ -70,11 +72,16 @@
             <hr class="text-white">
         </div>
     </div>
-    <div class="mb-4 d-flex justify-content-end">
-        {% if user.is_authenticated and user == addevent.organiser %}
-        <button class="btn btn-delete m-1" addevent.slug="{{ caddevent.slug }}">Delete</button>
-        <button class="btn btn-edit m-1" addevent.slug="{{ addevent.slug }}">Edit</button>
-        {% endif %}
+    <!-- event delete and edit -->
+    {% if addevent and addevent.organiser == request.user %}
+        <div class="mt-4">
+            <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
+            <form method="POST" action="{% url 'delete_event' addevent.slug %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete Event</button>
+            </form>
+        </div>
+    {% endif %}
     </div>
     <!-- Displaying Comments -->
     <div class="row">
@@ -154,5 +161,5 @@
 {% endblock content %}
 
 {% block extras %}
-<script src="{% static 'js/comments.js' %}"></script>
+<script src="{% static 'js/eventsComments.js' %}"></script>
 {% endblock %}

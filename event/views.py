@@ -82,7 +82,7 @@ def edit_event(request, slug):
         if form.is_valid():
             form.save()
             messages.success(request, 'Event updated successfully!')
-            return redirect(reverse('event_detail', args=[slug]))  # Redirect to the event detail page
+            return redirect(reverse('addevent_detail', args=[slug]))  # Redirect to the event detail page
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
@@ -92,7 +92,7 @@ def edit_event(request, slug):
         'event': event,
         'form': form
     }
-    return render(request, 'addevent_detail.html', context)
+    return render(request, 'event/add_event.html', context)  # Use the add_event.html template
 
 
 def delete_event(request, slug):
