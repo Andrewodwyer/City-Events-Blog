@@ -150,7 +150,7 @@
         <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
         <form method="POST" action="{% url 'delete_event' addevent.slug %}" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Delete Event</button>
+            <button class="btn btn-delete" data-event-slug="{{ addevent.slug }}">Delete Event</button>
         </form>
     </div>
 </div>
