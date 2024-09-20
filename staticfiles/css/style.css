@@ -466,3 +466,16 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+  /* Custom min-height for different screen sizes for the 404 image, 404 page*/
+  .img-responsive {
+    min-height: 60vh; /* At least 60% of the viewport height */
+    object-fit: cover; /* Ensures the image maintains its aspect ratio */
+  }
+
+  @media (min-width: 992px) {
+    /* On large screens (≥ 992px) */
+    .img-responsive {
+      min-height: 60vh; /* Ensure that 60% of the viewport height is used on large screens as well */
+    }
+  }

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="container text-center py-2 mb-4 position-relative">
+    <img src="{% static 'images/404-page-light.png' %}" class="img-fluid object-fit-cover img-responsive" alt="placeholder">
+    <div class="position-absolute top-50 start-50 translate-middle text-center text-black">
+        <h1 class="display-4 fw-bolder">404 - Page Not Found</h1>
+        <p class="lead">Seriously... this page does not exist!</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+    </div>
+</div>
+
+{% endblock %}

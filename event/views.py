@@ -74,7 +74,13 @@ def add_event(request):
 
     return render(request, 'event/add_event.html', {'form': form})
 
+# edit event
 def edit_event(request, slug):
+    """
+    It fetches the event that the user wants to edit.
+    It uses the slug passed in the URL to find the specific event in the AddEvent model.
+
+    """
     event = get_object_or_404(AddEvent, slug=slug)
 
     if request.method == 'POST':
@@ -87,12 +93,16 @@ def edit_event(request, slug):
             messages.error(request, 'Please correct the errors below.')
     else:
         form = AddEventForm(instance=event)
+        # method of GET, populates the form with the existing data using instance=event
 
     context = {
         'event': event,
         'form': form
     }
-    return render(request, 'event/add_event.html', context)  # Use the add_event.html template
+    return render(request, 'event/add_event.html', context)
+    # Use the add_event.html template. The event and the form are passed to the add_event.html template.
+    # This template will display the form with the pre-filled data for the user to edit.
+
 
 
 def delete_event(request, slug):
@@ -107,6 +117,7 @@ def delete_event(request, slug):
     return redirect('home') 
     
 
+# Look at this in the future
 @login_required
 def my_events(request):
     """
@@ -304,4 +315,3 @@ def toggle_attendance(request):
         })
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
-

@@ -45,14 +45,22 @@ for (let button of deleteButtons) {
   });
 }
 
-// delete events 
 for (let button of deleteButtons) {
   button.addEventListener("click", (e) => {
     let eventSlug = e.target.getAttribute("addevent.slug");
-    if (eventSlug) {
-      deleteConfirm.href = `/event/${eventSlug}/delete/`;
-      document.getElementById("deleteModalLabel").innerText = "Delete event?";
-    }
+    deleteConfirm.href = `delete_event/${eventSlug}`;
     deleteModal.show();
   });
 }
+
+// delete events 
+// for (let button of deleteButtons) {
+//   button.addEventListener("click", (e) => {
+//     let eventSlug = e.target.getAttribute("addevent.slug");
+//     if (eventSlug) {
+//       deleteConfirm.href = `/event/${eventSlug}/delete/`;
+//       document.getElementById("deleteModalLabel").innerText = "Delete event?";
+//     }
+//     deleteModal.show();
+//   });
+// }
