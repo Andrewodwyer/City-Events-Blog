@@ -16,22 +16,52 @@
     <div class="event-info-container position-absolute">
         <div class="container p-4 bg-light event-info">
             <h5 class="event-title">{{ addevent.title }}</h5>
-            <p class="event-date">Date: {{ addevent.start_date_time }}</p>
-            <p class="event-location">Location: {{ addevent.location }}</p>
+            <div>
+                <p class=" m-0 text-start">Date: {{ addevent.start_date_time }}</p>
+                <p class="event-location m-0 text-start">Location: {{ addevent.location }}</p>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- white div containing all content -->
-<div class="bg-white">
+<div class="bg-white m-3">
     <!-- White container for the event details -->
-    <div class=" container top-padding bg-white">
+    <div class="container top-padding bg-white">
         <!-- Event description -->
         <div class="row">
             <div class="col-md-12">
                 <p>{{ addevent.description | safe }}</p>
             </div>
         </div>
+
+        <!-- Additional Event Details (only displayed if values are present) -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <!-- Is the event free -->
+                    {% if addevent.is_free %}
+                    <li>This event is free to attend.</li>
+                    {% endif %}
+
+                    <!-- Price of the event (only if it is not free) -->
+                    {% if not addevent.is_free and addevent.price %}
+                    <li>Price: {{ addevent.price }}</li>
+                    {% endif %}
+
+                    <!-- Link to event page (if available) -->
+                    {% if addevent.link_to_event_page %}
+                    <li>
+                        <a href="{{ addevent.link_to_event_page }}" target="_blank" rel="noopener noreferrer">
+                            Event Page: {{ addevent.link_to_event_page }}
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+
 
         <!-- Organiser -->
         <div class="row">
@@ -42,7 +72,7 @@
 
         <!-- Attending section -->
         <div class="row mt-3">
-            <div class="col-md-6 d-flex align-items-center">
+            <div class="d-flex align-items-center mb-2">
                 <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
                     {% csrf_token %}
                     <input type="hidden" name="event_id" value="{{ addevent.id }}">
@@ -60,8 +90,9 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-6 text-left">
-                <p id="attendance-count">{{ attending_count }} attending</p>
+            <!-- attendance counter -->
+            <div class="ml-4">
+                <p id="attendance-count" class="mb-0">{{ attending_count }} attending</p>
             </div>
         </div>
     </div>
@@ -71,7 +102,7 @@
         <hr>
         <div class="row">
             <div class="col-md-8">
-                <h5>Comments:</h5>
+                <h5 class="p-2">Comments:</h5>
                 {% for comment in comments %}
                 <div class="p-2 comments {% if not comment.is_approved and comment.user == user %}faded{% elif not comment.is_approved %} d-none{% endif %}">
                     <p class="font-weight-bold">
@@ -115,7 +146,7 @@
 
     <!-- Edit and delete buttons (visible only to the organizer) -->
     {% if addevent and addevent.organiser == request.user %}
-    <div class="container mt-4">
+    <div class="container mt-4 pb-4 ">
         <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
         <form method="POST" action="{% url 'delete_event' addevent.slug %}" style="display:inline;">
             {% csrf_token %}

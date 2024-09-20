@@ -215,14 +215,7 @@ body {
     color: #23BBBB;
 }
 
-/* General styles for the icon container */
-#attendance-container {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: color 0.3s;
-    position: relative; /* Ensure positioning context for tooltips */
-}
+
 
 /* Icon styles */
 .icon-circle {
@@ -365,6 +358,21 @@ body {
     background-color: #F9FAFC;
     font-family: "Bodoni Moda SC", serif;
 }
+/* Floating event info container */
+.event-info-container {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 66.66667%; /* 8 columns (out of 12) in Bootstrap */
+}
+
+.event-info {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+}
 
 /* Event image styling */
 .event-header .event-image {
@@ -385,6 +393,13 @@ body {
 #attendance-container {
     display: flex;
     align-items: center;
+}
+
+
+
+/* top padding for event page */
+.top-padding {
+    padding: 7rem 2rem 0rem 2rem;
 }
 
 .icon-circle {
@@ -420,32 +435,21 @@ body {
     padding-bottom: 30px;
 }
 
-/* Floating event info container */
-.event-info-container {
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    width: 66.66667%; /* 8 columns (out of 12) in Bootstrap */
-}
-
-.event-info {
-    background-color: rgba(255, 255, 255, 0.85);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    padding: 20px;
-    border-radius: 5px;
-}
-
 /* Event title */
 .event-title {
     font-size: 1.5rem;
-    font-weight: bold;
+    text-align: center;  /* Center align the title */
 }
 
-/* Event date and location */
-.event-date-location {
-    font-size: 1rem;
-    text-align: left;
+/* Event date and location container */
+.event-details {
+    display: block;  /* Ensure this is not using flexbox */
+    text-align: left;  /* Left-align date and location */
+}
+
+/* Event date and location paragraphs */
+.event-details p {
+    margin-bottom: 0.2rem; /* Add slight space between date and location */
 }
 
 /* Attending section */
