@@ -96,20 +96,24 @@
         </div>
     </div>
 
-    <!-- White bar with circular buttons (no carousel) -->
+    <!-- White bar with buttons -->
     <div class="white-bar py-2">
         <div class="d-flex justify-content-around">
-            <a href="{% url 'events_by_category' category_id=1 %}" class="icon-button">
-                <i class="fas fa-music"></i> <!-- Sports Icon -->
+            <a href="{% url 'events_by_category' category_id=1 %}" class="icon-button {% if category_id == 1 %}active{% endif %}">
+                <i class="fas fa-music"></i>
+                <span>Music</span>
             </a>
-            <a href="{% url 'events_by_category' category_id=2 %}" class="icon-button">
-                <i class="fas fa-futbol"></i> <!-- Art Icon -->
+            <a href="{% url 'events_by_category' category_id=2 %}" class="icon-button {% if category_id == 2 %}active{% endif %}">
+                <i class="fas fa-futbol"></i>
+                <span>Sports</span>
             </a>
-            <a href="{% url 'events_by_category' category_id=3 %}" class="icon-button">
-                <i class="fas fa-paint-brush"></i> <!-- Theater Icon -->
+            <a href="{% url 'events_by_category' category_id=3 %}" class="icon-button {% if category_id == 3 %}active{% endif %}">
+                <i class="fas fa-paint-brush"></i>
+                <span>Workshops</span>
             </a>
-            <a href="{% url 'events_by_category' category_id=4 %}" class="icon-button">
-                <i class="fas fa-theater-masks"></i> <!-- Music Icon -->
+            <a href="{% url 'events_by_category' category_id=4 %}" class="icon-button {% if category_id == 4 %}active{% endif %}">
+                <i class="fas fa-theater-masks"></i>
+                <span>Art & Culture</span>
             </a>
         </div>
     </div>

@@ -64,9 +64,30 @@ body {
     background-color: white;
     text-align: center;
 }
+.icon-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px;
+    color: #000;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.icon-button:hover {
+    background-color: #f8f9fa; /* Light background on hover */
+}
+
+.icon-button.active {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border-color: #007bff; /* Match border to active color */
+}
 
 /* circular buttons */
-.icon-button {
+/* .icon-button {
     background-color: #f8f9fa;
     border: .5px solid #585858;
     border-radius: 50%;
@@ -75,7 +96,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
     font-size: 20px;
     color: #585858;
     transition: background-color 0.3s ease;
@@ -87,9 +107,9 @@ body {
 }
 
 .icons-container {
-    margin-right: 100px; /* Adds space between icons */
-    margin-left: 100px;  /* Adds space between icons (if needed) */
-}
+    margin-right: 100px; 
+    margin-left: 100px;  
+} */
 
 .red-o {
     color: #E84610;
