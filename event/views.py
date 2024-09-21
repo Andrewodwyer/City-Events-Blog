@@ -127,8 +127,8 @@ def delete_event(request, slug):
     else:
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
-    #return redirect('home')
-    return HttpResponseRedirect(reverse('addevent_detail', args=[slug]))    
+    return redirect('home')
+    # return HttpResponseRedirect(reverse('addevent_detail', args=[slug]))    
 
 # Look at this in the future
 @login_required

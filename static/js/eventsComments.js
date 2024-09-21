@@ -6,7 +6,7 @@ const submitButton = document.getElementById("submitButton");
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
-
+const deleteButtonsEvent = document.getElementById("event-delete-btn");
 
 for (let button of editButtons) {
   button.addEventListener("click", (e) => {
@@ -38,13 +38,13 @@ for (let button of deleteButtons) {
 
 
 // delete events 
-// for (let button of deleteButtons) {
-//   button.addEventListener("click", (e) => {
-//     let eventSlug = e.target.getAttribute("addevent.slug");
-//     deleteConfirm.href = `delete_event/${eventSlug}`;
-//     deleteModal.show();
-//   });
-// }
+for (let button of deleteButtonsEvent) {
+  button.addEventListener("click", (e) => {
+    let eventSlug = e.target.getAttribute("addevent.slug");
+    deleteConfirm.href = `delete_event/${eventSlug}`;
+    deleteModal.show();
+  });
+}
 
 // delete events 
 // for (let button of deleteButtons) {

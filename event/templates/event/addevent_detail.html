@@ -144,13 +144,13 @@
         </div>
     </div>
 
-    <!-- Edit and delete buttons (visible only to the organizer) -->
+    <!-- Event Edit and delete buttons (visible only to the organizer) -->
     {% if addevent and addevent.organiser == request.user %}
     <div class="container mt-4 pb-4 ">
         <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
         <form method="POST" action="{% url 'delete_event' addevent.slug %}" style="display:inline;">
             {% csrf_token %}
-            <button class="btn btn-delete" data-event-slug="{{ addevent.slug }}">Delete Event</button>
+            <button class="btn btn-delete" id="event-delete-btn" data-event-slug="{{ addevent.slug }}">Delete Event</button>
         </form>
     </div>
 </div>
