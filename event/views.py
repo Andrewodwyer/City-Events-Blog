@@ -105,17 +105,29 @@ def edit_event(request, slug):
 
 
 
+# def delete_event(request, slug):
+#     event = get_object_or_404(AddEvent, slug=slug)
+
+#     if request.user != event.organiser:
+#         messages.error(request, 'You are not authorized to delete this event.')
+#         return redirect('addevent_detail', slug=slug)
+
+#     event.delete()
+#     messages.success(request, 'Event deleted successfully!')
+#     return redirect('home') 
+
+#  New delete function
 def delete_event(request, slug):
+
     event = get_object_or_404(AddEvent, slug=slug)
 
-    if request.user != event.organiser:
-        messages.error(request, 'You are not authorized to delete this event.')
-        return redirect('addevent_detail', slug=slug)
+    if request.user == event.organiser:
+        event.delete()
+        messages.add_message(request, messages.SUCCESS, 'Event deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
-    event.delete()
-    messages.success(request, 'Event deleted successfully!')
-    return redirect('home') 
-    
+    return redirect('home')     
 
 # Look at this in the future
 @login_required
