@@ -258,7 +258,13 @@ class EventListByCategory(generic.ListView):
         self.kwargs['category_id'] will extract the category_id from the URL
         """
         category = get_object_or_404(Category, id=self.kwargs['category_id'])
+        self.category = category  # Store the category for later use
         return get_filtered_events_by_category(category)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = self.category  # Add category to context
+        return context
 
 
 

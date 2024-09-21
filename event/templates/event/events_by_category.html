@@ -5,7 +5,7 @@
 {% load static %}
 
     <div class="container my-3">
-        <h3 class="my-3 text-white">Events in {{ events_by_category.name }}</h3>
+        <h3 class="my-3 text-white">Events in {{ category.name }}</h3>
         <div class="row">
             {% for event in object_list %}
             <div class="col-lg-4 col-md-6 col-12 mb-4">
