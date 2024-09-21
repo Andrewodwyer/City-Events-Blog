@@ -23,15 +23,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 attendanceIcon.classList.add('icon-success');
                 attendanceText.classList.remove('text-primary1');
                 attendanceText.classList.add('text-success1');
-                attendanceText.textContent = 'Attending';
+                attendanceText.textContent = "You're going!";
             } else {
                 attendanceIcon.classList.remove('icon-success');
                 attendanceIcon.classList.add('icon-primary');
                 attendanceText.classList.remove('text-success1');
                 attendanceText.classList.add('text-primary1');
-                attendanceText.textContent = 'Attend?';
+                attendanceText.textContent = 'Going?';
             }
-            attendanceCount.textContent = `${data.attending_count} attending`;
+            attendanceCount.textContent = `${data.attending_count} Going`;
         })
         .catch(error => console.error('Error:', error));
     });

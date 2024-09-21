@@ -4,8 +4,6 @@ from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.http import JsonResponse
-# from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-# from django.core.paginator import Paginator #add pagination to list view
 from django.http import HttpResponseRedirect
 from slugify import slugify
 from .models import AddEvent, Category, Comment, Attending # Import the AddEvent, Category, Comment model
@@ -26,30 +24,6 @@ class EventList(generic.ListView):
     paginate_by = 6
     # paginate by 6 tells Django to display 6 posts at a time
 
-
-# @login_required
-# def add_event(request):
-#     """
-#     Create a view that allows authenticated users to submit their events.
-#     Handles file uploads also
-#     """
-#     if request.method == 'POST':
-#         form = AddEventForm(request.POST, request.FILES)  # Handle file uploads
-#         if form.is_valid():
-#             event = form.save(commit=False)  # Do not save to the database yet
-#             event.organiser = request.user  # Set the current user as the organiser
-#             event.status = 0  # Mark event as "Draft" by default
-            
-#             # Automatically generate the slug from the title. python app called slugify
-#             event.slug = slugify(event.title)
-            
-#             event.save()  # Save the event to the database
-#             messages.add_message(request, messages.SUCCESS, "Add event request received! It will be reviewed within 2 days.")
-#             return redirect('home')  # Redirect to the home page after submission
-#     else:
-#         form = AddEventForm()
-
-#     return render(request, 'event/add_event.html', {'form': form})
 
 def add_event(request):
     """
@@ -251,19 +225,23 @@ class EventListByCategory(generic.ListView):
 
     def get_queryset(self):
         """
-        A custom queryset overriding the the default ListView querset. This function defines
-        the set of objects (the "queryset") that will be displayed in the list.
+        A custom queryset.
         The default ListView queryset would return all objects of the specifiied model.
         Now customised to filter events by category
         self.kwargs['category_id'] will extract the category_id from the URL
         """
         category = get_object_or_404(Category, id=self.kwargs['category_id'])
-        self.category = category  # Store the category for later use
-        return get_filtered_events_by_category(category)
+        self.category = category  # Store the category in self.category variable
+        return get_filtered_events_by_category(category) #using the earlier function for categories and future events
 
     def get_context_data(self, **kwargs):
+        """
+        Adds the category to the context dictionary
+        super() called parents class .get_context_data, the id
+        Adds the variable self.category to context dictionary under the key 'category'
+        """
         context = super().get_context_data(**kwargs)
-        context['category'] = self.category  # Add category to context
+        context['category'] = self.category
         return context
 
 

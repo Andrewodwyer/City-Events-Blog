@@ -80,11 +80,11 @@
                         <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
                             <i class="fa fa-user-circle"></i>
                         </div>
-                        <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}text-primary1{% endif %}">
+                        <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}btn btn-outline-success{% endif %}">
                             {% if user_attending %}
-                                Attending
+                                You're going!
                             {% else %}
-                                Attend?
+                                Going?
                             {% endif %}
                         </span>
                     </div>
