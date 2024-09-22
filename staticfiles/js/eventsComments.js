@@ -3,10 +3,11 @@ const commentText = document.getElementById("id_content");
 const commentForm = document.getElementById("commentForm");
 const submitButton = document.getElementById("submitButton");
 
-const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
-const deleteButtons = document.getElementsByClassName("btn-delete");
+const deleteCommentButtons = document.getElementsByClassName("btn-delete-comment");
 const deleteConfirm = document.getElementById("deleteConfirm");
+const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 
+const deleteEventButtons = document.getElementsByClassName("btn-delete-event");
 
 for (let button of editButtons) {
   button.addEventListener("click", (e) => {
@@ -28,7 +29,8 @@ for (let button of editButtons) {
 * - Displays a confirmation modal (`deleteModal`) to prompt 
 * the user for confirmation before deletion.
 */
-for (let button of deleteButtons) {
+
+for (let button of deleteCommentButtons) {
   button.addEventListener("click", (e) => {
     let commentId = e.target.getAttribute("comment_id");
     deleteConfirm.href = `delete_comment/${commentId}`;
@@ -36,24 +38,22 @@ for (let button of deleteButtons) {
   });
 }
 
+// event delete
+for (let button of deleteEventButtons) {
+  button.addEventListener("click", (e) => {
+      // Prevent default action
+      e.preventDefault();
 
-// delete events 
-// for (let button of deleteButtons) {
-//   button.addEventListener("click", (e) => {
-//     let eventSlug = e.target.getAttribute("addevent.slug");
-//     deleteConfirm.href = `delete_event/${eventSlug}`;
-//     deleteModal.show();
-//   });
-// }
+      // Get the event ID and slug from the button's data attributes
+      let eventId = e.target.getAttribute("data-event-id");
+      let eventSlug = e.target.getAttribute("data-event-slug");
 
-// delete events 
-// for (let button of deleteButtons) {
-//   button.addEventListener("click", (e) => {
-//     let eventSlug = e.target.getAttribute("addevent.slug");
-//     if (eventSlug) {
-//       deleteConfirm.href = `/event/${eventSlug}/delete/`;
-//       document.getElementById("deleteModalLabel").innerText = "Delete event?";
-//     }
-//     deleteModal.show();
-//   });
-// }
+      // Set the href of the delete confirmation button inside the modal
+      let deleteEventConfirm = document.getElementById("deleteEventConfirm");
+      deleteEventConfirm.href = `/event/${eventSlug}/delete_event/${eventId}`;
+
+      // Show the delete confirmation modal for events
+      let deleteEventModal = new bootstrap.Modal(document.getElementById('deleteEventModal'));
+      deleteEventModal.show();
+  });
+}

@@ -91,9 +91,9 @@ def edit_event(request, slug):
 #     return redirect('home') 
 
 #  New delete function
-def delete_event(request, slug):
+def delete_event(request, slug, event_id):
 
-    event = get_object_or_404(AddEvent, slug=slug)
+    event = get_object_or_404(AddEvent, pk=event_id)
 
     if request.user == event.organiser:
         event.delete()
@@ -103,6 +103,7 @@ def delete_event(request, slug):
 
     return redirect('home')
     # return HttpResponseRedirect(reverse('addevent_detail', args=[slug]))    
+
 
 # Look at this in the future
 @login_required
