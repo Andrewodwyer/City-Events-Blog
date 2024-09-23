@@ -97,7 +97,7 @@ def delete_event(request, slug, event_id):
 def my_events(request):
     """
     Users can view and manage their own events,
-    It lists only the events created by this logged-in user
+    It lists only the events created by this logged-in user, including drafts.
     """
     events = AddEvent.objects.filter(organiser=request.user)
     return render(request, 'event/my_events.html', {'events': events})
@@ -105,62 +105,41 @@ def my_events(request):
 
 def addevent_detail(request, slug):
     """
-    Display an individual :model:`event.AddEvent`.
-
-    **Context**
-    status=1 selects the published events, status=0 is draft and admin publishes them
-    ``addevent``
-        An instance of :model:`event.AddEvent`.
-
-    **Template:**
-
-    :template:`event/addevent_detail.html`
+    Display an individual event, ensuring that only the organizer can view draft events.
     """
+    # Fetch published events and drafts for the organizer
+    addevent = get_object_or_404(AddEvent, slug=slug)
 
-    queryset = AddEvent.objects.filter(status=1) 
-    addevent = get_object_or_404(queryset, slug=slug)
+    # Check if the event is a draft and the user is not the organizer
+    if addevent.status == 0 and addevent.organiser != request.user:
+        return render(request, "404.html")  # Show 404 for non-organizers
+
+    # Fetch comments and attendance info
     comments = addevent.comments.all().order_by("-created_at")
     comment_count = addevent.comments.filter(is_approved=True).count()
 
-    # Check if the user is attending the event
-    if request.user.is_authenticated:
-        user_attending = addevent.attendees.filter(attending_user=request.user).exists() 
-        # reverse relationships from the Attending model attendees to the event, related_name = attendees
-    else:
-        user_attending = False
-
-    # Get the number of people attending
+    user_attending = request.user.is_authenticated and addevent.attendees.filter(attending_user=request.user).exists()
     attending_count = Attending.objects.filter(event=addevent).count()
 
     if request.method == "POST":
-        print("Received a POST request")
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
-            # is_valid() has it been fill in correctly
             comment = comment_form.save(commit=False)
-            # .save() save to the database, comment=False returns an object that hasn't been save
             comment.user = request.user
-            # request.user is the logged in user, relating current user to comments model field user
             comment.event = addevent
             comment.save()
-            # comments now saved
-            messages.add_message(
-                request, messages.SUCCESS,
-                'Comment submitted and awaiting approval'
-                # messages to be used in base.html
-    )
+            messages.add_message(request, messages.SUCCESS, 'Comment submitted and awaiting approval')
 
     comment_form = CommentForm()
-    print("About to render template")
 
     return render(
         request, "event/addevent_detail.html", 
         {"addevent": addevent,
-        "comments": comments,
-        "user_attending": user_attending,
-        "attending_count": attending_count,
-        "comment_count": comment_count,
-        "comment_form": comment_form,
+         "comments": comments,
+         "user_attending": user_attending,
+         "attending_count": attending_count,
+         "comment_count": comment_count,
+         "comment_form": comment_form,
         },
     )
 

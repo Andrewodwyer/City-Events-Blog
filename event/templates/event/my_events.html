@@ -25,6 +25,10 @@
                             <p class="card-text">{{ event.start_date_time}}</p>
                             <p class="card-text">{{ event.description|linebreaks }}</p>
                             <p class="card-text text-muted">Organiser: {{ event.organiser }}</p>
+                            <!-- Show a warning message for draft events -->
+                            {% if event.status == 0 %}
+                                <p class="text-warning">This event is in draft and not yet published.</p>
+                            {% endif %}
                         </div>
                     </a>
                 </div>

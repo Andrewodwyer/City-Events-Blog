@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
-
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
+
+<!-- Draft Event Warning (for Organizer) -->
+{% if addevent.status == 0 and addevent.organiser == request.user %}
+    <div class="alert alert-warning" role="alert">
+        This event is in draft mode. Only you (the organizer) can see this event.
+    </div>
+{% endif %}
 
 <!-- Full-width image with 16:9 ratio -->
 <div class="event-header position-relative">
@@ -12,21 +18,25 @@
         <img src="{{ addevent.event_image.url }}" alt="{{ addevent.title }}" class="event-image img-fluid">
     {% endif %}
 
-    <!-- Floating container with event details -->
-    <div class="event-info-container position-absolute">
-        <div class="container p-4 bg-light event-info">
-            <h5 class="event-title">{{ addevent.title }}</h5>
-            <div>
-                <p class=" m-0 text-start">Date: {{ addevent.start_date_time }}</p>
-                <p class="event-location m-0 text-start">Location: {{ addevent.location }}</p>
+    <!-- Event details for organizers and published events -->
+    {% if addevent.status == 1 or addevent.organiser == request.user %}
+        <!-- Floating container with event details -->
+        <div class="event-info-container position-absolute">
+            <div class="container p-4 bg-light event-info">
+                <h5 class="event-title">{{ addevent.title }}</h5>
+                <div>
+                    <p class="m-0 text-start">Date: {{ addevent.start_date_time }}</p>
+                    <p class="event-location m-0 text-start">Location: {{ addevent.location }}</p>
+                </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <p>You do not have permission to view this event.</p>
+    {% endif %}
 </div>
 
-<!-- white div containing all content -->
+<!-- White container for the event details -->
 <div class="bg-white m-3">
-    <!-- White container for the event details -->
     <div class="container top-padding bg-white">
         <!-- Event description -->
         <div class="row">
@@ -35,21 +45,18 @@
             </div>
         </div>
 
-        <!-- Additional Event Details (only displayed if values are present) -->
+        <!-- Additional Event Details -->
         <div class="row">
             <div class="col-md-12">
                 <ul>
-                    <!-- Is the event free -->
                     {% if addevent.is_free %}
                     <li>This event is free to attend.</li>
                     {% endif %}
 
-                    <!-- Price of the event (only if it is not free) -->
                     {% if not addevent.is_free and addevent.price %}
                     <li>Price: {{ addevent.price }}</li>
                     {% endif %}
 
-                    <!-- Link to event page (if available) -->
                     {% if addevent.link_to_event_page %}
                     <li>
                         <a href="{{ addevent.link_to_event_page }}" target="_blank" rel="noopener noreferrer">
@@ -61,52 +68,46 @@
             </div>
         </div>
 
-
-
-        <!-- Organiser -->
+        <!-- Organiser Info -->
         <div class="row">
             <div class="col-md-12">
                 <h6>Organiser: {{ addevent.organiser }}</h6>
             </div>
         </div>
 
-        <!-- Attending section -->
+        <!-- Attending Section -->
         {% if user.is_authenticated %}
-            <div class="row mt-3">
-                <div class="d-flex align-items-center mb-2">
-                    <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="event_id" value="{{ addevent.id }}">
-                        <div id="attendance-container" class="d-flex align-items-center" aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
-                            <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
-                                <i class="fa fa-user-circle"></i>
-                            </div>
-                            <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}btn btn-outline-success{% endif %}">
-                                {% if user_attending %}
-                                    You're going!
-                                {% else %}
-                                    Going?
-                                {% endif %}
-                            </span>
+        <div class="row mt-3">
+            <div class="d-flex align-items-center mb-2">
+                <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="event_id" value="{{ addevent.id }}">
+                    <div id="attendance-container" class="d-flex align-items-center" aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
+                        <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
+                            <i class="fa fa-user-circle"></i>
                         </div>
-                    </form>
-                </div>
-                <!-- attendance counter -->
-                <div class="ml-4">
-                    <p id="attendance-count" class="mb-0">{{ attending_count }} attending</p>
-                </div>
+                        <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}btn btn-outline-success{% endif %}">
+                            {% if user_attending %}
+                                You're going!
+                            {% else %}
+                                Going?
+                            {% endif %}
+                        </span>
+                    </div>
+                </form>
             </div>
+            <div class="ml-4">
+                <p id="attendance-count" class="mb-0">{{ attending_count }} attending</p>
+            </div>
+        </div>
         {% else %}
-            <!-- message encouraging users to log in to attend -->
-            <div class="row mt-3">
-                <p class="ml-4">
-                    <i class="fa fa-user-circle"></i> Log in to show attendance to this event.
-                </p>
-            </div>
+        <div class="row mt-3">
+            <p class="ml-4"><i class="fa fa-user-circle"></i> Log in to show attendance to this event.</p>
+        </div>
         {% endif %}
     </div>
 
-    <!-- Comments Section and Leave a Comment form -->
+    <!-- Comments Section and Comment Form -->
     <div class="container mt-4 bg-white">
         <hr>
         <div class="row">
@@ -114,13 +115,8 @@
                 <h5 class="p-2">Comments:</h5>
                 {% for comment in comments %}
                 <div class="p-2 comments {% if not comment.is_approved and comment.user == user %}faded{% elif not comment.is_approved %} d-none{% endif %}">
-                    <p class="font-weight-bold">
-                        {{ comment.user.username }}
-                        <span class="font-weight-normal">{{ comment.updated_on }}</span> wrote:
-                    </p>
-                    <div id="comment{{ comment.id }}">
-                        {{ comment.content | linebreaks }}
-                    </div>
+                    <p class="font-weight-bold">{{ comment.user.username }} <span class="font-weight-normal">{{ comment.updated_on }}</span> wrote:</p>
+                    <div id="comment{{ comment.id }}">{{ comment.content | linebreaks }}</div>
                     {% if not comment.is_approved and comment.user == user %}
                     <p class="approval text-muted">This comment is awaiting approval</p>
                     {% endif %}
@@ -157,7 +153,6 @@
     {% if addevent and addevent.organiser == request.user %}
     <div class="container mt-4 pb-4">
         <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
-        <!-- Trigger modal with a button -->
         <button class="btn btn-delete-event" id="event-delete-btn" data-event-id="{{ addevent.id }}" data-event-slug="{{ addevent.slug }}">Delete Event</button>
     </div>
     {% endif %}
@@ -171,9 +166,7 @@
                 <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                Are you sure you want to delete this Comment? This action cannot be undone.
-            </div>
+            <div class="modal-body">Are you sure you want to delete this Comment? This action cannot be undone.</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
@@ -190,9 +183,7 @@
                 <h5 class="modal-title" id="deleteEventModalLabel">Delete Event?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                Are you sure you want to delete this event? This action cannot be undone.
-            </div>
+            <div class="modal-body">Are you sure you want to delete this event? This action cannot be undone.</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a id="deleteEventConfirm" href="#" class="btn btn-danger">Delete</a>
@@ -206,5 +197,4 @@
 {% block extras %}
 <script src="{% static 'js/attendance.js' %}"></script>
 <script src="{% static 'js/eventsComments.js' %}"></script>
-
 {% endblock %}

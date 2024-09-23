@@ -8,14 +8,13 @@
 <div class="container mt-5 text-white">
     <div class="row justify-content-center">
         <div class="col-md-8 my-3">
-            <!-- Title of the Form - Add or Edit -->
-            {% if addevent %}
-                <h2>Edit Event: {{ addevent.title }}</h2>
-            {% else %}
-                <h2>Add New Event</h2>
-            {% endif %}
+            <!-- Title -->
+            <h2>Your Event</h2>
 
             <form method="POST" enctype="multipart/form-data">
+                <!-- enctype="multipart/form-data"> is used because it's handling an image. File data would not be sent to the server with out it
+                It separates each field and it's data
+                allowing for multiple piecs of data to be sent with on request. -->
                 {% csrf_token %}
                 
                 <!-- Form fields for the event -->
@@ -66,11 +65,7 @@
 
                 <!-- Submit button for creating or updating the event -->
                 <button type="submit" class="btn btn-primary">
-                    {% if addevent %}
-                        Update Event
-                    {% else %}
                         Submit Event
-                    {% endif %}
                 </button>
             </form>
 
