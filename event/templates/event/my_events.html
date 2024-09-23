@@ -8,7 +8,7 @@
         <h3 class="my-3 text-white">My Events</h3>
         <div class="row">
             {% for event in events %}
-            <div class="col-lg-4 col-md-6 col-12 mb-4">
+            <div class="col-lg-4 col-md-6 col-12 mb-4 position-relative">
                 <!-- different container widths for different size screens -->
                 <div class="card h-100">
                     <div class="card-img-top" alt="Event image">
@@ -25,16 +25,21 @@
                             <p class="card-text">{{ event.start_date_time}}</p>
                             <p class="card-text">{{ event.description|linebreaks }}</p>
                             <p class="card-text text-muted">Organiser: {{ event.organiser }}</p>
-                            <!-- Show a warning message for draft events -->
-                            {% if event.status == 0 %}
-                                <p class="text-warning">This event is in draft and not yet published.</p>
-                            {% endif %}
                         </div>
                     </a>
+                    {% if event.status != 1 %}
+                    <!-- Transparent overlay for non-published events -->
+                    <a href="{% url 'addevent_detail' event.slug %}" class="post-link">
+                        <div class="card event-overlay">
+                            <h2 class="text-black">THIS EVENT IS IN DRAFTS.</h2>
+                            <h2 class="text-black">CLICK TO UPDATE.</h2>
+                        </div>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
             {% empty %}
-            <p>No events found in this category.</p>
+            <p>You did create any event yet!</p>
             {% endfor %}
                 <!-- Include pagination controls -->
             {% include "event/pagination.html" with page_obj=page_obj %}

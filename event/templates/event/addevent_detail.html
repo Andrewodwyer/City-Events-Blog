@@ -3,13 +3,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<!-- Draft Event Warning (for Organizer) -->
-{% if addevent.status == 0 and addevent.organiser == request.user %}
-    <div class="alert alert-warning" role="alert">
-        This event is in draft mode. Only you (the organizer) can see this event.
-    </div>
-{% endif %}
-
 <!-- Full-width image with 16:9 ratio -->
 <div class="event-header position-relative">
     {% if "placeholder" in addevent.event_image.url %}
@@ -76,38 +69,42 @@
         </div>
 
         <!-- Attending Section -->
-        {% if user.is_authenticated %}
-        <div class="row mt-3">
-            <div class="d-flex align-items-center mb-2">
-                <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="event_id" value="{{ addevent.id }}">
-                    <div id="attendance-container" class="d-flex align-items-center" aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
-                        <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
-                            <i class="fa fa-user-circle"></i>
+        {% if addevent.status == 1 %} 
+        <!-- checks if the status of event is published -->
+            {% if user.is_authenticated %}
+            <div class="row mt-3">
+                <div class="d-flex align-items-center mb-2">
+                    <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="event_id" value="{{ addevent.id }}">
+                        <div id="attendance-container" class="d-flex align-items-center" aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
+                            <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
+                                <i class="fa fa-user-circle"></i>
+                            </div>
+                            <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}btn btn-outline-success{% endif %}">
+                                {% if user_attending %}
+                                    You're going!
+                                {% else %}
+                                    Going?
+                                {% endif %}
+                            </span>
                         </div>
-                        <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}btn btn-outline-success{% endif %}">
-                            {% if user_attending %}
-                                You're going!
-                            {% else %}
-                                Going?
-                            {% endif %}
-                        </span>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                <div class="ml-4">
+                    <p id="attendance-count" class="mb-0">{{ attending_count }} attending</p>
+                </div>
             </div>
-            <div class="ml-4">
-                <p id="attendance-count" class="mb-0">{{ attending_count }} attending</p>
+            {% else %}
+            <div class="row mt-3">
+                <p class="ml-4"><i class="fa fa-user-circle"></i> Log in to show attendance to this event.</p>
             </div>
-        </div>
-        {% else %}
-        <div class="row mt-3">
-            <p class="ml-4"><i class="fa fa-user-circle"></i> Log in to show attendance to this event.</p>
-        </div>
+            {% endif %}
         {% endif %}
     </div>
 
     <!-- Comments Section and Comment Form -->
+    {% if addevent.status == 1 %}
     <div class="container mt-4 bg-white">
         <hr>
         <div class="row">
@@ -148,6 +145,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
     <!-- Event Edit and Delete Buttons -->
     {% if addevent and addevent.organiser == request.user %}
