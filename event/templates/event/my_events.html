@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+    <div class="container my-3">
+        <h3 class="my-3 text-white">My Events</h3>
+        <div class="row">
+            {% for event in events %}
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <!-- different container widths for different size screens -->
+                <div class="card h-100">
+                    <div class="card-img-top" alt="Event image">
+                        {% if "placeholder" in event.event_image.url %}
+                        <!-- event_image is set as default="placeholder" in the AddEvents model in the event_image field-->
+                        <img src="{% static 'images/3pieceband.png' %}" class="img-fluid object-fit-cover" alt="placeholder">
+                        {% else %}
+                        <img src="{{ event.event_image.url }}" class="img-fluid object-fit-cover" alt="{{ event.title }}">
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'addevent_detail' event.slug %}" class="post-link">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.title }}</h5>
+                            <p class="card-text">{{ event.start_date_time}}</p>
+                            <p class="card-text">{{ event.description|linebreaks }}</p>
+                            <p class="card-text text-muted">Organiser: {{ event.organiser }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <p>No events found in this category.</p>
+            {% endfor %}
+                <!-- Include pagination controls -->
+            {% include "event/pagination.html" with page_obj=page_obj %}
+        </div>
+    </div>
+
+<!-- index.html content ends here -->
+{% endblock %}

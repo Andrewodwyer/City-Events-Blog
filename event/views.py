@@ -78,19 +78,6 @@ def edit_event(request, slug):
     # This template will display the form with the pre-filled data for the user to edit.
 
 
-
-# def delete_event(request, slug):
-#     event = get_object_or_404(AddEvent, slug=slug)
-
-#     if request.user != event.organiser:
-#         messages.error(request, 'You are not authorized to delete this event.')
-#         return redirect('addevent_detail', slug=slug)
-
-#     event.delete()
-#     messages.success(request, 'Event deleted successfully!')
-#     return redirect('home') 
-
-#  New delete function
 def delete_event(request, slug, event_id):
 
     event = get_object_or_404(AddEvent, pk=event_id)
@@ -113,7 +100,7 @@ def my_events(request):
     It lists only the events created by this logged-in user
     """
     events = AddEvent.objects.filter(organiser=request.user)
-    return render(request, 'my_events.html', {'events': events})
+    return render(request, 'event/my_events.html', {'events': events})
 
 
 def addevent_detail(request, slug):

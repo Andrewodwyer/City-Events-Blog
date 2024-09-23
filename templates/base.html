@@ -64,8 +64,12 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
+                        <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" aria-current="logout page" href="{% url 'my_events' %}">MY EVENTS</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" aria-current="logout page" href="{% url 'account_logout' %}">LOGOUT</a>
                     </li>
+
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link small {% if request.path == signup_url %}active{% endif %}" aria-current="signup page"
@@ -77,9 +81,6 @@
                     {% endif %}
 
                 </ul>
-                <!-- <span class="navbar-text text-muted">
-                    FIND YOUR EVENT
-                </span> -->
             </div>
         </div>
     </nav>
