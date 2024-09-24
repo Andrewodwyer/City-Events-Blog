@@ -51,8 +51,13 @@
                     {% endif %}
 
                     {% if addevent.link_to_event_page %}
+                    <!-- if there is something in the link_to_event_page in the model 
+                    show the data -->
                     <li>
                         <a href="{{ addevent.link_to_event_page }}" target="_blank" rel="noopener noreferrer">
+                            <!-- href is the link, target="blank" open the link in a new tab
+                            rel='noopener noreferrer security measure, prevent th new page being able to access
+                            the  origional page' -->
                             Event Page: {{ addevent.link_to_event_page }}
                         </a>
                     </li>
@@ -77,8 +82,10 @@
                     <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
                         {% csrf_token %}
                         <input type="hidden" name="event_id" value="{{ addevent.id }}">
-                        <div id="attendance-container" class="d-flex align-items-center" aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
+                        <div id="attendance-container" class="d-flex align-items-center"
+                        aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
                             <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
+                                <!-- icon class changes depending on if user_attending -->
                                 <i class="fa fa-user-circle"></i>
                             </div>
                             <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}btn btn-outline-success{% endif %}">
@@ -118,8 +125,8 @@
                     <p class="approval text-muted">This comment is awaiting approval</p>
                     {% endif %}
                     {% if user.is_authenticated and comment.user == user %}
-                    <button class="btn btn-delete-comment" comment_id="{{ comment.id }}">Delete</button>
                     <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                    <button class="btn btn-delete btn-delete-comment" comment_id="{{ comment.id }}">Delete</button>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -150,8 +157,8 @@
     <!-- Event Edit and Delete Buttons -->
     {% if addevent and addevent.organiser == request.user %}
     <div class="container mt-4 pb-4">
-        <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-warning">Edit Event</a>
-        <button class="btn btn-delete-event" id="event-delete-btn" data-event-id="{{ addevent.id }}" data-event-slug="{{ addevent.slug }}">Delete Event</button>
+        <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-edit">Edit Event</a>
+        <button class="btn btn-delete btn-delete-event" id="event-delete-btn" data-event-id="{{ addevent.id }}" data-event-slug="{{ addevent.slug }}">Delete Event</button>
     </div>
     {% endif %}
 </div>

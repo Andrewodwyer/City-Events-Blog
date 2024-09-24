@@ -4,6 +4,7 @@ const commentForm = document.getElementById("commentForm");
 const submitButton = document.getElementById("submitButton");
 
 const deleteCommentButtons = document.getElementsByClassName("btn-delete-comment");
+// different delete classes for the 2 different delete modals
 const deleteConfirm = document.getElementById("deleteConfirm");
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 

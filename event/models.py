@@ -121,7 +121,7 @@ class Attending(models.Model):
     class Meta:
         unique_together = ('attending_user', 'event')  # Ensure a user can attend the same event only once
         ordering = ['-timestamp']  # Newest attendance first
-        verbose_name = "User Attending"
+        verbose_name = "User Attending" #can be named anything, admin panel
         verbose_name_plural = "Users Attending"
 
     def __str__(self):

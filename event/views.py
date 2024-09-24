@@ -1,11 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required #use decorator for login users
-from django.views import generic
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages
-from django.http import JsonResponse
-from django.http import HttpResponseRedirect
-from slugify import slugify
+from django.views import generic # Django's generic views
+from django.contrib import messages #message framework, stores and displays tempory messages like 'Event updated successfully!'
+from django.http import JsonResponse # converts data to JSON
+from django.http import HttpResponseRedirect # Redirects the user to a different URL after performing the action.
+from slugify import slugify #change titles to slug
 from .models import AddEvent, Category, Comment, Attending # Import the AddEvent, Category, Comment model
 from .forms import AddEventForm, CommentForm # function taken from the forms.py file
 
@@ -28,7 +27,7 @@ class EventList(generic.ListView):
 def add_event(request):
     """
     Create a view that allows authenticated users to submit their events.
-    Handles file uploads also
+    Handles file uploads
     """
     if request.method == 'POST':
         form = AddEventForm(request.POST, request.FILES)  # Handle file uploads
@@ -59,15 +58,18 @@ def edit_event(request, slug):
 
     if request.method == 'POST':
         form = AddEventForm(request.POST, request.FILES, instance=event)
+        # request.FILES A dictionary, where each key corresponds to the name of a file input field in the HTML form, crispyform
+        # instance=event update this specific instance with the new data from the form.
         if form.is_valid():
             form.save()
+            #update the existing event
             messages.success(request, 'Event updated successfully!')
             return redirect(reverse('addevent_detail', args=[slug]))  # Redirect to the event detail page
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
         form = AddEventForm(instance=event)
-        # method of GET, populates the form with the existing data using instance=event
+        # populates the form with the existing data using instance=event
 
     context = {
         'event': event,
@@ -79,6 +81,10 @@ def edit_event(request, slug):
 
 
 def delete_event(request, slug, event_id):
+    """
+    Get an event by it's primary key, event_id
+    If the request came from the event organiser(addevent field), delete.
+    """
 
     event = get_object_or_404(AddEvent, pk=event_id)
 
@@ -119,6 +125,9 @@ def addevent_detail(request, slug):
     comment_count = addevent.comments.filter(is_approved=True).count()
 
     user_attending = request.user.is_authenticated and addevent.attendees.filter(attending_user=request.user).exists()
+    # if the user is logged in, get all the attendance records for that event. The attendees
+    # The filter sees if the current user matches any objects in the attending_user field of Attending model
+    # It exists() if it matches the filter
     attending_count = Attending.objects.filter(event=addevent).count()
 
     if request.method == "POST":
@@ -209,6 +218,7 @@ class EventListByCategory(generic.ListView):
         """
         context = super().get_context_data(**kwargs)
         context['category'] = self.category
+        # self.category is category variable above
         return context
 
 
@@ -254,18 +264,29 @@ def comment_delete(request, slug, comment_id):
 
 
 def toggle_attendance(request):
+    """
+    The user attending status
+    """
     if request.method == 'POST':
+        #  If the request is post
         event_id = request.POST.get('event_id')
+        # get the event_id, the relevant event
         event = get_object_or_404(AddEvent, id=event_id)
+        # The AddEvent object with the specified id, event_id is retrieved
 
         # Check if the user is already attending the event via Attending model
         attendance, created = Attending.objects.get_or_create(
+            # attendance = true, created = false. 
+            # get_or_create method on the Attending model to see if the attendance record already exists
             attending_user=request.user,
+            # for the current user
+            # if no record exist, a new one is created and created is now true
             event=event
+
         )
 
         if not created:
-            # If the object already exists, the user is already attending, so we remove
+            # If the object already exists, the user is already attending, so we delete
             attendance.delete()
             attending = False
         else:
@@ -276,6 +297,8 @@ def toggle_attendance(request):
         return JsonResponse({
             'user_attending': attending,
             'attending_count': Attending.objects.filter(event=event).count()
+            # querying the Attending model of all records in that event_id and counts them
+            # returns a JSON response with updated attendance status and the count
         })
 
     return JsonResponse({'error': 'Invalid request'}, status=400)

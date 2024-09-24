@@ -42,11 +42,12 @@ class AddEventForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    """
+    a form that allows user to input content for a comment.
+    linked to the Comment model in the database
+    """
     class Meta:
         model = Comment
         fields = ('content',)
 
-
-class AttendForm(forms.Form):
-    event_id = forms.IntegerField(widget=forms.HiddenInput())
 
