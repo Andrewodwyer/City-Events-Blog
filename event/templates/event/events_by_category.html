@@ -10,7 +10,7 @@
             {% for event in object_list %}
             <div class="col-lg-4 col-md-6 col-12 mb-4">
                 <!-- different container widths for different size screens -->
-                <div class="card h-100">
+                <div class="card h-100 overflow-hidden super-rounded-card ">
                     <div class="card-img-top">
                         {% if event.event_image == 'placeholder' %}
                         <!-- event_image is set as default="placeholder" in the AddEvents model in the event_image field-->

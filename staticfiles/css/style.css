@@ -3,6 +3,33 @@ body {
     font-family: "Bodoni Moda SC", serif;
 }
 
+/* Second colour background */
+.bg-light-blue1 {
+    background-color: #CFD9DD;
+
+}
+
+/* large round corners for cards */
+.super-rounded-card {
+    border-radius: 20px;
+    overflow: hidden; /* Ensures the image stays inside the card’s rounded corners */
+    background-color: #ededed;
+}
+
+/* learn more link in event cards */
+.learn-more-link {
+    display: block; /* To ensure it takes full width for proper spacing */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold; /* for emphasis */
+    text-decoration: none;
+}
+
+
+.learn-more-link:hover {
+    text-decoration: underline;
+}
+
 .navbar {
     position: relative;
 }
