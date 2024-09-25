@@ -12,7 +12,7 @@
 
 <head>
     <title>The Word</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Favicon-->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
@@ -42,7 +42,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">THE WORD</span></span></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">THE WORD</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,32 +50,32 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == home_url %}active{% endif %}" aria-current="home page"
-                            href="{% url 'home' %}">ALL EVENTS</a>
+                        <a class="nav-link small {% if request.path == home_url %}active{% endif %}" aria-current="page" 
+                            href="{% url 'home' %}" aria-label="View All Events Page">ALL EVENTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == calendar_url %}active{% endif %}" aria-current="calendar page"
-                            href="{% url 'calendar' %}">CALENDAR</a>
+                        <a class="nav-link small {% if request.path == calendar_url %}active{% endif %}" 
+                            href="{% url 'calendar' %}" aria-label="View Calendar Page">CALENDAR</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == add_event_url %}active{% endif %}" aria-current="create an eventpage"
-                            href="{% url 'add_event' %}">CREATE AN EVENT</a>
+                        <a class="nav-link small {% if request.path == add_event_url %}active{% endif %}"
+                            href="{% url 'add_event' %}" aria-label="View Add an Event Page">CREATE AN EVENT</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" aria-current="logout page" href="{% url 'my_events' %}">MY EVENTS</a>
+                        <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" href="{% url 'my_events' %}" aria-label="View My Events Page">MY EVENTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" aria-current="logout page" href="{% url 'account_logout' %}">LOGOUT</a>
+                        <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}" aria-label="View Logout Page">LOGOUT</a>
                     </li>
 
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == signup_url %}active{% endif %}" aria-current="signup page"
-                            href="{% url 'account_signup' %}">REGISTER</a>
+                        <a class="nav-link small {% if request.path == signup_url %}active{% endif %}" 
+                            href="{% url 'account_signup' %}" aria-label="View sign up Page">REGISTER</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == login_url %}active{% endif %}" aria-current="login page" href="{% url 'account_login' %}">LOGIN</a>
+                        <a class="nav-link small {% if request.path == login_url %}active{% endif %}" href="{% url 'account_login' %}" aria-label="View Login Page">LOGIN</a>
                     </li>
                     {% endif %}
 

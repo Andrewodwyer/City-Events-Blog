@@ -11,7 +11,7 @@
             <div class="col-lg-4 col-md-6 col-12 mb-4">
                 <!-- different container widths for different size screens -->
                 <div class="card h-100">
-                    <div class="card-img-top" alt="Event image">
+                    <div class="card-img-top">
                         {% if event.event_image == 'placeholder' %}
                         <!-- event_image is set as default="placeholder" in the AddEvents model in the event_image field-->
                         <img src="{% static 'images/3pieceband.png' %}" class="img-fluid object-fit-cover" alt="placeholder">
@@ -23,7 +23,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ event.title }}</h5>
                             <p class="card-text">{{ event.start_date_time}}</p>
-                            <p class="card-text">{{ event.description|linebreaks }}</p>
+                            <p class="card-text">{{ event.description | safe}}</p>
                             <p class="card-text text-muted">Organiser: {{ event.organiser }}</p>
                         </div>
                     </a>

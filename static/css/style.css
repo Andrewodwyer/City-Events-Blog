@@ -84,7 +84,7 @@ body {
 .icon-button.active {
     background-color: #377d78; /* Bootstrap primary color */
     color: white;
-    border-color: #1B4965; /* Match border to active color */
+    border-color: #fff; /* Match border to active color */
 }
 
 .red-o {

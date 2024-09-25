@@ -66,28 +66,8 @@
                 <!-- Submit button for creating or updating the event -->
                 <button type="submit" class="btn btn-primary">
                     Submit Event
-                    <!-- {% if addevent %}
-                        Update Event
-                    {% else %}
-                        Submit Event
-                    {% endif %} -->
                 </button>
             </form>
-
-            <!-- Event approval notice (only for the creator) -->
-            <!-- {% if addevent and not addevent.is_approved and addevent.user == request.user %}
-                <p class="text-warning mt-3">This event is awaiting approval.</p>
-            {% endif %} -->
-
-            <!-- Edit/Delete buttons (only for the event creator) -->
-            <!-- {% if event and event.user == request.user %}
-                <div class="mt-4">
-                    <form method="POST" action="{% url 'delete_event' event.slug %}" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-delete btn-danger">Delete Event</button>
-                    </form>
-                </div>
-            {% endif %} -->
 
         </div>
     </div>

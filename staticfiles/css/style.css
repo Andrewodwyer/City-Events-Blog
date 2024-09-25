@@ -79,12 +79,15 @@ body {
 
 .icon-button:hover {
     background-color: #f8f9fa; /* Light background on hover */
+    color: #377d78;
+    border-color: #377d78;
+
 }
 
 .icon-button.active {
     background-color: #377d78; /* Bootstrap primary color */
     color: white;
-    border-color: #1B4965; /* Match border to active color */
+    border-color: #fff; /* Match border to active color */
 }
 
 .red-o {
@@ -206,11 +209,29 @@ body {
 }
 
 .btn-signup:hover,
+.btn-edit1:hover {
+background-color: #f8f9fa; /* Light background on hover */
+color: #377d78;
+border-color: #377d78;
+}
+
+.btn-signup:hover,
 .btn-signup:active {
     background-color: #fff;
     color: #377d78;
 }
 
+.btn-delete1{
+    background-color: red;
+    color: #fff;
+}
+
+
+.btn-delete1:hover {
+    background-color: #f8f9fa; /* Light background on hover */
+    color: red;
+    border-color: red;
+}
 
 /* Icon styles */
 .icon-circle {

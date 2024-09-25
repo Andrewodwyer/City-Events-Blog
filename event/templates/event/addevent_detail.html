@@ -34,7 +34,7 @@
         <!-- Event description -->
         <div class="row">
             <div class="col-md-12">
-                <p>{{ addevent.description | safe }}</p>
+                <p>{{ event.description | safe}}</p>
             </div>
         </div>
 
@@ -126,7 +126,7 @@
                     {% endif %}
                     {% if user.is_authenticated and comment.user == user %}
                     <button class="btn btn-edit1" comment_id="{{ comment.id }}">Edit</button>
-                    <button class="btn btn-delete btn-delete-comment" comment_id="{{ comment.id }}">Delete</button>
+                    <button class="btn btn-delete1 btn-delete-comment" comment_id="{{ comment.id }}">Delete</button>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -158,7 +158,7 @@
     {% if addevent and addevent.organiser == request.user %}
     <div class="container mt-4 pb-4">
         <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-edit1">Edit Event</a>
-        <button class="btn btn-delete btn-delete-event" id="event-delete-btn" data-event-id="{{ addevent.id }}" data-event-slug="{{ addevent.slug }}">Delete Event</button>
+        <button class="btn btn-delete1 btn-delete-event" id="event-delete-btn" data-event-id="{{ addevent.id }}" data-event-slug="{{ addevent.slug }}">Delete Event</button>
     </div>
     {% endif %}
 </div>
