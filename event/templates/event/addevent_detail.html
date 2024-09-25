@@ -125,7 +125,7 @@
                     <p class="approval text-muted">This comment is awaiting approval</p>
                     {% endif %}
                     {% if user.is_authenticated and comment.user == user %}
-                    <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                    <button class="btn btn-edit1" comment_id="{{ comment.id }}">Edit</button>
                     <button class="btn btn-delete btn-delete-comment" comment_id="{{ comment.id }}">Delete</button>
                     {% endif %}
                 </div>
@@ -157,7 +157,7 @@
     <!-- Event Edit and Delete Buttons -->
     {% if addevent and addevent.organiser == request.user %}
     <div class="container mt-4 pb-4">
-        <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-edit">Edit Event</a>
+        <a href="{% url 'edit_event' addevent.slug %}" class="btn btn-edit1">Edit Event</a>
         <button class="btn btn-delete btn-delete-event" id="event-delete-btn" data-event-id="{{ addevent.id }}" data-event-slug="{{ addevent.slug }}">Delete Event</button>
     </div>
     {% endif %}

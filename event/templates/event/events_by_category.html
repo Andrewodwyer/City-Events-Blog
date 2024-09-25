@@ -12,7 +12,7 @@
                 <!-- different container widths for different size screens -->
                 <div class="card h-100">
                     <div class="card-img-top" alt="Event image">
-                        {% if "placeholder" in event.event_image.url %}
+                        {% if event.event_image == 'placeholder' %}
                         <!-- event_image is set as default="placeholder" in the AddEvents model in the event_image field-->
                         <img src="{% static 'images/3pieceband.png' %}" class="img-fluid object-fit-cover" alt="placeholder">
                         {% else %}
