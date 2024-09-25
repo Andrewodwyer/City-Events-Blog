@@ -15,9 +15,10 @@ body {
 
 /* large round corners for cards */
 .super-rounded-card {
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden; /* Ensures the image stays inside the card’s rounded corners */
     background-color: #ededed;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* learn more link in event cards */
@@ -30,10 +31,44 @@ body {
 }
 
 
+.btn-signup,
+.btn-edit1 {
+    background-color: #377d78;
+    color: #fff;
+}
+
+.btn-signup:hover,
+.btn-edit1:hover {
+background-color: #f8f9fa; /* Light background on hover */
+color: #377d78;
+border-color: #377d78;
+}
+
+.btn-signup:hover,
+.btn-signup:active {
+    background-color: #fff;
+    color: #377d78;
+}
+
+.btn-delete1{
+    background-color: red;
+    color: #fff;
+}
+
+
+.btn-delete1:hover {
+    background-color: #f8f9fa; /* Light background on hover */
+    color: red;
+    border-color: red;
+}
+
 .learn-more-link:hover {
     text-decoration: underline;
 }
 
+.large-text {
+    font-size: 1.20rem;
+}
 
 .brand {
     font-size: 1.4rem;
@@ -113,6 +148,10 @@ body {
     background-color: #377d78; /* Bootstrap primary color */
     color: white;
     border-color: #fff; /* Match border to active color */
+}
+
+.underline {
+    text-decoration: underline;
 }
 
 .red-o {
@@ -377,11 +416,10 @@ body {
 }
 
 .event-info {
-    background-color: rgba(255, 255, 255, 0.85);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 
@@ -429,7 +467,7 @@ body {
 
 /* top padding for event page */
 .top-padding {
-    padding: 7rem 2rem 0rem 2rem;
+    padding: 7rem 1rem 0rem 1rem;
 }
 
 /* Full-width white container */

@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 attendanceText.classList.add('text-primary1');
                 attendanceText.textContent = 'Going?';
             }
-            attendanceCount.textContent = `${data.attending_count} Going`;
+            attendanceCount.textContent = `${data.attending_count} Attending`;
         })
         .catch(error => console.error('Error:', error));
     });
