@@ -62,6 +62,19 @@ border-color: #377d78;
     border-color: red;
 }
 
+.icon-button:hover {
+    background-color: #f8f9fa; /* Light background on hover */
+    color: #377d78;
+    border-color: #377d78;
+
+}
+
+.icon-button.active {
+    background-color: #377d78; /* Bootstrap primary color */
+    color: white;
+    border-color: #fff; /* Match border to active color */
+}
+
 .learn-more-link:hover {
     text-decoration: underline;
 }
