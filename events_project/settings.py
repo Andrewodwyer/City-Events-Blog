@@ -16,6 +16,10 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
+# ensure cloudinary uses https paths
+import cloudinary
+cloudinary.config(secure=True,)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') # templates is the top level templates directory
@@ -28,7 +32,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') # templates is the top level
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-andrewodwye-cityeventsb-c2d8j24zojp.ws.codeinstitute-ide.net', '.herokuapp.com']
 
