@@ -50,7 +50,6 @@ class AddEvent(models.Model):
     title = models.CharField(max_length=255, unique=True)
     # slug is a semantic URL path rather than an integer or database row ID
     slug = models.SlugField(max_length=200, unique=True)
-    # event_image = CloudinaryField('event_image', default='placeholder')
     organiser = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="event_addevent")
     # ForeignKey to User model
@@ -69,7 +68,6 @@ class AddEvent(models.Model):
     updated_on = models.DateTimeField(default=timezone.now) #sets the time the event was created
     # Add Cloudinary image field
     event_image = CloudinaryField('image', default='placeholder')
-    # This line links the AddEvent model to User through the Attending model.
 
 
     # Use the custom manager
@@ -89,7 +87,7 @@ class Comment(models.Model):
     Stores comments on an event
     The event the comment relates to
     The user that made the comment
-    When it was dreated and if it is approved by the admin
+    When it was created and if it is approved by the admin
     """
     event = models.ForeignKey(AddEvent, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
