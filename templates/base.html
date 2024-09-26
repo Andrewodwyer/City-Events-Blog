@@ -3,6 +3,7 @@
 {% url 'home' as home_url %}
 {% url 'calendar' as calendar_url %}
 {% url 'add_event' as add_event_url %}
+{% url 'my_events' as my_events_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -61,10 +62,11 @@
                         <a class="nav-link small {% if request.path == add_event_url %}active{% endif %}"
                             href="{% url 'add_event' %}" aria-label="View Add an Event Page">CREATE AN EVENT</a>
                     </li>
-                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" href="{% url 'my_events' %}" aria-label="View My Events Page">MY EVENTS</a>
+                        <a class="nav-link small {% if request.path == my_events_url %}active{% endif %}"
+                            href="{% url 'my_events' %}" aria-label="View Add an Event Page">MY EVENTS</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}" aria-label="View Logout Page">LOGOUT</a>
                     </li>
@@ -97,8 +99,8 @@
     </div>
 
     <!-- White bar with buttons -->
-    <div class="white-bar py-2">
-        <div class="d-flex justify-content-around">
+    <div class="white-bar">
+        <div class="d-flex justify-content-around py-1">
             <a href="{% url 'events_by_category' category_id=1 %}" class="icon-button {% if category.id == 1 %}active{% endif %}">
                 <i class="fas fa-music"></i>
                 <span>Music</span>
@@ -109,11 +111,11 @@
             </a>
             <a href="{% url 'events_by_category' category_id=3 %}" class="icon-button {% if category.id  == 3 %}active{% endif %}">
                 <i class="fas fa-paint-brush"></i>
-                <span>Workshops</span>
+                <span>Classes</span>
             </a>
             <a href="{% url 'events_by_category' category_id=4 %}" class="icon-button {% if category.id  == 4 %}active{% endif %}">
                 <i class="fas fa-theater-masks"></i>
-                <span>Art & Culture</span>
+                <span>Culture</span>
             </a>
         </div>
     </div>

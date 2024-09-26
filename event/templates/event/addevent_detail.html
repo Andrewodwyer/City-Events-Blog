@@ -93,7 +93,7 @@
                                 <!-- icon class changes depending on if user_attending -->
                                 <i class="fa fa-user-circle"></i>
                             </div>
-                            <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}btn btn-outline-success{% endif %}">
+                            <span id="attendance-text" class="ml-2 {% if user_attending %}text-success1{% else %}btn text-primary1{% endif %}">
                                 {% if user_attending %}
                                     You're going!
                                 {% else %}
@@ -104,7 +104,7 @@
                     </form>
                 </div>
                 <div class="ml-4">
-                    <p id="attendance-count" class="mb-0">{{ attending_count }} attending</p>
+                    <p id="attendance-count" class="mb-0 mt-2 large-text text-secondary">{{ attending_count }} attending</p>
                 </div>
             </div>
             {% else %}
