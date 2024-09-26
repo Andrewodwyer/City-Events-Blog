@@ -1,3 +1,69 @@
+![The Work Logo](static/readme-img/favicon.ico)
+
+# THE WORD 
+
+[Andy O'Dwyer](https://github.com/Andrewodwyer)
+
+# Live App
+
+[Link to THE WORD site](https://events-blog-f44bf5c7d7d5.herokuapp.com/)
+
+City events website.
+
+<hr>
+The Work is an events website where a registered user can input events and also indicate if they will attend other events. Users will be able to search by categories with a nav bar dedicated to 4 different categories. They can also view events by dates in a calendar. Registered users have 4 additional options over none registered users. 
+
+- Create an event
+- View their events, Draft and published
+- leave a comment
+- Indicate attendance
+- All of which have CRUD functionality
+
+<hr>
+
+![Am I Responsive Image](static/readme-img/amiresponsive.png)
+
+## UX
+
+<hr>
+
+### Target Audience
+
+The Word’s events platform is designed for people who are interested in discovering, attending, and organising local and online events. The app concept is like a bulletin board in a shop or office space. People can post and see events in the local area. In the same way this site encourages users to both search for events and post their own events. 
+
+Information on users:
+Age:The apps expected user will be over 18, due to a lot of music venues having age restrictions.
+Location: The intention of the app is to have one for each city e.g THE WORD Cork/Waterford/Dublin/Limerick etc. In this way the user will utilise an app relevant to their location.
+
+Users interests in finding information in numerous categories
+- Music
+- Sport
+- Classes
+- Culture
+
+The registered user or organiser is interested in creating and managing their own events, either as a hobby or professional service.
+
+### How people will use the app:
+
+- None Registered Users
+  - 1 Users who are interested in seeing local events, what’s on now and in the future.
+  - 2 Users that want to search by a certain category, Music, Sports, Classes and Culture. 
+  - 3 People that want to choose an event by a certain date. Viewing upcoming events on a calendar.
+
+- Registers Users
+  They will have the same abilities as the none registered users plus the following
+  - 4 Add their own event
+  - 5 Update and delete their event
+  - 6 See a list of event they’ve created
+  - 7 Indicate if they will be attending an event
+  - 8 Write a comment on an event
+  - 9 Edit and delete their comment
+
+
+
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome Andrew O'Dwyer,

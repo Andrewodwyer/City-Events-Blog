@@ -79,6 +79,11 @@ border-color: #377d78;
     transform: translateX(-50%) translateY(-50%); /* centre logo brand*/
 }
 
+.logo{
+    height: 30px;
+    margin-right: 10px;
+}
+
 .half-white-half-blue {
     background: linear-gradient(to bottom, white 50%, #1B4965 50%);
     display: flex;
