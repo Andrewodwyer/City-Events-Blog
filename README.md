@@ -25,11 +25,11 @@ The Work is an events website where a registered user can input events and also 
 
 ## UX
 
-<hr>
-
 ### Target Audience
 
 The Word’s events platform is designed for people who are interested in discovering, attending, and organising local and online events. The app concept is like a bulletin board in a shop or office space. People can post and see events in the local area. In the same way this site encourages users to both search for events and post their own events. 
+
+The Word is geared to both casual event attendees and engaged organisers / registered users, providing a platform that encourages social engagement and participation.
 
 Information on users:
 Age:The apps expected user will be over 18, due to a lot of music venues having age restrictions.
@@ -43,7 +43,7 @@ Users interests in finding information in numerous categories
 
 The registered user or organiser is interested in creating and managing their own events, either as a hobby or professional service.
 
-### How people will use the app:
+#### How people will use the app:
 
 - None Registered Users
   - 1 Users who are interested in seeing local events, what’s on now and in the future.
@@ -61,7 +61,30 @@ The registered user or organiser is interested in creating and managing their ow
 
 
 
+#### Why users will use the app:
 
+-  Search flexibility: 
+  - Users can easily search for events through categories (music, sports, classes, culture) and dates, improving event discoverability.
+
+-  Event attendance: 
+  - Registered users can indicate whether they plan to attend an event, which enhances event visibility and participation.
+  - Organiser can also track interest
+
+  - User-generated content: 
+    - The site allows users to create, read, edit and delete their own events. They have the ability to create events and manage details like location, time, and description.
+
+  - Engagement through comments: 
+    - Registered users can leave comments on event pages, encouraging engagement and conversation around events.
+
+### User Goals
+
+For Attendees: 
+- Users primarily visit The Word to discover new events that match their interests and schedule.
+- They want a streamlined way to browse events, show attendance, and possibly engage in discussions with other attendees.
+
+
+For Organizers: 
+- Users who create events are looking for an easy way to promote their events, manage their listings, and interact with potential attendees. The platform’s CRUD (Create, Read, Update, Delete) functionality provides them with the flexibility to create, edit, or remove events as needed. Giving them full control over their event.
 
 
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
