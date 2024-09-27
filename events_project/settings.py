@@ -32,7 +32,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') # templates is the top level
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-andrewodwye-cityeventsb-c2d8j24zojp.ws.codeinstitute-ide.net', '.herokuapp.com']
 
@@ -149,11 +149,11 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC' #SET TO Europe/London time
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = True # Enable timezone support
 
 
 # Static files (CSS, JavaScript, Images)

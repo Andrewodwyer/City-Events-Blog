@@ -159,7 +159,7 @@ def get_events(request):
     the function returns it as a JSON response using Django JsonResponse
     FullCalendar can use JSON to display events in the calendar
     """
-    events = AddEvent.objects.all()  # Fetch events from AddEvent model
+    events = AddEvent.objects.filter(status=1)  # Fetch Published events from AddEvent model
     # Create a list of events in the format required by FullCalendar
     events_list = []
 

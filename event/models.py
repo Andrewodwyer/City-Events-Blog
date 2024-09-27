@@ -26,6 +26,7 @@ class Category(models.Model):
         
 class AddEventManager(models.Manager):
     """
+    Not a model
     This is a custom manager seperate to all() .filter() .get(). models.Manager extends Djangos
     base models.Manager.
     The model is called future_events() that returns events that are in the future or today

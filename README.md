@@ -87,6 +87,49 @@ For Organizers:
 - Users who create events are looking for an easy way to promote their events, manage their listings, and interact with potential attendees. The platform’s CRUD (Create, Read, Update, Delete) functionality provides them with the flexibility to create, edit, or remove events as needed. Giving them full control over their event.
 
 
+
+
+
+## Future Features:
+
+There is a number of additions that could be made to the app to increase it’s potential and appeal to users. 
+
+- ### Develop the My_Events page to be more a profile page with more features:
+  Currently the page shows the events created by the user/organiser. An added feature would be for a devision in this page. I column for created event  and a separate one for the events they’ve shown interest in, reserved seats for, shared events etc
+
+- ### Reserve tickets:
+  Similar to restaurant booking app, registers users could reserve a table or seat for an event. This feature would work well with most events, like workshops, seats at a concert etc
+
+- ### Search bar:
+  Add a search bar in the navigation menu to allow users to search for events using key words, some examples would be a venue name, a sub category, or event organiser. The search for organiser would be useful as they could be a venue that would have a number of events each week. This functionality not only saves time but also increases the likelihood of user satisfaction and retention.
+
+- ### Sharing icon:
+  Social Sharing & Friend Invites: Let users see what events their friends are attending and invite friends to join events, boosting community engagement.
+
+- ### Favorites/Wish List: 
+  Enable users to mark events as “favourites” or add them to a wish list. The user will be able to track these events on a personal page
+
+- ### User Convenience: 
+  Users can visually browse events based on proximity to their location
+  Alongside filters, users can find events based on geographic areas.
+
+- ### Event Reminders: 
+  Reminders and calendar integration to help users remember to attend events they’ve indicated attendance.
+
+- ### Share user comments: 
+  As well as the share events, users can share their comments relation to an event.
+
+- ### Event Reviews and Ratings:
+  Allow attendees to leave a review and rating for the past event
+
+
+
+
+
+
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome Andrew O'Dwyer,
