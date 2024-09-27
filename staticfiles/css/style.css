@@ -17,7 +17,7 @@ body {
 .super-rounded-card {
     border-radius: 10px;
     overflow: hidden; /* Ensures the image stays inside the card’s rounded corners */
-    background-color: #ededed;
+    background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 

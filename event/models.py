@@ -63,7 +63,7 @@ class AddEvent(models.Model):
     is_free = models.BooleanField(default=False)  # Add a free option
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, blank=True) #price can be blank
     link_to_event_page = models.URLField(max_length=1024, blank=True)
-    status = models.IntegerField(choices=STATUS, default=0) 
+    status = models.IntegerField(choices=STATUS, default=0) #Draft =0 Published=1
     # integerField is a number picker but is overridden to a string drop down
     excerpt = models.TextField(blank=True)  # Optional summary or preview of the posted event
     updated_on = models.DateTimeField(default=timezone.now) #sets the time the event was created
@@ -119,7 +119,7 @@ class Attending(models.Model):
     class Meta:
         unique_together = ('attending_user', 'event')  # Ensure a user can attend the same event only once
         ordering = ['-timestamp']  # Newest attendance first
-        verbose_name = "User Attending" #can be named anything, admin panel
+        verbose_name = "User Attending" #for admin panel
         verbose_name_plural = "Users Attending"
 
     def __str__(self):
