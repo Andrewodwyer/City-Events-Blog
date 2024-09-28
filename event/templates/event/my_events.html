@@ -4,52 +4,26 @@
 
 {% load static %}
 
-    <div class="container my-3">
-        <h3 class="my-3 text-white">My Events</h3>
-        <div class="row">
-            {% for event in events %}
-            <div class="col-lg-4 col-md-6 col-12 mb-4 position-relative">
-                <!-- different container widths for different size screens -->
-                <div class="card h-100 overflow-hidden super-rounded-card">
-                    <div class="card-img-top">
-                        {% if "placeholder" in event.event_image.url %}
-                        <!-- event_image is set as default="placeholder" in the AddEvents model in the event_image field-->
-                        <img src="{% static 'images/3pieceband.png' %}" class="img-fluid object-fit-cover" alt="placeholder">
-                        {% else %}
-                        <img src="{{ event.event_image.url }}" class="img-fluid object-fit-cover" alt="{{ event.title }}">
-                        {% endif %}
+<div class="container my-3">
+    <h3 class="my-3 text-white">My Events</h3>
+    <div class="row">
+        {% for event in events %}
+        <div class="col-lg-4 col-md-6 col-12 mb-4 position-relative">
+            {% include "event/event_card.html" with event=event %}
+            {% if event.status != 1 %}
+                <a href="{% url 'addevent_detail' event.slug %}" class="post-link">
+                    <div class="card event-overlay">
+                        <h2 class="text-black">THIS EVENT IS IN DRAFTS.</h2>
+                        <h2 class="text-black">CLICK TO UPDATE.</h2>
                     </div>
-                    <a href="{% url 'addevent_detail' event.slug %}" class="post-link">
-                        <!-- Card body with content -->
-                        <div class="card-body">
-                            <h5 class="card-title">{{ event.title }}</h5>
-                            <p class="card-text">{{ event.start_date_time }}</p>
-                            <p class="card-text">{{ event.excerpt | safe }}</p>
-                            <p class="card-text text-muted">Organiser: {{ event.organiser }}</p>
-    
-                            <!-- Learn more button -->
-                            <a href="{% url 'addevent_detail' event.slug %}" class="learn-more-link text-primary">
-                                Learn more &raquo;</a>
-                        </div>
-                    </a>
-                    {% if event.status != 1 %}
-                    <!-- Transparent overlay for non-published events -->
-                    <a href="{% url 'addevent_detail' event.slug %}" class="post-link">
-                        <div class="card event-overlay">
-                            <h2 class="text-black">THIS EVENT IS IN DRAFTS.</h2>
-                            <h2 class="text-black">CLICK TO UPDATE.</h2>
-                        </div>
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-            {% empty %}
-            <p>You did create any event yet!</p>
-            {% endfor %}
-                <!-- Include pagination controls -->
-            {% include "event/pagination.html" with page_obj=page_obj %}
+                </a>
+            {% endif %}
         </div>
+        {% empty %}
+        <p class="text-white">You did not create any events yet!</p>
+        {% endfor %}
+        {% include "event/pagination.html" with page_obj=page_obj %}
     </div>
-
+</div>
 <!-- index.html content ends here -->
 {% endblock %}

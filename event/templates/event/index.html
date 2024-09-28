@@ -6,40 +6,14 @@
 
 <!-- index.html content starts here -->
 <!-- Container for the event posts -->
+
 <div class="container my-3">
     <div class="row">
-        <!-- Start of each blog post -->
         {% for event in addevent_list %}
         <div class="col-lg-4 col-md-6 col-12 mb-4">
-            <!-- event_detail come from the urls path slug-->
-            <div class="h-100 super-rounded-card">
-                <!-- Card image -->
-                <div class="card-img-top">
-                    {% if "placeholder" in event.event_image.url %}
-                    <!-- event_image is set as default="placeholder" in the AddEvents model in the event_image field
-                    if there is no uploaded image-->
-                    <img src="{% static 'images/3pieceband.png' %}" class="img-fluid object-fit-cover" alt="placeholder">
-                    {% else %}
-                    <img src="{{ event.event_image.url }}" class="img-fluid object-fit-cover" alt="{{ event.title }}">
-                    {% endif %}
-                </div>
-                <a href="{% url 'addevent_detail' event.slug %}" class="post-link">
-                    <!-- Card body with content -->
-                    <div class="card-body">
-                        <h5 class="card-title">{{ event.title }}</h5>
-                        <p class="card-text">{{ event.start_date_time }}</p>
-                        <p class="card-text">{{ event.excerpt | safe }}</p>
-                        <p class="card-text text-muted">Organiser: {{ event.organiser }}</p>
-
-                        <!-- Learn more button like -->
-                        <a href="{% url 'addevent_detail' event.slug %}" class="learn-more-link text-primary">
-                            Learn more &raquo;</a>
-                    </div>
-                </a>
-            </div>
+            {% include "event/event_card.html" with event=event %}
         </div>
         {% endfor %}
-        <!-- Include pagination controls -->
         {% include "event/pagination.html" with page_obj=page_obj %}
     </div>
 </div>
