@@ -1,4 +1,4 @@
-body {
+.body {
     background-color: #F9FAFC;
     font-family: "Bodoni Moda SC", serif;
 }
@@ -266,7 +266,7 @@ border-color: #377d78;
 }
 
 .page-link {
-    background-color: #882200;
+    background-color: #c73200;
     color: #fff;
 }
 
@@ -387,11 +387,6 @@ border-color: #377d78;
     font-size: 0.5rem; /* Half the default size */
 }
 
-/* General Styles */
-body {
-    background-color: #F9FAFC;
-    font-family: "Bodoni Moda SC", serif;
-}
 /* Floating event info container */
 .event-info-container {
     bottom: 0;

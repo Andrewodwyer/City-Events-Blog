@@ -19,8 +19,8 @@
             <p class="card-text">{{ event.excerpt | safe }}</p>
             <p class="card-text text-muted">Organiser: {{ event.organiser }}</p>
             <!-- learn more button -->
-            <a href="{% url 'addevent_detail' event.slug %}" class="learn-more-link text-primary">
-                Learn more &raquo;</a>
+            <span class="learn-more-link text-primary">
+                Learn more &raquo;</span>
         </div>
     </a>
 </div>

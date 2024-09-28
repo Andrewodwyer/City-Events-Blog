@@ -87,8 +87,7 @@
                     <form id="attendance-form" method="POST" action="{% url 'toggle_attendance' %}">
                         {% csrf_token %}
                         <input type="hidden" name="event_id" value="{{ addevent.id }}">
-                        <div id="attendance-container" class="d-flex align-items-center"
-                        aria-label="{% if user_attending %}Currently attending. Click to unattend{% else %}Not attending. Click to attend{% endif %}">
+                        <div id="attendance-container" class="d-flex align-items-center">
                             <div id="attendance-icon" class="icon-circle {% if user_attending %}icon-success{% else %}icon-primary{% endif %}">
                                 <!-- icon class changes depending on if user_attending -->
                                 <i class="fa fa-user-circle"></i>
@@ -130,8 +129,8 @@
                     <p class="approval text-muted">This comment is awaiting approval</p>
                     {% endif %}
                     {% if user.is_authenticated and comment.user == user %}
-                    <button class="btn btn-edit1" comment_id="{{ comment.id }}">Edit</button>
-                    <button class="btn btn-delete1 btn-delete-comment" comment_id="{{ comment.id }}">Delete</button>
+                    <button class="btn btn-edit1" data-comment-id="{{ comment.id }}">Edit</button>
+                    <button class="btn btn-delete1 btn-delete-comment" data-comment-id="{{ comment.id }}">Delete</button>
                     {% endif %}
                 </div>
                 {% endfor %}
