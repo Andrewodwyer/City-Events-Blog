@@ -87,6 +87,47 @@ For Organizers:
 - Users who create events are looking for an easy way to promote their events, manage their listings, and interact with potential attendees. The platform’s CRUD (Create, Read, Update, Delete) functionality provides them with the flexibility to create, edit, or remove events as needed. Giving them full control over their event.
 
 
+## Kanban
+
+For this project I created a Kansan board in GitHub to display the stages and status of each user-story. I assigned priority to each user-story using the MoSCoW method. The User-story were grouped into Epics and each User-story was given a Story point using the T-shirt Sizing method. 
+
+### Kanban boards in github project:
+- MoSCow Prioritisation
+- Epics to group user-stories
+- Story Points: to estimate the work required
+- Status: What stage it’s on.
+
+### MoSCow Prioritisation
+The User stories are 
+
+##### M: Must Have
+ - Non-negotiable product needs that are mandatory.
+ - Deciding factors for Must haves: 
+What will happen if this is not included
+Is there a simpler way to accomplish this?
+Will the product work without it?
+
+##### S. Should-have
+-  They are essential to the product/project but they are not vital. The product will still function without it. However, the addition will add significant value. They can be scheduled for a future date.
+
+##### C. Could-haves 
+-  Nice to haves. Not necessary to the core function. They have a much smaller impact on the outcome if left out. They will be the first to be deprioritised.
+
+##### W. Will not have
+- This manages expectations and prevents scope creep. They are not expected in this specific time frame.
+
+![MoSCoW Prioritisation](static/readme-img/Agile/MoSCoW.png)
+
+
+## Agile Story points in Scrum
+
+Story points are a unit of measure used in Agile project management in Scrum, to estimate the relative effort or complexity of user stories or backlog items.
+Instead of estimating in terms of time (e.g., hours or days), which can be subjective and vary based on individual team members’ skill levels, story points focus on the overall effort or complexity involved. Story points represent a combination of factors, including the effort required, technical complexity, risks, and dependencies.
+I have used T-shirt Sizing for this.
+
+![Story Points Estimation](static/readme-img/Agile/T-shirt-size-story-points.webp)
+
+
 ## DRY principles:
 
 #### Three main benefits: Reusability, Maintainability & Customisation
@@ -119,6 +160,73 @@ The page_obj contains the current page’s events and pagination details of ther
 Like the Pagination on these pages the majority of the code was the same. The only major difference was the h3 element at the start of the page and a message that displays at the end of the page if there is an if else statement {%if%}
 The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include "event/event_card.html" with event=event %} tag.
 
+
+## Bugs:
+#### Category Migration 
+-  I had to roll back the migrations from 0006 to 0003, using the terminal command
+  python3 manage.py migrate events 0003 
+  This was because I had set a default=“music” in the AddEvents model and had made a migration. The default had to be an integer so I checked what ID music had. This was done by using this command in the shell.
+  from event.models import Category
+  music_category = Category.objects.get(id=1)
+  print(music_category.name)
+  The result id was 1.
+  I updated the code to reflect this. Below code, default=‘Music’ is now default=1
+      event_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events', default=1)
+  This still didn’t resolve the issue. When trying to make a migration using the integer 1 I was given an error of database is expecting a integer and instead got ‘Music’.
+  I rolled back the migrations, deleted the last 2 migrations and made a new makemigration and migrate. 
+  This resolved all the issues. I did have to set the categories in the admin panel again.
+
+#### Load Static bug
+-  I had used Django Template Language tag to include the images in the static directory for the events template html file but I didn’t do the same for the index.html file. Once I did this the images loaded as intended.
+
+#### Categories in events bug
+-  Fixed the bug in event_by_category.html, the loop was category in categories but it should of been events in events to show the events with the category_id, ie music has a category id of 1
+  I used a function in the view.py called event_list_by_category and it got the Category object from the AddEvents 
+
+#### Load Static in events_by_category.html bug
+-  The static images on the events_by_category.html file weren’t loading and this gave me an error indicating it was expecting a {%endfor%} tag as it couldn’t see the static folder.
+  This was easily fix by adding the {% load static %} tag at the top of the html file
+
+#### Pagination for function based views Bug
+-  Pagination for function based views. I was trying to add a function that used paginator = Paginator(events, 6). Because it was a function and not a generic class I had to add page_obj and is_paginated Django tags in a certain sequence. The issue was the page_obj wasn’t properly accessed in the template, which is causing the issue with the pagination displaying "Page of ." with no next or previous buttons. I consulted https://docs.djangoproject.com/en/5.1/topics/pagination/ and tried a number of different options but it didn’t work. In the EventList class the generic ListView automatically handles context variables like page_obj for pagination. I decided to use a generic list view class for the categories html template too.
+  To have a simple class view I needed to set up a function that filtered the events by category and by current and future dates. For the dates I used the class AddEventManager(models.Manager): in the models.py that filtered by time. and set it’s status to 1 (published). Then I used the .filter(event_category=category) that got the category.
+
+#### Loading Image in the index.html and then the addevent_detail.html
+-  img src was different for index.html and addevent_details.html. This was because of the for loop {% for event in addevent_list %} in index which took the name addevent_list from the generic.ListView class EventList. While addevent_details.html used the variable name addevent. When I used the variable name addevent in the index.html it didn’t load because or the for loop. I decided to make a note of the issue and review it if needed.
+
+
+#### Model issues: Comments and AddEvents user/organiser field Bug
+-  In the AddEvents model I used ‘organiser’ as the field for the user. However in the Comment model the field was ‘user’ for the user and not ‘organiser’. This caused confusion when putting the conditional if and elif statements in the addevent_detail.html. In your template, I was using comment.organiser == user, but in my Comment model, the field that stores the user who created the comment is user, not organiser. To resolve this I replaced comment.organiser with comment.user. replaced comment.organiser  with comment.user.username to display the username of the comment. The edit button was the real issue and the change of comment.user == user so that it checks the user is the comment author.
+
+#### URL pattern matching in urls.py. my-events path matching addevent_detail Bug
+-  The path('event/<slug:slug>/', views.addevent_detail, name='addevent_detail') is being matched before path('event/my-events/', views.my_events, name='my_events'). Django matches the URLs in order from top to bottom, so when it saw event/my-events/, it treated "my-events" as a slug and tries to look up a corresponding AddEvent object, leading to the 404 error.
+  To fix the issue I placed the event/my-events/ path before the event/<slug:slug>. So the more specific patterns (event/my-events) should come before less specific one.
+
+#### Mixed Content bug
+ - I was getting this error in the Issues section of Chrome inspect.
+  Mixed Content: The page at '<URL>' was loaded over HTTPS, but requested an insecure element '<URL>'. This request was automatically upgraded to HTTPS, For more information see <URL>
+  After researching and seeing a number of different articles, I found a fix on Slack. To fixed the mixed content i did the following. In settings.py file 
+  ensure cloudinary uses https paths
+  import cloudinary
+  cloudinary.config(secure=True,)
+  Thanks to tim_mentor for the code.
+
+#### Summernote w3 validator error for <p> tag bug
+-  Error: No p element in scope but a p end tag seen. Django Summernote.
+  tim_mentor regarding issue
+  It's a known bug that it adds extra paragraph tags to the body content in your posts. I think the same for the placeholders error?
+  I’m aware of the issue/bug coming from Django Summernote.
+
+#### My_events tab not Active when selected bug
+-  I had added the my_events tab later then the other tabs in the nav as this was a could have in my list. I had added the link, DTL in the 'li' in the nav and the links worked bu the tab didn’t stay active. The issue was that the my_events_url was not defined in the base.html template using {% url ‘my_events” as my_events_url %}. Once I did this, it worked as expected.
+
+#### FullCalendar and Django bug:
+-  FullCalendar and Django are expecting different values for times. To resolve this a function was added to AddEventForm so the seconds are rounded down and both the front end and the backend receive the required information. 
+
+#### FullCalendar Displaying all events and not just Published ones bug:
+-  The views get_events collected all the events .all(). so it included the draft events that were not published by the admin. I needed to filter this my using the .filter(status=1) so only the status=1(Published) events are selected.
+
+<hr>
 
 ## Future Features:
 
@@ -244,4 +352,48 @@ There is a number of additions that could be made to the app to increase it’s 
 
 ![eventsComments.js](static/readme-img/code-validated/eventsComments.js-check.png)
 
+</details>
+
+### Python
+
+[CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
+
+<details><summary><b>asgi.py</b></summary>
+
+![Python](documentation/testing_files/asgi-python.png)
+</details>
+
+<details><summary><b>wsgi.py</b></summary>
+
+![Python](documentation/testing_files/wsgi-python.png)
+</details>
+
+<details><summary><b>views.py (booking)</b></summary>
+
+![Python](documentation/testing_files/views-booking-python.png)
+</details>
+
+<details><summary><b>urls.py</b></summary>
+
+![Python](documentation/testing_files/apps-python.png)
+</details>
+
+<details><summary><b>forms.py</b></summary>
+
+![Python](documentation/testing_files/test-forms-python.png)
+</details>
+
+<details><summary><b>models.py</b></summary>
+
+![Python](documentation/testing_files/models-python.png)
+</details>
+
+<details><summary><b>admin.py</b></summary>
+
+![Python](documentation/testing_files/admin-python.png)
+</details>
+
+<details><summary><b>apps.py</b></summary>
+
+![Python](documentation/testing_files/apps-python.png)
 </details>

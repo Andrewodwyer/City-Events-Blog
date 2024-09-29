@@ -5,8 +5,8 @@ from django.urls import path
 
 
 urlpatterns = [
-    path('', views.EventList.as_view(), name='home'), #This pattern tells Django to look in the event app URL file for any blog urlpatterns.
-    path('calendar/', views.calendar_view, name='calendar'),  # Path for the calendar page
+    path('', views.EventList.as_view(), name='home'), # This path tells Django to look in the event app URL file for any blog urlpatterns.
+    path('calendar/', views.calendar_view, name='calendar'),  # Path for the calendar page, calendar_view displays the calendar, js supplies the events displayed in calendar
     path('api/events/', views.get_events, name='get_events'),  # get_events function creates a JSON file of all the events to add to FullCalendar
     path('event/my_events/', views.my_events, name='my_events'), # The organisers events
     path('event/add/', views.add_event, name='add_event'), # adding new events
