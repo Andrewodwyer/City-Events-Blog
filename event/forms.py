@@ -4,40 +4,45 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone  # for comparing the current time
 from datetime import timedelta
 
+
 class AddEventForm(forms.ModelForm):
     class Meta:
         """
-        Meta data give information to the form, Which model it is and a list of fields
-        that will be in the form.
-        The widgets dictionary allows overriding the default Django behavior by specifying
-        exactly how the fields are to be rendered in the form.
+        Meta data give information to the form, Which model
+        it is and a list of fields that will be in the form.
+        The widgets dictionary allows overriding the default
+        Django behavior by specifying exactly how the fields
+        are to be rendered in the form.
         attrs parameter allows me to specify the HTML attributes
-        type': 'datetime-local is more user friendly and allow for both date and time in the 1 field
+        type': 'datetime-local is more user friendly and allow for
+        both date and time in the 1 field
         """
         model = AddEvent  # Assuming you have a model called AddEvent
         fields = [
             'title', 'description', 'event_category', 'start_date_time',
-            'end_date_time', 'location', 'is_free', 'price', 'link_to_event_page', 
-            'excerpt', 'event_image'
+            'end_date_time', 'location', 'is_free', 'price',
+            'link_to_event_page', 'excerpt', 'event_image'
         ]
         widgets = {
             'start_date_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_date_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'excerpt': forms.Textarea(attrs={'rows': 1, 'cols': 50}),  # Adjust size of form
+            'excerpt': forms.Textarea(attrs={'rows': 1, 'cols': 50}),
+            # Adjust size of form
         }
         help_texts = {
             'title': 'Enter the event title. Make it catchy!',
             'description': 'Provide a detailed description of the event.',
             'event_category': 'Select the relevant category for this event.',
-            'start_date_time': 'Specify the start date and time for the event.',
+            'start_date_time': 'Select a start date and time for the event.',
             'end_date_time': 'Specify the end date and time for the event.',
-            'location': '"Optional" Enter the venue where the event will take place.',
+            'location': '"Optional" Enter the venue name and location',
             'is_free': '"Optional" Check if the event is free to attend.',
             'price': '"Optional" Specify the price if the event is not free.',
             'link_to_event_page': '"Optional" add a link to an external page.',
-            'excerpt': '"Optional" Add a short summary or highlight of the event.',
+            'excerpt': '"Optional" Add a short summary of the event.',
             'event_image': 'Upload an image that represents the event.',
         }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Set input formats to match HTML5 datetime-local format
@@ -46,7 +51,8 @@ class AddEventForm(forms.ModelForm):
 
     def clean_start_date_time(self):
         """
-        Ensure that the start date is in the future and round to minute precision.
+        Ensure that the start date is in the future is round to
+        minute precision.
         """
         start_date_time = self.cleaned_data.get('start_date_time')
 
@@ -54,12 +60,15 @@ class AddEventForm(forms.ModelForm):
             # Round seconds down to the nearest minute
             start_date_time = start_date_time.replace(second=0, microsecond=0)
             if start_date_time <= timezone.now():
-                raise ValidationError("The start date and time must be in the future.")
+                raise ValidationError(
+                    "The start date and time must be in the future."
+                    )
         return start_date_time
 
     def clean_end_date_time(self):
         """
-        Ensure that the end date is after the start date and round to minute precision.
+        Ensure that the end date is after the start date are
+        round to minute precision.
         """
         end_date_time = self.cleaned_data.get('end_date_time')
         if end_date_time:
@@ -77,7 +86,9 @@ class AddEventForm(forms.ModelForm):
 
         if start_date_time and end_date_time:
             if end_date_time <= start_date_time:
-                raise ValidationError("The end date and time must be later than the start date and time.")
+                raise ValidationError(
+                    "The end date and time must be later than the start date and time."
+                    )
         return cleaned_data
 
 
@@ -89,5 +100,3 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('content',)
-
-

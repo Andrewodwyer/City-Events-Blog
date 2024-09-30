@@ -1,16 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.contrib.auth.decorators import login_required #use decorator for login users
-from django.views import generic # Django's generic views
-from django.contrib import messages #message framework, stores and displays tempory messages like 'Event updated successfully!'
-from django.http import JsonResponse # converts data to JSON
-from django.http import HttpResponseRedirect # Redirects the user to a different URL after performing the action.
-from slugify import slugify #change titles to slug
-from .models import AddEvent, Category, Comment, Attending # Import the AddEvent, Category, Comment model
-from .forms import AddEventForm, CommentForm # function taken from the forms.py file
+from django.contrib.auth.decorators import login_required
+# use decorator for login users
+from django.views import generic  # Django's generic views
+from django.contrib import messages
+# message framework, stores and displays tempory messages
+from django.http import JsonResponse  # converts data to JSON
+from django.http import HttpResponseRedirect
+# Redirects the user to a different URL after performing the action.
+from slugify import slugify  # change titles to slug
+from .models import AddEvent, Category, Comment, Attending
+# Import the AddEvent, Category, Comment model
+from .forms import AddEventForm, CommentForm
+# function taken from the forms.py file
 
 
 # Create your views here.
-class EventList(generic.ListView): 
+class EventList(generic.ListView):
     """
     All events in the database are displayed
     This ListView is a generic django view
@@ -18,7 +23,9 @@ class EventList(generic.ListView):
     .future_events() comes from the AddEventManager class in the models.py
     It filters on time and has a status of 1 (published)
     """
-    queryset = AddEvent.objects.future_events() # Gets all 'AddEvent' objects from the database and sends them to the template.
+    queryset = AddEvent.objects.future_events()
+    # Gets all 'AddEvent' objects from the database and sends them
+    # to the template.
     template_name = "event/index.html"
     paginate_by = 6
     # paginate by 6 tells Django to display 6 posts at a time
@@ -33,38 +40,48 @@ def add_event(request):
         form = AddEventForm(request.POST, request.FILES)  # Handle file uploads
         if form.is_valid():
             event = form.save(commit=False)  # Do not save to the database yet
-            event.organiser = request.user  # Set the current user as the organiser
+            event.organiser = request.user
+            # Set the current user as the organiser
             event.status = 0  # Mark event as "Draft" by default
-            
-            # Automatically generate the slug from the title. python app called slugify
+
+            # Automatically generate the slug from the title. slugify
             event.slug = slugify(event.title)
-            
+
             event.save()  # Save the event to the database
-            messages.add_message(request, messages.SUCCESS, "Add event request received! It will be reviewed within 2 days.")
-            return redirect('home')  # Redirect to the home page after submission
+            messages.add_message(
+                request, messages.SUCCESS, "Add event request received! It will be reviewed within 2 days.")
+            return redirect('home')  # Redirect to the home page
     else:
         form = AddEventForm()
 
     return render(request, 'event/add_event.html', {'form': form})
 
 # edit event
+
+
 def edit_event(request, slug):
     """
     It fetches the event that the user wants to edit.
-    It uses the slug passed in the URL to find the specific event in the AddEvent model.
-
+    It uses the slug passed in the URL to find the specific
+    event in the AddEvent model.
     """
     event = get_object_or_404(AddEvent, slug=slug)
 
     if request.method == 'POST':
         form = AddEventForm(request.POST, request.FILES, instance=event)
-        # request.FILES A dictionary, where each key corresponds to the name of a file input field in the HTML form, crispyform
-        # instance=event update this specific instance with the new data from the form.
+        """
+        request.FILES A dictionary, where each key corresponds to the name
+        of a file input field in the HTML form, crispyform
+        instance=event update this specific instance with the new data
+        from the form.
+        """
+
         if form.is_valid():
             form.save()
-            #update the existing event
+            # update the existing event
             messages.success(request, 'Event updated successfully!')
-            return redirect(reverse('addevent_detail', args=[slug]))  # Redirect to the event detail page
+            return redirect(reverse('addevent_detail', args=[slug]))
+            # Redirect to the event detail page
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
@@ -95,7 +112,7 @@ def delete_event(request, slug, event_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return redirect('home')
-    # return HttpResponseRedirect(reverse('addevent_detail', args=[slug]))    
+    # return HttpResponseRedirect(reverse('addevent_detail', args=[slug]))
 
 
 # Look at this in the future
@@ -111,7 +128,7 @@ def my_events(request):
 
 def addevent_detail(request, slug):
     """
-    Display an individual event, ensuring that only the organizer can view draft events.
+    Display an individual event, only the organizer can view draft events.
     """
     # Fetch published events and drafts for the organizer
     addevent = get_object_or_404(AddEvent, slug=slug)
@@ -125,9 +142,12 @@ def addevent_detail(request, slug):
     comment_count = addevent.comments.filter(is_approved=True).count()
 
     user_attending = request.user.is_authenticated and addevent.attendees.filter(attending_user=request.user).exists()
-    # if the user is logged in, get all the attendance records for that event. The attendees
-    # The filter sees if the current user matches any objects in the attending_user field of Attending model
-    # It exists() if it matches the filter
+    """
+    if the user is logged in, get all the attendance records for that event.
+    The attendees he filter sees if the current user matches any objects in
+    the attending_user field of Attending model
+    It exists() if it matches the filter
+    """
     attending_count = Attending.objects.filter(event=addevent).count()
 
     if request.method == "POST":
@@ -142,15 +162,15 @@ def addevent_detail(request, slug):
     comment_form = CommentForm()
 
     return render(
-        request, "event/addevent_detail.html", 
+        request, "event/addevent_detail.html",
         {"addevent": addevent,
          "comments": comments,
          "user_attending": user_attending,
          "attending_count": attending_count,
          "comment_count": comment_count,
-         "comment_form": comment_form,
-        },
+         "comment_form": comment_form, }
     )
+
 
 def get_events(request):
     """
@@ -159,25 +179,29 @@ def get_events(request):
     the function returns it as a JSON response using Django JsonResponse
     FullCalendar can use JSON to display events in the calendar
     """
-    events = AddEvent.objects.filter(status=1)  # Fetch Published events from AddEvent model
-    # Create a list of events in the format required by FullCalendar
+    events = AddEvent.objects.filter(status=1)
+    # Fetch Published events from AddEvent model
     events_list = []
+    # Create a list of events in the format required by FullCalendar
 
     for event in events:
-        # The for loop adds title and start(date) to the event_list array for the FullCalendar to use
+        """
+        The for loop adds title and start(date) to the event_list array
+        for the FullCalendar to use
+        """
         events_list.append({
             'title': event.title,
-            'start': event.start_date_time.isoformat(),  # FullCalendar expects date in ISO format
-            'url': f'/event/{event.slug}/',  # Provide the URL to the event detail page
+            'start': event.start_date_time.isoformat(),
+            # FullCalendar expects date in ISO format
+            'url': f'/event/{event.slug}/',
+            # Provide the URL to the event detail page
         })
 
     return JsonResponse(events_list, safe=False)
 
-    
 
 def calendar_view(request):
-    # events = AddEvent.objects.all()  # Fetch all events
-    return render(request, 'event/calendar.html') #{'events': events})
+    return render(request, 'event/calendar.html')
 
 
 def get_filtered_events_by_category(category):
@@ -189,11 +213,10 @@ def get_filtered_events_by_category(category):
     return AddEvent.objects.future_events().filter(event_category=category)
 
 
-
 class EventListByCategory(generic.ListView):
     """
-    Using Djangos ListView it will show the model (AddEvent) in the template (events_by_category.html)
-    paginated by 6.
+    Using Djangos ListView it will show the model (AddEvent) in the template
+    (events_by_category.html) paginated by 6.
     """
     model = AddEvent
     template_name = 'event/events_by_category.html'
@@ -208,7 +231,8 @@ class EventListByCategory(generic.ListView):
         """
         category = get_object_or_404(Category, id=self.kwargs['category_id'])
         self.category = category  # Store the category in self.category variable
-        return get_filtered_events_by_category(category) #using the earlier function for categories and future events
+        return get_filtered_events_by_category(category)
+        # using the earlier function for categories and future events
 
     def get_context_data(self, **kwargs):
         """
@@ -220,7 +244,6 @@ class EventListByCategory(generic.ListView):
         context['category'] = self.category
         # self.category is category variable above
         return context
-
 
 
 def comment_edit(request, slug, comment_id):
@@ -276,8 +299,9 @@ def toggle_attendance(request):
 
         # Check if the user is already attending the event via Attending model
         attendance, created = Attending.objects.get_or_create(
-            # attendance = true, created = false. 
-            # get_or_create method on the Attending model to see if the attendance record already exists
+            # attendance = true, created = false.
+            # get_or_create method on the Attending model to see if the
+            # attendance record already exists
             attending_user=request.user,
             # for the current user
             # if no record exist, a new one is created and created is now true
@@ -286,7 +310,7 @@ def toggle_attendance(request):
         )
 
         if not created:
-            # If the object already exists, the user is already attending, so we delete
+            # If the object already exists, user is already attending, delete
             attendance.delete()
             attending = False
         else:
@@ -297,8 +321,8 @@ def toggle_attendance(request):
         return JsonResponse({
             'user_attending': attending,
             'attending_count': Attending.objects.filter(event=event).count()
-            # querying the Attending model of all records in that event_id and counts them
-            # returns a JSON response with updated attendance status and the count
+            # querying the Attending model of all records in that event_id
+            # returns a JSON response with new attendance status and the count
         })
 
     return JsonResponse({'error': 'Invalid request'}, status=400)

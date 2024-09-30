@@ -1,15 +1,22 @@
 from django.contrib import admin
-from .models import AddEvent, Attending, Category, Comment  #import models from the current directory 
-from django_summernote.admin import SummernoteModelAdmin 
+from .models import AddEvent, Attending, Category, Comment
+# import models from the current directory
+from django_summernote.admin import SummernoteModelAdmin
+
 
 @admin.register(AddEvent)
 class AddEventAdmin(SummernoteModelAdmin):
 
-    list_display = ('title', 'slug', 'status', 'updated_on') # controls which fields to display on the AddEvent page of the admin dashboard.
-    search_fields = ['title', 'description'] #Limits the fields to search
-    list_filter = ('status', 'updated_on',) # Filter on right showing the status, draft or published
-    prepopulated_fields = {'slug': ('title',)} # The slug will be prepopulated by the title text
-    summernote_fields = ('description',) # summernote_field, user can format the content, bold underline, font etc
+    list_display = ('title', 'slug', 'status', 'updated_on')
+    # controls which fields to display on the AddEvent page of the admin dashboard.
+    search_fields = ['title', 'description']
+    # Limits the fields to search
+    list_filter = ('status', 'updated_on',)
+    # Filter on right showing the status, draft or published
+    prepopulated_fields = {'slug': ('title',)}
+    # The slug will be prepopulated by the title text
+    summernote_fields = ('description',)
+    # summernote_field, user can format the content, bold underline, font etc
 
 # Register your models here.
 """

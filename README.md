@@ -343,10 +343,102 @@ There is a number of additions that could be made to the app to increase it’s 
 - ### Event Reviews and Ratings:
   Allow attendees to leave a review and rating for the past event
 
+## Technologies Used
+
+- [Figma](https://www.figma.com/) was used to create the final design of a website.
+- [Font Awesome](https://fontawesome.com/) was used for social media icons in the footer.
+- [Iconify](https://iconify.design/) was used for menu icon in the header.
+- [Favicon](https://favicon.io/) was used for favicon.
+- [LucidChart](https://lucid.co/) was used for creating ERD.
+- [Google Fonts](https://fonts.google.com/) was used to add specific font family to the stylesheet.
+- [Adobe Color](https://color.adobe.com/create/color-wheel) was used to create a colour palette.
+- [Bootstrap](https://getbootstrap.com/) was used for styling certain elements on the page.
+- [W3C validation](https://validator.w3.org/) was used to check the markup validity of html file.
+- [Jigsaw](https://jigsaw.w3.org/css-validator/) was used to check the validity of css file.
+- [JSHint](https://jshint.com/) was used to check the validity of js files.
+- [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
+- [Am I Responsive](https://ui.dev/amiresponsive) was used to get a screenshot of a final look of the website on various devices.
+- [Github](https://github.com/) was used to store the code of the website.
+- [Django](https://www.djangoproject.com) used as the Python framework for the site.
+* [PostgreSQL](https://www.postgresql.org) used as the relational database management.
+* [ElephantSQL](https://www.elephantsql.com) used as the Postgres database.
+- [Heroku](https://www.heroku.com) used for hosting the deployed site.
+- [Cloudinary](https://cloudinary.com) used for images
+- [Gunicorn](https://gunicorn.org/) used for WSGI server
+- Chrome DevTools was used to check the responsiveness of the website as well as to debug it.
+- Chrome's Developer Tool Lighthouse was used to check the performance of the website.
+
+
+### Create a PostgreSQL Code Institute database
+
+- Log into [CIdatabase maker](https://dbs.ci-dbs.net/)
+- Add your email address in input field and submit the form
+- Open database link in your email
+- Paste dabase URL in your DATABASE_URL variable in env.py file and in Heroku config vars
+
+### Cloudinary
+
+- Navigate to https://cloudinary.com/ and log in to your account.
+- Navigate to dashboard/console https://console.cloudinary.com/console/  copy API Enviroment variable starting with "cloudinary://".
+- Paste copied url CLOUDINARY_URL variable in env.py file and in Heroku config vars
+- Update settings.py
+
+### Django secret key
+
+You need to include you Django secret key that you can generate using any of the Django secret keys generators online.
+In order to protect django app secret key it was set as an enviroment variable and stored in env.py.
+
+```
+os.environ.setdefault(
+    "SECRET_KEY", "your secret key")
+```
+
+## Deployment
+
+### Heroku Deployment
+This site was deployed to and is currently [hosted on the Heroku platform](https://astroshare-blog-6a7ca9d34749.herokuapp.com/). The steps for deploying to Heroku, using PostgreSQL as the database host, are as follows:
+
+1. Create a list of requirements in the requirements.txt file by using the command pip3 freeze > requirements.txt
+2. Log in (or sign up) to Heroku
+3. Click on the New button and select *Create new app*
+4. Give it a unique name and choose the region *Europe*
+5. Click the Settings tab, go to the *Config Vars* section and click on the Reveal Config Vars button
+6. Add all variables from *env.py* to ConfigVars of Heroku
+
+<details><summary><b>Click to view details Config Vars Heroku</b></summary>
+
+![Config vars](static/readme-img/code/Config-Vars.png)
+</details>
+
+7. Click the *Add* button
+8. Click the *Deploy* tab, go to the *Deployment method section*, select *GitHub* and confirm this selection by clicking on the *Connect to Github* button
+9. Search for the repository name on github *Astro Blog* and click the *Connect* button
+10. Add in the *setting.py* the Heroku app URL into ALLOWED HOSTS
+11. Gather all static files of the project by using the command *python3 manage.py collectstatic* in the terminal
+12. Make sure that DEBUG=FALSE in *settings.py*
+13. Create a *Procfile* in the root directory and add *web: gunicorn astroshare-blog.wsgi*
+14. In Heroku enable the automatic deploy or manually deploy the code from the main branch
+
+### Local Deployment
+1. Generate an *env.py* file in the root directory of the project
+2. Configure the environment variables within this file
+3. Create a virtual environment
+4. Install all required dependencies using pip install command into the .venv
+5. Add dependencies to the requirements.txt file using pip3 freeze > requirements.txt command
+
+### Final Deployment
+
+1. Make sure to set DEBUG = False.
+
 
 ### Validator Testing 
 
+
 ### HTML
+
+All pages have been passed through the W3C validator. The only page that had an error was the the sign-up page
+Django Summernote issue: It's a known bug that adds extra paragraph tags to the body content in the posts.
+I’m aware of the issue/bug coming from Django Summernote.
 
 [W3C validation](https://validator.w3.org/#validate_by_input) was used to check the markup validity of html file.
 
@@ -407,6 +499,8 @@ There is a number of additions that could be made to the app to increase it’s 
 
 ### CSS
 
+No CSS issues
+
 [Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_input) was used to check css files
 
 <details><summary><b>style.css</b></summary>
@@ -418,6 +512,13 @@ There is a number of additions that could be made to the app to increase it’s 
 ### JavaScript
 
 [Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_input) was used to check css files
+
+Calendar.js 
+- When testing the calendar js an error of undefined variable FullCalendar. FullCalendar is a django library. new FullCalendar.Calendar is called to create a new calendar instance,in the html id=calander.
+
+eventsComments.js
+- When testing the eventComments js an error of undefined variable Bootstrap. Bootstrap is a Django library. new Bootstrap.Modal creates a modal instance and provides the functionality to interact with that modal.
+
 
 <details><summary><b>attendance.js</b></summary>
 
@@ -439,44 +540,20 @@ There is a number of additions that could be made to the app to increase it’s 
 
 ### Python
 
+#### PIP8 Compliant
+
+| File                   | Result |
+|------------------------|--------|
+| settings.py            | Pass |
+| urls.py                | Pass   |
+| admin.py               | Pass   |
+| manage.py              | Pass   |
+| apps.py                | Pass   |
+| forms.py               | Pass|
+| models.py              | Pass   |
+| Project urls.py        | Pass   |
+| wsgi.py                | Pass   |
+| asgi.py                | Pass   |
+| Models.py              | Pass   |
+
 [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
-
-<details><summary><b>asgi.py</b></summary>
-
-![Python](documentation/testing_files/asgi-python.png)
-</details>
-
-<details><summary><b>wsgi.py</b></summary>
-
-![Python](documentation/testing_files/wsgi-python.png)
-</details>
-
-<details><summary><b>views.py (booking)</b></summary>
-
-![Python](documentation/testing_files/views-booking-python.png)
-</details>
-
-<details><summary><b>urls.py</b></summary>
-
-![Python](documentation/testing_files/apps-python.png)
-</details>
-
-<details><summary><b>forms.py</b></summary>
-
-![Python](documentation/testing_files/test-forms-python.png)
-</details>
-
-<details><summary><b>models.py</b></summary>
-
-![Python](documentation/testing_files/models-python.png)
-</details>
-
-<details><summary><b>admin.py</b></summary>
-
-![Python](documentation/testing_files/admin-python.png)
-</details>
-
-<details><summary><b>apps.py</b></summary>
-
-![Python](documentation/testing_files/apps-python.png)
-</details>
