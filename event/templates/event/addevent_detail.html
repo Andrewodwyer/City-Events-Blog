@@ -6,12 +6,12 @@
 <!-- Full-width image with 16:9 ratio -->
 <div class="event-header position-relative">
     {% if "placeholder" in addevent.event_image.url %}
-        <img src="{% static 'images/3pieceband.png' %}" alt="placeholder" class="event-image img-fluid">
+        <img src="{% static 'images/guitarsolo.webp' %}" alt="placeholder" class="event-image img-fluid">
     {% else %}
         <img src="{{ addevent.event_image.url }}" alt="{{ addevent.title }}" class="event-image img-fluid">
     {% endif %}
 
-    <!-- Event details for organizers and published events -->
+    <!-- Event details for organisers and published events -->
     {% if addevent.status == 1 or addevent.organiser == request.user %}
         <!-- Floating container with event details -->
         <div class="event-info-container position-absolute">

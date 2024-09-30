@@ -17,7 +17,7 @@ class AddEventForm(forms.ModelForm):
         type': 'datetime-local is more user friendly and allow for
         both date and time in the 1 field
         """
-        model = AddEvent  # Assuming you have a model called AddEvent
+        model = AddEvent 
         fields = [
             'title', 'description', 'event_category', 'start_date_time',
             'end_date_time', 'location', 'is_free', 'price',

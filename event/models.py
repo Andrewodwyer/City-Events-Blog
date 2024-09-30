@@ -70,7 +70,7 @@ class AddEvent(models.Model):
         )
     # ForeignKey to Category model, Default=1 is the id for Music
     start_date_time = models.DateTimeField()
-    end_date_time = models.DateTimeField(default=timezone.now)
+    end_date_time = models.DateTimeField()
     location = models.CharField(blank=True)
     is_free = models.BooleanField(default=False)  # Add a free option
     price = models.DecimalField(

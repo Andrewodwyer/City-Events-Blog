@@ -1,4 +1,4 @@
-{% load static %} <!-- Add this line at the top of your template -->
+{% load static %}
 
 <div class="h-100 super-rounded-card">
 <!-- card image -->
@@ -6,7 +6,7 @@
         {% if "placeholder" in event.event_image.url %}
         <!-- event_image is set as default="placeholder" in the AddEvents model in the event_image field
         if there is no uploaded image-->
-            <img src="{% static 'images/3pieceband.png' %}" class="img-fluid object-fit-cover" alt="placeholder">
+            <img src="{% static 'images/guitarsolo.webp'%}" class="img-fluid object-fit-cover" alt="placeholder">
         {% else %}
             <img src="{{ event.event_image.url }}" class="img-fluid object-fit-cover" alt="{{ event.title }}">
         {% endif %}
