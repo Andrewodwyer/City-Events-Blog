@@ -83,13 +83,20 @@ For Attendees:
 - They want a streamlined way to browse events, show attendance, and possibly engage in discussions with other attendees.
 
 
-For Organizers: 
+For Organisers: 
 - Users who create events are looking for an easy way to promote their events, manage their listings, and interact with potential attendees. The platform’s CRUD (Create, Read, Update, Delete) functionality provides them with the flexibility to create, edit, or remove events as needed. Giving them full control over their event.
 
+### User Stories
+The user stories are available on the kanban board and some will be discussed in the EPics below.
+There as three main users
+- Admin: This is the site owner that will have full control over the publishing of events, and comments.
+- Registered Users: User and organisers who are logged, allowing for more functionality 
+- Non-registered users: limited functionality
+These users have been groupled in the kanban board with tags and their user stories have been given epics for each type of user
 
 ## Kanban
 
-For this project I created a Kansan board in GitHub to display the stages and status of each user-story. I assigned priority to each user-story using the MoSCoW method. The User-story were grouped into Epics and each User-story was given a Story point using the T-shirt Sizing method. 
+For this project I created a Kansan board in GitHub to display the stages and status of each user-story. I assigned priority to each user-story using the MoSCoW method. The User-story were grouped into Epics and each User-story was given a Story Point using the T-shirt Sizing method. 
 
 ### Kanban boards in github project:
 - MoSCow Prioritisation
@@ -98,7 +105,6 @@ For this project I created a Kansan board in GitHub to display the stages and st
 - Status: What stage it’s on.
 
 ### MoSCow Prioritisation
-The User stories are 
 
 ##### M: Must Have
  - Non-negotiable product needs that are mandatory.
@@ -119,11 +125,79 @@ Will the product work without it?
 ![MoSCoW Prioritisation](static/readme-img/Agile/MoSCoW.png)
 
 
+## Epics
+
+In a Kanban board, an epic is a large body of work that can be broken down into multiple smaller user stories and tasks. Each epic generally corresponds to a specific area. The epics are organised by three types of users in the system: Admin, Registered Users, and Non-Registered Users.
+
+Below is a description of each epic based on the user roles in your system:
+
+#### Epic 1: Admin
+
+This epic groups together all the functionality and user stories related to the Admin role. The Admins are users who have the highest level of access and can manage various aspects of the app. Their stories will involve managing users, events, comments and who is attending each event. 
+- Abilities:
+  -	Admins can create, edit, or delete user accounts
+  -	Admins can create, approve, edit, and delete events, comments and attendance submitted by registered users.
+  -	Admins have the ability to review user-generated content (e.g., events, comments, or attendance) and edit/delete if required.
+
+- Example User Stories:
+  -	“As the Admin I can view event request and comment requests, so that I can review and approve them”
+  -	“As an Admin, I want to approve or reject registered users publishing events so that only verified events are added to the app”
+
+#### Epic 2: Registered User
+
+This epic encompasses all the features and interactions available to Registered Users. These users have accounts and have increase abilities over non-registered users.
+- Abilities:
+  -	Registered users can create new events and submit them for admin approval.
+  - Registered users can view, show attendance, and write comments on events.
+  -	My Events: Registered users can see the events they've created.
+  - They have CRUD functionality
+    - Adding an event (editing the event),
+    - Writing a comment (edit the comment),
+    - Show attendance (indicate attendance and also remove attendance)
+
+- Example User Stories:
+ - “As a user I can log in to my account so that I can add events, comment and indicate attendance”
+ - “As a Registered User, I want to comment on events so that I can share my opinions or ask questions.”
+
+#### Epic 3: Non-Registered User
+
+This epic covers the functionality accessible to Non-Registered Users, or users who visit the platform without signing up. These users have limited access compared to registered users but can still interact with the app to a certain degree.
+- Abilities:
+ - Event Browsing: Non-registered users can browse through public events without needing an account.
+ - Category Search: Non-registered users can search for events based on categories and dates in the calendar
+ - View Event Details: Non-registered users can view the full details of a specific event, including descriptions, dates, locations, and organiser information.
+ - Limited Interaction: While non-registered users cannot create or participate in events, they can view event information and are prompted to sign up for further actions.
+
+- Example User Stories:
+	- “As a user I can open a event listing from the calendar so that see more details of the event”
+	- “As a User, I want to browse and search for events so that I can find events that interest me.”
+
+Each of these epics groups together the relevant user stories under a common theme, making it easier to manage and visualize progress on your Kanban board. The Epics are grouped using Tags on the User Stories eg. Tag: "Epic 1: Registered Users"
+
+![Kanban Board](static/readme-img/Agile/Kanban-Board.png)
+
+[View Kanban Board here](https://github.com/users/Andrewodwyer/projects/6)
+
+
 ## Agile Story points in Scrum
 
 Story points are a unit of measure used in Agile project management in Scrum, to estimate the relative effort or complexity of user stories or backlog items.
-Instead of estimating in terms of time (e.g., hours or days), which can be subjective and vary based on individual team members’ skill levels, story points focus on the overall effort or complexity involved. Story points represent a combination of factors, including the effort required, technical complexity, risks, and dependencies.
-I have used T-shirt Sizing for this.
+Instead of estimating in terms of time (e.g., hours or days), which can be subjective and vary based on individual team members’ skill levels, story points focus on the overall effort or complexity involved. Story points represent a combination of factors, including the effort required, technical complexity, risks, and dependencies.I have used T-shirt Sizing for this.
+
+- Some example of using Story Points:
+	1.	User Story: “Manage My Own Posted Events” (Registered User)
+	 - T-shirt Size: M (Medium), Story Points: 3
+	 - Reason: A registered user managing their posted events involves creating, editing, or deleting events, which requires interaction with multiple parts of the system (the database, html, views etc.).
+
+  2.	User Story: “View Comments” (Admin)
+	 - T-shirt Size: XS (Extra Small), Story Points: 1
+	 - Reason: For an admin, viewing comments is a read-only task with minimal complexity. The admin doesn’t need to interact with or modify the comments, making it a low-effort task that can be implemented quickly.
+
+  3.	User Story: “View Calendar” (Non-Registered User)
+	 - T-shirt Size: L (Large); 	Story Points: 5
+	 - Reason: Viewing a calendar html and include events title based on dates. This involved an external library called FullCallendar. The make the events show in the calendar was a complex feature requiring significant development time, particularly in the use of JS, views and uls. JSONResponse was required.
+
+By using T-shirt size Agile story points, you can effectively estimate the workload for each epic and user story
 
 ![Story Points Estimation](static/readme-img/Agile/T-shirt-size-story-points.webp)
 
@@ -159,6 +233,15 @@ The page_obj contains the current page’s events and pagination details of ther
 #### Event Card Display
 Like the Pagination on these pages the majority of the code was the same. The only major difference was the h3 element at the start of the page and a message that displays at the end of the page if there is an if else statement {%if%}
 The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include "event/event_card.html" with event=event %} tag.
+
+![Pagination cards and buttons](static/readme-img/UX/pagination-6-card-and-button.png)
+
+
+
+### Fontawesome and Bootstrap
+
+
+##
 
 
 ## Bugs:
