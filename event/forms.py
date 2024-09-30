@@ -17,15 +17,17 @@ class AddEventForm(forms.ModelForm):
         type': 'datetime-local is more user friendly and allow for
         both date and time in the 1 field
         """
-        model = AddEvent 
+        model = AddEvent
         fields = [
             'title', 'description', 'event_category', 'start_date_time',
             'end_date_time', 'location', 'is_free', 'price',
             'link_to_event_page', 'excerpt', 'event_image'
         ]
         widgets = {
-            'start_date_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'end_date_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'start_date_time': forms.DateTimeInput(attrs={
+                'type': 'datetime-local'}),
+            'end_date_time': forms.DateTimeInput(attrs={
+                'type': 'datetime-local'}),
             'excerpt': forms.Textarea(attrs={'rows': 1, 'cols': 50}),
             # Adjust size of form
         }
@@ -87,7 +89,7 @@ class AddEventForm(forms.ModelForm):
         if start_date_time and end_date_time:
             if end_date_time <= start_date_time:
                 raise ValidationError(
-                    "The end date and time must be later than the start date and time."
+                    "End date & time must be after the start time."
                     )
         return cleaned_data
 
