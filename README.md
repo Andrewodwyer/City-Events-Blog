@@ -94,6 +94,37 @@ There as three main users
 - Non-registered users: limited functionality
 These users have been groupled in the kanban board with tags and their user stories have been given epics for each type of user
 
+### Database Models
+
+One of the first steps in producing this app was to design and implement custom models based on the information that users would want to store and access.
+
+An entity relationship diagram was created as part of planning these custom models.
+
+As you can see from the ERD, the relationships play a important role in how the information will be stored and accessed. Here are the main relationship and you'll also be able to view them in this Diagram
+
+- Category model:
+ - One-to-Many: A category can have many events (AddEvent model), but each event belongs to one category.
+
+- AddEvent model:
+ - One-to-Many: A single category can be associated with multiple events.
+ - One-to-Many: A single user can create multiple events, but each event has one organiser.
+ - One-to-Many: An event can have multiple comments, but each comment is linked to one event.
+
+- Comments model:
+ - One-to-Many: A single event can have many comments, but each comment is linked to one event.
+ - One-to-Many: A single user can write many comments, but each comment is linked to one user.
+
+- Attending model:
+	- Many-to-Many: A user can attend multiple events, and an event can have many attendees.
+
+- User:
+ - One-to-Many: A single user can create multiple events.
+ - One-to-Many: A single user can comment on multiple events.
+ - Many-to-Many: A user can attend multiple events, and events can have multiple attendees.
+
+
+![ER Diagram](static/readme-img/erd/ERD.png)
+
 ## Kanban
 
 For this project I created a Kansan board in GitHub to display the stages and status of each user-story. I assigned priority to each user-story using the MoSCoW method. The User-story were grouped into Epics and each User-story was given a Story Point using the T-shirt Sizing method. 
@@ -200,6 +231,16 @@ Instead of estimating in terms of time (e.g., hours or days), which can be subje
 By using T-shirt size Agile story points, you can effectively estimate the workload for each epic and user story
 
 ![Story Points Estimation](static/readme-img/Agile/T-shirt-size-story-points.webp)
+
+
+# UI
+
+The initial wireframe was designed using figma. The figma project page can be found here [FIGMA THE WORD](https://www.figma.com/design/xioX2poOx76Zg7R8lG8Ret/The-Word!-Events?node-id=218-1347&node-type=frame&t=6gK5eYLXELZdjBK1-0)
+
+![mobile wireframe](static/readme-img/UX/mobile-wireframe.png)
+
+![Desktop wireframe](static/readme-img/UX/Desktop-wireframe.png)
+
 
 
 ## DRY principles:
