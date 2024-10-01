@@ -272,7 +272,7 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
 
 #### Typography:
 - Font Bondoni Moda SC, Serif
-  - The choice of a serif over a more modern font was a not to the past, or an acknowledgment of Djangos start. The idea that news was initally printed in serif.
+  - The choice of a serif over a more modern font was a nod to the past, or an acknowledgment of Djangos start. The idea that news was initally printed in serif.
 
 
 ### Interaction
@@ -281,9 +281,10 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
 
 The action buttons like signup, edit, delete and next/previus are solid colours when inactive and white with colour text and border when hovered over.
 This was due to the type of button is was. Once clicked they were gone. 
-- The icon buttons fo the categories and attending buttons are differnt however. 
+- The icon buttons for the categories and attending buttons are differnt however. 
   - The categories are on a white bar and would be distracting if they were block colours initially. Once a category is active it colour needs to inform the user of their location with a obvious sign. A quote from Steve Krug from his book "don't make me think" 
     - “The fact that the people who built the site didn’t care enough to make things obvious—and easy—can erode our confidence in the site and the organization behind it.”
+  - Icons provide a visual shortcut
 
 - The icons are from [fontawesome](https://fontawesome.com/)
 <hr>
@@ -318,6 +319,8 @@ This was due to the type of button is was. Once clicked they were gone.
   - Register, This button is not visable when logged in
   - Login / login changes to logout when the user is logged in
 
+![Navbar](static/readme-img/UX/navbar-desktop-mobile.png)
+
 - This is a Bootstap NavBar that has it's own JavaScript for the hamburger menu on smaller devices.
 
 - The links are grey when not active and black when active. The user will always know where they are on the app.
@@ -341,6 +344,46 @@ This was due to the type of button is was. Once clicked they were gone.
 Bootstrap was used in the app to create a responsive, mobile-first websites quickly and efficiently using it's libarary. Bootstrap provides a collection of pre-designed HTML, CSS, and JavaScript components, like buttons, forms, navigation bars, and grid layouts. By using Bootstrap, I was able to build a visually consistent app without writing extensive custom code. It was easy to customise and it adapted to all screen sizes without having to write additional media queries. Saying this, I did customise the css and added js in this build.
 
 
+## App Features
+
+- 1. Event Browsing and Filtering 
+  - Filter by category
+  - Filter by calendar view. Events are displayed in the calendar dates
+  - View the events you've created
+
+- 2. User Authentication
+  - Users can register, signin and signout
+  - Registered users have additional benefits: add events, comments and indicate attendance
+
+- 3. Create Events
+  - This feature empowers users to actively contribute on the app, creating a sense of community and ownership. 
+
+- 4. Category Icon:
+  - Discuss earlier
+
+- 5. Interactive Calendar View
+  - Users can see upcomming events on a specific date
+  - Clicking the event title (link) brings the user the event details page
+  - Beneficial for users that only want to see events by date that they're available for.
+
+![Calendar View](static/readme-img/UX/calendar-view-desktop-mobile.png)
+
+- 6. Event Interaction
+  - Mark as Attending
+  - The click icon turning from grey to green provides a sense of accomplishment and interaction enhancing the user experience
+
+- 7. Comments
+  - Organiser and update the event with a comment.
+  - A user can ask a question.
+  - Benefits to the user as they feel more connected to the event
+
+- 8. Social Media
+  - Links to social media were the app and event can be more visable 
+
+- 9. Image display. 
+  - The organiser when creating the event can add their own image. 
+
+- 10. Additional information from the Organiser aids to better Search Engine Optimisation
 
 
 
@@ -479,14 +522,14 @@ There is a number of additions that could be made to the app to increase it’s 
 - ### Event Reviews and Ratings:
   Allow attendees to leave a review and rating for the past event
 
-### Languages
+## Languages
 - [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
 - [HTML5](https://en.wikipedia.org/wiki/HTML) - Provides the content and structure for the website.
 - [CSS3](https://en.wikipedia.org/wiki/CSS) - Provides the styling for the website.
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Provides interactive elements of the website
 
 
-### Frameworks & Software
+## Frameworks & Software
 - [Gitpod](http://gitpod.io) - Cloud based IDE
 - [Bootstrap](https://getbootstrap.com/) - A CSS framework that helps building solid, responsive, mobile-first sites
 - [Django](https://www.djangoproject.com/) 
@@ -508,6 +551,7 @@ There is a number of additions that could be made to the app to increase it’s 
 - [PostgreSQL](https://www.postgresql.org) used as the relational database management.
 - [Cloudinary](https://cloudinary.com) used for images
 - [Gunicorn](https://gunicorn.org/) used for WSGI server
+- [Crispy Forms](https://pypi.org/project/django-crispy-forms/)
 - Photoshop: Resizing and editing pictures
 
 
@@ -571,6 +615,10 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 ### Final Deployment
 
 1. Make sure to set DEBUG = False.
+
+
+## Testing
+
 
 
 ### Validator Testing 
@@ -706,3 +754,7 @@ The 4 lines in setting.py that are too long is the AUTH_PASSWORD_VALIDATORS. The
 </details>
 
 [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
+
+### Lighthouse
+
+
