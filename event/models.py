@@ -121,7 +121,8 @@ class Comment(models.Model):
         ordering = ["created_at"]  # newest first
 
     def __str__(self):
-        return f'Comment {self.content} by {self.user.username} on {self.event.title}'
+        return f'Comment {self.content} by {self.user.username} on {
+            self.event.title}'
 
 
 # Attending model to track which users are attending which events
@@ -136,7 +137,8 @@ class Attending(models.Model):
     attending_user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='User_attending')
     event = models.ForeignKey(
-        AddEvent, on_delete=models.CASCADE, related_name='attendees')
+        AddEvent, on_delete=models.CASCADE, related_name='attendees'
+        )
     timestamp = models.DateTimeField(default=timezone.now)
     # Automatically records when the user attends
 

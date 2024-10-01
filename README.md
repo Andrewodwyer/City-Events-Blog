@@ -544,7 +544,7 @@ eventsComments.js
 
 | File                   | Result |
 |------------------------|--------|
-| settings.py            | Pass |
+| settings.py            | Pass AUTH_PASSWORD_VALIDATORS line too long|
 | urls.py                | Pass   |
 | admin.py               | Pass   |
 | manage.py              | Pass   |
@@ -555,5 +555,12 @@ eventsComments.js
 | wsgi.py                | Pass   |
 | asgi.py                | Pass   |
 | Models.py              | Pass   |
+
+The 4 lines in setting.py thare are too long is the AUTH_PASSWORD_VALIDATORS. There are set by the programmers and can not be changed. All other python files passed.
+<details><summary><b>Settings.py CI Linter result</b></summary>
+
+![Settings.py CI Linter](static/readme-img/code-validated/settings.py-ci-linter.png)
+
+</details>
 
 [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.

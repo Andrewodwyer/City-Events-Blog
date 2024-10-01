@@ -49,7 +49,8 @@ def add_event(request):
 
             event.save()  # Save the event to the database
             messages.add_message(
-                request, messages.SUCCESS, "Add event request received! It will be reviewed within 2 days.")
+                request, messages.SUCCESS, "Add event request received!"
+                " It will be reviewed within 2 days.")
             return redirect('home')  # Redirect to the home page
     else:
         form = AddEventForm()
@@ -93,8 +94,11 @@ def edit_event(request, slug):
         'form': form
     }
     return render(request, 'event/add_event.html', context)
-    # Use the add_event.html template. The event and the form are passed to the add_event.html template.
-    # This template will display the form with the pre-filled data for the user to edit.
+    """
+    The event and the form are passed to the add_event.html template.
+    This template will display the form with the pre-filled data for
+    the user to edit.
+    """
 
 
 def delete_event(request, slug, event_id):
@@ -109,7 +113,8 @@ def delete_event(request, slug, event_id):
         event.delete()
         messages.add_message(request, messages.SUCCESS, 'Event deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.add_message(
+            request, messages.ERROR, 'You can only delete your own comments!')
 
     return redirect('home')
     # return HttpResponseRedirect(reverse('addevent_detail', args=[slug]))
@@ -141,7 +146,8 @@ def addevent_detail(request, slug):
     comments = addevent.comments.all().order_by("-created_at")
     comment_count = addevent.comments.filter(is_approved=True).count()
 
-    user_attending = request.user.is_authenticated and addevent.attendees.filter(attending_user=request.user).exists()
+    user_attending = request.user.is_authenticated and addevent.attendees.filter(
+        attending_user=request.user).exists()
     """
     if the user is logged in, get all the attendance records for that event.
     The attendees he filter sees if the current user matches any objects in
