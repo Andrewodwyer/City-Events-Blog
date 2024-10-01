@@ -53,8 +53,7 @@ class AddEventForm(forms.ModelForm):
 
     def clean_start_date_time(self):
         """
-        Ensure that the start date is in the future is round to
-        minute precision.
+        Ensure that the start date is in the future.
         """
         start_date_time = self.cleaned_data.get('start_date_time')
 
@@ -64,34 +63,28 @@ class AddEventForm(forms.ModelForm):
             if start_date_time <= timezone.now():
                 raise ValidationError(
                     "The start date and time must be in the future."
-                    )
+                )
         return start_date_time
 
     def clean_end_date_time(self):
         """
-        Ensure that the end date is after the start date are
-        round to minute precision.
+        Ensure that the end date is after the start date.
+        Round to minute precision.
         """
         end_date_time = self.cleaned_data.get('end_date_time')
+        start_date_time = self.cleaned_data.get('start_date_time')
+
         if end_date_time:
             # Round seconds down to the nearest minute
             end_date_time = end_date_time.replace(second=0, microsecond=0)
-        return end_date_time
 
-    def clean(self):
-        """
-        Ensure that end date is after start date.
-        """
-        cleaned_data = super().clean()
-        start_date_time = cleaned_data.get('start_date_time')
-        end_date_time = cleaned_data.get('end_date_time')
-
-        if start_date_time and end_date_time:
-            if end_date_time <= start_date_time:
+            # Ensure end date is after start date
+            if start_date_time and end_date_time <= start_date_time:
                 raise ValidationError(
-                    "End date & time must be after the start time."
-                    )
-        return cleaned_data
+                    "The end date & time must be after the start date & time."
+                )
+
+        return end_date_time
 
 
 class CommentForm(forms.ModelForm):

@@ -556,7 +556,7 @@ eventsComments.js
 | asgi.py                | Pass   |
 | Models.py              | Pass   |
 
-The 4 lines in setting.py thare are too long is the AUTH_PASSWORD_VALIDATORS. There are set by the programmers and can not be changed. All other python files passed.
+The 4 lines in setting.py that are too long is the AUTH_PASSWORD_VALIDATORS. There are automatically generated and can be left. All other python files passed.
 <details><summary><b>Settings.py CI Linter result</b></summary>
 
 ![Settings.py CI Linter](static/readme-img/code-validated/settings.py-ci-linter.png)
