@@ -230,16 +230,117 @@ Instead of estimating in terms of time (e.g., hours or days), which can be subje
 
 By using T-shirt size Agile story points, you can effectively estimate the workload for each epic and user story
 
+<details><summary><b>T-shirt size Story Points</b></summary>
+
 ![Story Points Estimation](static/readme-img/Agile/T-shirt-size-story-points.webp)
 
+</details>
 
-# UI
+<br>
+
+# UI Design
 
 The initial wireframe was designed using figma. The figma project page can be found here [FIGMA THE WORD](https://www.figma.com/design/xioX2poOx76Zg7R8lG8Ret/The-Word!-Events?node-id=218-1347&node-type=frame&t=6gK5eYLXELZdjBK1-0)
 
+## Wireframes
+
+#### Mobile Wireframe
+
 ![mobile wireframe](static/readme-img/UX/mobile-wireframe.png)
 
+#### Desktop Wireframe
+
 ![Desktop wireframe](static/readme-img/UX/Desktop-wireframe.png)
+
+### Design Style
+
+The UI design for the app was to be a modern, clean and userfriendly. Balancing functionality and aesthetics, so the user can easily navigate through the app.
+
+#### Colour Palette:
+- Primary background colour of dark blue #1B4965. 
+  - Giving a strong rich coloured canvas for the event cards. By doing this the cards stand out and draws the users eye inward.
+- Accent Colours: Orange and teal-green for the action buttons.
+  - It balances well with the darker and neutral colors of the site, maintaining a professional tone while being inviting.
+- Neutral Colors: light & slate greys. 
+  - Not distracting or overpowering. They are in keeping with the design and are easily read.
+- White
+  - Background colour of the cards, making them pop from the background.
+
+<hr>
+
+![Colour Palette](static/readme-img/UX/colours.png)
+
+#### Typography:
+- Font Bondoni Moda SC, Serif
+  - The choice of a serif over a more modern font was a not to the past, or an acknowledgment of Djangos start. The idea that news was initally printed in serif.
+
+
+### Interaction
+
+#### Buttons and Icons
+
+The action buttons like signup, edit, delete and next/previus are solid colours when inactive and white with colour text and border when hovered over.
+This was due to the type of button is was. Once clicked they were gone. 
+- The icon buttons fo the categories and attending buttons are differnt however. 
+  - The categories are on a white bar and would be distracting if they were block colours initially. Once a category is active it colour needs to inform the user of their location with a obvious sign. A quote from Steve Krug from his book "don't make me think" 
+    - “The fact that the people who built the site didn’t care enough to make things obvious—and easy—can erode our confidence in the site and the organization behind it.”
+
+- The icons are from [fontawesome](https://fontawesome.com/)
+<hr>
+
+![Category buttons](static/readme-img/UX/category-button.png)
+
+
+![Action button with edit:hover](static/readme-img/UX/edit-button-hover.png)
+
+
+### Design familiarity
+  - Attending button: Just like the categories buttons, this had to be obvious. There is many apps with this idea of liking or attening. This grey to green concept is intuitive. This leverages the users prior experiences, making it feel familiar and natural.
+  <hr>
+
+![Attending Button](static/readme-img/UX/attending-icon.png)
+
+
+#### Cards
+
+- In keeping with the dark background the cards are white to standout, indicating importance. 
+- The card displays an image with text under it. There is a Learn more link element that is a "signifier" to click to view more information. 
+- I have made the whole card a link even though it looks like the blue "Learn more" is the link. This was done to make it easier for the user to move to the next page. All designed with the user in mind. 
+- There is a slight drop shadow on the cards as well.
+
+#### Navbar.
+
+- The Navbar contains 6 links when the user is not signed in and 5 links when they are
+  - All Events
+  - Calander
+  - Create an event
+  - My events
+  - Register, This button is not visable when logged in
+  - Login / login changes to logout when the user is logged in
+
+- This is a Bootstap NavBar that has it's own JavaScript for the hamburger menu on smaller devices.
+
+- The links are grey when not active and black when active. The user will always know where they are on the app.
+- I decided to keep the categories section seperate to the navbar for a more asthetic design. This design is familiar to other event sites, making it intuitive.
+
+
+### User Interaction with messages
+
+- Messages: Bootstrap alerts are used to notify users of actions like logging in or creating an event. These are styled with transparent color overlays to blend smoothly into the page without overwhelming the user.
+- Authentication Indicators: Users are reminded whether they are logged in or not through a simple text message, presented in a “log-box” style, centered on the page in grey. 
+
+### Footer:
+
+- Dark-Grey Background with white text ensures that the footer remains subtle but clear. It contains social media links, styled with white icons against the dark background, providing easy access to external community pages without dominating the visual hierarchy. User are used to having these external links on the footer.
+
+![Footer](static/readme-img/UX/Footer.png)
+
+
+### Bootstrap
+
+Bootstrap was used in the app to create a responsive, mobile-first websites quickly and efficiently using it's libarary. Bootstrap provides a collection of pre-designed HTML, CSS, and JavaScript components, like buttons, forms, navigation bars, and grid layouts. By using Bootstrap, I was able to build a visually consistent app without writing extensive custom code. It was easy to customise and it adapted to all screen sizes without having to write additional media queries. Saying this, I did customise the css and added js in this build.
+
+
 
 
 
@@ -277,12 +378,6 @@ The card_display.html template was created in response to this. This template us
 
 ![Pagination cards and buttons](static/readme-img/UX/pagination-6-card-and-button.png)
 
-
-
-### Fontawesome and Bootstrap
-
-
-##
 
 
 ## Bugs:
@@ -384,16 +479,25 @@ There is a number of additions that could be made to the app to increase it’s 
 - ### Event Reviews and Ratings:
   Allow attendees to leave a review and rating for the past event
 
-## Technologies Used
+### Languages
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
+- [HTML5](https://en.wikipedia.org/wiki/HTML) - Provides the content and structure for the website.
+- [CSS3](https://en.wikipedia.org/wiki/CSS) - Provides the styling for the website.
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Provides interactive elements of the website
 
+
+### Frameworks & Software
+- [Gitpod](http://gitpod.io) - Cloud based IDE
+- [Bootstrap](https://getbootstrap.com/) - A CSS framework that helps building solid, responsive, mobile-first sites
+- [Django](https://www.djangoproject.com/) 
 - [Figma](https://www.figma.com/) was used to create the final design of a website.
+- [Github](https://github.com/) - Used to host and edit the website.
+- [Heroku](https://en.wikipedia.org/wiki/Heroku) - A cloud platform that the application is deployed to.
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - Used to test performance of site.
 - [Font Awesome](https://fontawesome.com/) was used for social media icons in the footer.
-- [Iconify](https://iconify.design/) was used for menu icon in the header.
 - [Favicon](https://favicon.io/) was used for favicon.
 - [LucidChart](https://lucid.co/) was used for creating ERD.
 - [Google Fonts](https://fonts.google.com/) was used to add specific font family to the stylesheet.
-- [Adobe Color](https://color.adobe.com/create/color-wheel) was used to create a colour palette.
-- [Bootstrap](https://getbootstrap.com/) was used for styling certain elements on the page.
 - [W3C validation](https://validator.w3.org/) was used to check the markup validity of html file.
 - [Jigsaw](https://jigsaw.w3.org/css-validator/) was used to check the validity of css file.
 - [JSHint](https://jshint.com/) was used to check the validity of js files.
@@ -401,13 +505,10 @@ There is a number of additions that could be made to the app to increase it’s 
 - [Am I Responsive](https://ui.dev/amiresponsive) was used to get a screenshot of a final look of the website on various devices.
 - [Github](https://github.com/) was used to store the code of the website.
 - [Django](https://www.djangoproject.com) used as the Python framework for the site.
-* [PostgreSQL](https://www.postgresql.org) used as the relational database management.
-* [ElephantSQL](https://www.elephantsql.com) used as the Postgres database.
-- [Heroku](https://www.heroku.com) used for hosting the deployed site.
+- [PostgreSQL](https://www.postgresql.org) used as the relational database management.
 - [Cloudinary](https://cloudinary.com) used for images
 - [Gunicorn](https://gunicorn.org/) used for WSGI server
-- Chrome DevTools was used to check the responsiveness of the website as well as to debug it.
-- Chrome's Developer Tool Lighthouse was used to check the performance of the website.
+- Photoshop: Resizing and editing pictures
 
 
 ### Create a PostgreSQL Code Institute database
