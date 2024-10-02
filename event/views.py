@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
-# use decorator for login users
+# use decorator for login users, add_event and my_event
 from django.views import generic  # Django's generic views
 from django.contrib import messages
-# message framework, stores and displays tempory messages
+# message framework, stores and displays temporary messages
 from django.http import JsonResponse  # converts data to JSON
 from django.http import HttpResponseRedirect
 # Redirects the user to a different URL after performing the action.
@@ -35,6 +35,7 @@ class EventList(generic.ListView):
 def add_event(request):
     """
     Create a view that allows authenticated users to submit their events.
+    @login_required will redirect to sign in page if not logged in
     Handles file uploads
     """
     if request.method == 'POST':
@@ -58,9 +59,8 @@ def add_event(request):
 
     return render(request, 'event/add_event.html', {'form': form})
 
+
 # edit event
-
-
 def edit_event(request, slug):
     """
     It fetches the event that the user wants to edit.
@@ -126,6 +126,7 @@ def my_events(request):
     """
     Users can view and manage their own events,
     It lists only the events created by this logged-in user, including drafts.
+    @login_required will redirect to sign in page if not logged in
     """
     events = AddEvent.objects.filter(organiser=request.user)
     return render(request, 'event/my_events.html', {'events': events})
@@ -138,7 +139,7 @@ def addevent_detail(request, slug):
     # Fetch published events and drafts for the organizer
     addevent = get_object_or_404(AddEvent, slug=slug)
 
-    # Check if the event is a draft and the user is not the organizer
+    # Check if the event is a draft and the user is not the organiser
     if addevent.status == 0 and addevent.organiser != request.user:
         return render(request, "404.html")  # Show 404 for non-organizers
 
@@ -152,7 +153,7 @@ def addevent_detail(request, slug):
     )
     """
     if the user is logged in, get all the attendance records for that event.
-    The attendees he filter sees if the current user matches any objects in
+    The attendees filter sees if the current user matches any objects in
     the attending_user field of Attending model
     It exists() if it matches the filter
     """

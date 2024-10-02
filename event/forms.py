@@ -44,6 +44,7 @@ class AddEventForm(forms.ModelForm):
             'excerpt': '"Optional" Add a short summary of the event.',
             'event_image': 'Upload an image that represents the event.',
         }
+        # clues for users of what is expected
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -89,7 +90,7 @@ class AddEventForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     """
-    a form that allows user to input content for a comment.
+    A form that allows user to input content for a comment.
     linked to the Comment model in the database
     """
     class Meta:

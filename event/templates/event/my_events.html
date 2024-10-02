@@ -9,13 +9,14 @@
     <div class="row">
         {% for event in events %}
         <div class="col-lg-4 col-md-6 col-12 mb-4 position-relative">
-            <!-- include the temple cards html -->
+            <!-- include the template cards html -->
             {% include "event/event_card.html" with event=event %}
             {% if event.status != 1 %}
                 <a href="{% url 'addevent_detail' event.slug %}" class="post-link">
                     <div class="card event-overlay">
                         <h2 class="text-black">THIS EVENT IS IN DRAFTS.</h2>
                         <h2 class="text-black">CLICK TO UPDATE.</h2>
+                        <!-- text to display over the card if not published -->
                     </div>
                 </a>
             {% endif %}
@@ -24,7 +25,8 @@
         <p class="text-white">You did not create any events yet!</p>
         {% endfor %}
         {% include "event/pagination.html" with page_obj=page_obj %}
+        <!-- pagination -->
     </div>
 </div>
-<!-- index.html content ends here -->
+
 {% endblock %}

@@ -9,7 +9,6 @@ A draft zero and published is one, default is to save as a draft
 """
 STATUS = ((0, "Draft"), (1, "Published"))
 
-# Create your models here.
 
 # Category model
 

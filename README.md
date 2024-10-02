@@ -514,6 +514,8 @@ As a user/ site visitor, I want to browse events without needing to register so 
 | Social media links| links in the footer takes the user to the relivant websites | &check; |
 | Admin panel view | admin applies /admin to the end of the home url to see admin panel. Admin panel is only available to the admin and not a regular user | &check; |
 | Admin Display | Once in the admin panel, they will be able to view 3 columns, first for options, middle for description and right for filter | &check; |
+| Link to events page added in form, available in event details | The link can be added to the field in the form and the link is available in the event details page. The link is to open a new tab with the link | &check; |
+| Image Upload | In the Create an Events form a image can be uploaded to cloudinary and available to display on the events details page and event card | &check; |
 
 
 ![Delete modal](static/readme-img/UX/delete-event-modal-bootstrap.webp)

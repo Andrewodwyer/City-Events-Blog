@@ -4,14 +4,13 @@
 
 {% load static %}
 
-<!-- index.html content starts here -->
 <!-- Container for the event posts -->
 
 <div class="container my-3">
     <div class="row">
         {% for event in addevent_list %}
         <div class="col-lg-4 col-md-6 col-12 mb-4">
-            <!-- include the temple cards html -->
+            <!-- include the template event cards html -->
             {% include "event/event_card.html" with event=event %}
         </div>
         {% endfor %}
@@ -19,5 +18,5 @@
     </div>
 </div>
 
-<!-- index.html content ends here -->
+<!-- base.html content ends here -->
 {% endblock %}
