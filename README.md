@@ -490,7 +490,7 @@ As a Registered User, I want to indicate my attendance to events so that others 
 As a user/event organiser I can view all the events I've created so that I can manage them | login, in the nav bar click My Events, select one of your events | &check;
 As a user I can see the nav-bar so that I can easily go back to the home screen | Only when events are no longer available, past events that are moved to draft or deleted | &check;
 As a user I can log in to my account so that I can add events | log in, click the link Create an Event, fill in form and submit | &check;
-As a site user I can create, update and delete posts | Once logged in, click on My Events page, select the event to edit or delete. Once in the details page, press the edit or delete button, delete button will display a modal to confirm delete. Edit button will bring you to a form page with the current input information| &check;
+As a site user I can create, update and delete events | Once logged in, click on My Events page, select the event to edit or delete. Once in the details page, press the edit or delete button, delete button will display a modal to confirm delete. Edit button will bring you to a form page with the current input information. Edit event details and submit. If selecting delete, a bootstrap modal is shown with two buttons, close and delete. Close, closes the modal, delete deletes the event| &check;
 As a Registered User, I want to comment on events so that I can share my opinions or ask questions. | login, select the event you'd like to comment or ask a question to, and click submit | &check;
 As site user I can view events in a paginated way so that i can select one that interests me. | on the home page, category page or my events page, you'll see a button under the events. the button is numbered relating to current page and an arrow for next or previous | &check;
 As a user I can open a event listing from the calendar so that see more details of the event | Click on the Calendar button on the nav-bar, select the date that has a event listed by title. Click title and you'' be brought to that event details page | &check;
@@ -498,13 +498,22 @@ As a User, I want to browse and search for events by category so that I can find
 Sign up prompt. As a non-registered user I can register for an account so that I add events, write comments & show attendance | Non logged in users will be directed to the sign in page when click create an event, my events or indicate attendance | &check;
 As a user/ site visitor, I want to browse events without needing to register so that I can see what’s happening in my area. | all users can see the events by all, category and calendar | &check;
 
+### User registration, sign in and log out
+![User registration, sign in and log out](static/readme-img/UX/Sign-Up-sign-in-sign-out.webp)
 
 ### Manual Testing features
 
 | Feature | Action | Status | 
 |:-------:|:--------| :--------|
-| description | user steps | &check; |
-attach screenshot
+| Register | Selected Register on the nav menu, input Username, Email(optional), password, password again to confirm they are identical, click sign up. Redirected to home page if correctly done. Message to show what additional steps if not successful | &check; |
+| Login | Select Login from the nav menu, input username and password, click Sign in button. Redirected to home page if no issues. I message "The username and/or password you specified are not correct." if you are a new user or inputs are incorrect | &check; |
+| Logout | Select logout from nav menu, click sign out, redirected to home page | &check; |
+| Filling in create event form | Registered users click create an event button, Fill in the required fields in the form, submit event. There is a message to indicate that the event was successfully created. If there is an issuw with the required fields, a message will be displayed to show the issues | &check; |
+| Add a comment to an event | In the event details page under the event description is a comment field. Make a comment and click the button sunmit. The user will be returned to that event page and a message will be displayed so the user know the comment has been sent to be reviewed before being published | &check; |
+| Edit and delete comment | This created comment can be edited or deleted by the comment writter. They will see two buttons, edit and delete. Clicking edit will display the previously submitted commend in the comment field to be edited and submitted again. Clicking delete will bring up a bootstrap modal to confirm delete. Two buttons are displayed on the modal. close or delete | &check; |
+| Social media links| links in the footer takes the user to the relivant websites | &check; |
+| Admin panel view | admin applies /admin to the end of the home url to see admin panel. Admin panel is only available to the admin and not a regular user | &check; |
+| Admin Display | Once in the admin panel, they will be able to view 3 columns, first for options, middle for description and right for filter | &check; |
 
 ## Languages
 - [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
