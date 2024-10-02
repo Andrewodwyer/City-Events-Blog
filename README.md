@@ -275,9 +275,132 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
   - The choice of a serif over a more modern font was a nod to the past, or an acknowledgment of Djangos start. The idea that news was initally printed in serif.
 
 
-### Interaction
+## Features:
 
-#### Buttons and Icons
+### Navbar.
+
+- The Navbar contains 6 links when the user is not signed in and 5 links when they are
+  - All Events
+  - Calander
+  - Create an event
+  - My events
+  - Register, This button is not visable when logged in
+  - Login / login changes to logout when the user is logged in
+
+There are the main option in the app and the most relevant to any user, whether they are a registered or non-registered user.
+
+![Navbar](static/readme-img/UX/navbar-desktop-mobile.png)
+
+- This is a Bootstap NavBar that has it's own JavaScript for the hamburger menu on smaller devices.
+
+- The links are grey when not active and black when active. The user will always know where they are on the app.
+
+- I decided to keep the categories section seperate to the navbar for a more asthetic design. This design is familiar to other event sites, making it intuitive.
+
+
+### Footer:
+
+- Dark-Grey Background with white text ensures that the footer remains subtle but clear. It contains social media links, styled with white icons against the dark background, providing easy access to external community pages without dominating the visual hierarchy. User are used to having these external links on the footer.
+
+![Footer](static/readme-img/UX/Footer.png)
+
+
+### Home Page
+
+- The home page uses the base.html, event_card.html and pagination.html together, allowing for a fluid theme throughout the app.
+- Logo, "W" and "THE WORD" displaying the brand, immediate recognition of the app. Users feel more comfortable when they are reassured by the brand.
+- Hero section. This image signals the purpose of the app and the text in the white box "FIND YOUR EVENT" is a clear call to action, encouraging users to begin browsing for events.
+- Category. The location and use of icons makes it easy and familiar to the user when selecting a category to 
+- Grid Layout for Events. Each page contains 6 event cards so not to overwhelm the user. 
+- Pagination button, to show where the user is at any time.
+
+
+### Event Calendar
+- Displays the events on a Calendar
+- Like google calendar a time/date and event title is added to the days/dates in the chosen month
+- FullCalendar was used
+- Base.html used for UX
+- Users can click on the event title to be brough to the event details page
+
+### Create an Event
+- A form for the user to add their event details
+- Diplayed using Crispy-form
+- Image upload using cloudinay
+- Once the event is submitted, a message displays to indicate to the user that the event has been submitted
+- If the form is missing required information or if it has not been filled out correctly, a message will desplay regarding the issue to correct.
+
+
+### My Events
+- A grid display of your events as cards, like the home page
+- Events that are not published/ in drafts have a transparent element over then to indicate that it is not published.
+- Both published and draft events can be clicked on and edited/deleted
+- If the user is not logged in, they will be brought to the signin page
+
+### Register
+- sign up page if the user does not have an account
+- A form page that required, username, email(optional) password and password confirmation. Details regarding passwords are displayed
+- A message will be displayed if the there is an error with the form
+- When registered, the user will then be redirected to the home page with a message "Successfully signed in as USERNAME."
+
+### Log out
+- This page contains a message "Are you sure you want to sign out?" and a button
+- user redirected to home page after signing out
+
+### log in
+- Message displayed in a container
+- Container with form for username and password.
+- Sign in button will direct the user to the home page if form is corrected fill out.
+
+### CRUD
+The list below has CRUD abilities for the registered user
+ 1. Add Events: Full CRUD
+ 2. Comment: Full CRUD
+ 3. Attending: Going/Not going
+
+## DRY principles for app
+
+#### Three main benefits: Reusability, Maintainability & Customisation
+
+### HTML Template inheritance
+
+#### base.html
+
+base.html allows us to keep the look and feel of our site consistent. The header and the footer are constant throughout the entire website. Template inheritance goes hand in hand with DRY principles - Don't Repeat Yourself. Using inheritance, we only need to write them once. After that, we can inject the content from each page into named blocks. {% block content %}
+
+This extends tag {% extends "base.html" %}  tells index.html that it is a child template of base.html. Then, everything we have inside our block fills the corresponding blocks in base.html, giving us a fully rendered web page.
+
+I use this base.html for all pages to create the same look and feel for all our pages. The base.html template however is not the only one that can be reused. After writing each pages Html I saw there was other pages that could reuse code. There pages were
+- index.html
+- events_by_category.html
+- my_events.html
+
+#### Pagination:
+Pagination is a fancy word meaning "divide up into pages”.
+paginate_by = 6,  tells Django to display 6 posts at a time.
+is_paginated is a boolean (set to true) more than the paginate number that was set to 6, add pagination. paginate number was set in the app view.py
+    template_name = "event/index.html"
+    paginate_by = 6
+The key points to remember are the paginate_by setting in the view, and then the is_paginated boolean and page_obj object that is passed through to the template.
+I first used this just on the index.html page. As the same pagination would be used on 3 html pages (index.html, events_by_category.html and my_events.html) I decided to place the pagination in its own template called pagination.html and include it in those 3 pages using the {%include%} tag.        
+{% include "event/pagination.html" with page_obj=page_obj %}
+The page_obj contains the current page’s events and pagination details of there is a next or previous
+
+#### Event Card Display
+Like the Pagination on these pages the majority of the code was the same. The only major difference was the h3 element at the start of the page and a message that displays at the end of the page if there is an if else statement {%if%}
+The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include "event/event_card.html" with event=event %} tag.
+
+![Pagination cards and buttons](static/readme-img/UX/pagination-6-card-and-button.png)
+
+
+### Cards
+
+- In keeping with the dark background the cards are white to standout, indicating importance. 
+- The card displays an image with text under it. There is a Learn more link element that is a "signifier" to click to view more information. 
+- I have made the whole card a link even though it looks like the blue "Learn more" is the link. This was done to make it easier for the user to move to the next page. All designed with the user in mind. 
+- There is a slight drop shadow on the cards as well.
+
+
+### Buttons and Icons
 
 The action buttons like signup, edit, delete and next/previus are solid colours when inactive and white with colour text and border when hovered over.
 This was due to the type of button is was. Once clicked they were gone. 
@@ -302,49 +425,19 @@ This was due to the type of button is was. Once clicked they were gone.
 ![Attending Button](static/readme-img/UX/attending-icon.png)
 
 
-#### Cards
+### Authentication-Authorisation, User Interaction with messages & signafiers
 
-- In keeping with the dark background the cards are white to standout, indicating importance. 
-- The card displays an image with text under it. There is a Learn more link element that is a "signifier" to click to view more information. 
-- I have made the whole card a link even though it looks like the blue "Learn more" is the link. This was done to make it easier for the user to move to the next page. All designed with the user in mind. 
-- There is a slight drop shadow on the cards as well.
+- Information/Messages: When an action is proformed, like creating a comment or event, a relevant message displays to the user. These are styled to blend smoothly into the page without overwhelming the user.
+- Authentication Indicators: Users are reminded whether they are logged in or not through a simple text message displayed to the left of the screen near the header.
 
-#### Navbar.
-
-- The Navbar contains 6 links when the user is not signed in and 5 links when they are
-  - All Events
-  - Calander
-  - Create an event
-  - My events
-  - Register, This button is not visable when logged in
-  - Login / login changes to logout when the user is logged in
-
-![Navbar](static/readme-img/UX/navbar-desktop-mobile.png)
-
-- This is a Bootstap NavBar that has it's own JavaScript for the hamburger menu on smaller devices.
-
-- The links are grey when not active and black when active. The user will always know where they are on the app.
-- I decided to keep the categories section seperate to the navbar for a more asthetic design. This design is familiar to other event sites, making it intuitive.
-
-
-### User Interaction with messages
-
-- Messages: Bootstrap alerts are used to notify users of actions like logging in or creating an event. These are styled with transparent color overlays to blend smoothly into the page without overwhelming the user.
-- Authentication Indicators: Users are reminded whether they are logged in or not through a simple text message, presented in a “log-box” style, centered on the page in grey. 
-
-### Footer:
-
-- Dark-Grey Background with white text ensures that the footer remains subtle but clear. It contains social media links, styled with white icons against the dark background, providing easy access to external community pages without dominating the visual hierarchy. User are used to having these external links on the footer.
-
-![Footer](static/readme-img/UX/Footer.png)
-
+![Messages and signafiers](static/readme-img/UX/Message-signafiers.png)
 
 ### Bootstrap
 
 Bootstrap was used in the app to create a responsive, mobile-first websites quickly and efficiently using it's libarary. Bootstrap provides a collection of pre-designed HTML, CSS, and JavaScript components, like buttons, forms, navigation bars, and grid layouts. By using Bootstrap, I was able to build a visually consistent app without writing extensive custom code. It was easy to customise and it adapted to all screen sizes without having to write additional media queries. Saying this, I did customise the css and added js in this build.
 
 
-## App Features
+### Additional App Features
 
 - 1. Event Browsing and Filtering 
   - Filter by category
@@ -352,11 +445,11 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
   - View the events you've created
 
 - 2. User Authentication
-  - Users can register, signin and signout
+  - Users can register, sign in and signout
   - Registered users have additional benefits: add events, comments and indicate attendance
 
 - 3. Create Events
-  - This feature empowers users to actively contribute on the app, creating a sense of community and ownership. 
+  - This feature encourages users to actively contribute on the app, creating a sense of community and ownership. 
 
 - 4. Category Icon:
   - Discuss earlier
@@ -387,41 +480,62 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
 
 
 
-## DRY principles:
-
-#### Three main benefits: Reusability, Maintainability & Customisation
-
-### HTML Template inheritance
-
-#### base.html
-
-base.html allows us to keep the look and feel of our site consistent. The header and the footer are constant throughout the entire website. Template inheritance goes hand in hand with DRY principles - Don't Repeat Yourself. Using inheritance, we only need to write them once. After that, we can inject the content from each page into named blocks. {% block content %}
-
-This extends tag {% extends "base.html" %}  tells index.html that it is a child template of base.html. Then, everything we have inside our block fills the corresponding blocks in base.html, giving us a fully rendered web page.
-
-We use this base.html for all pages to create the same look and feel for all our pages. The base.html template however is not the only one that can be reused. After writing each pages Html I saw there was other pages that could reuse code. There pages were
-- index.html
-- events_by_category.html
-- my_events.html
-
-#### Pagination:
-Pagination is a fancy word meaning "divide up into pages”.
-paginate_by = 6,  tells Django to display 6 posts at a time.
-is_paginated is a boolean (set to true) more than the paginate number that was set to 6, add pagination. paginate number was set in the app view.py
-    template_name = "event/index.html"
-    paginate_by = 6
-The key points to remember are the paginate_by setting in the view, and then the is_paginated boolean and page_obj object that is passed through to the template.
-I first used this just on the index.html page. As the same pagination would be used on 3 html pages (index.html, events_by_category.html and my_events.html) I decided to place the pagination in its own template called pagination.html and include it in those 3 pages using the {%include%} tag.        
-{% include "event/pagination.html" with page_obj=page_obj %}
-The page_obj contains the current page’s events and pagination details of there is a next or previous
-
-#### Event Card Display
-Like the Pagination on these pages the majority of the code was the same. The only major difference was the h3 element at the start of the page and a message that displays at the end of the page if there is an if else statement {%if%}
-The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include "event/event_card.html" with event=event %} tag.
-
-![Pagination cards and buttons](static/readme-img/UX/pagination-6-card-and-button.png)
+## Languages
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
+- [HTML5](https://en.wikipedia.org/wiki/HTML) - Provides the content and structure for the website.
+- [CSS3](https://en.wikipedia.org/wiki/CSS) - Provides the styling for the website.
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Provides interactive elements of the website
 
 
+## Frameworks & Software
+- [Gitpod](http://gitpod.io) - Cloud based IDE
+- [Bootstrap](https://getbootstrap.com/) - A CSS framework that helps building solid, responsive, mobile-first sites
+- [Django](https://www.djangoproject.com/) 
+- [Figma](https://www.figma.com/) was used to create the final design of a website.
+- [Github](https://github.com/) - Used to host and edit the website.
+- [Heroku](https://en.wikipedia.org/wiki/Heroku) - A cloud platform that the application is deployed to.
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - Used to test performance of site.
+- [Font Awesome](https://fontawesome.com/) was used for social media icons in the footer.
+- [Favicon](https://favicon.io/) was used for favicon.
+- [LucidChart](https://lucid.co/) was used for creating ERD.
+- [Google Fonts](https://fonts.google.com/) was used to add specific font family to the stylesheet.
+- [W3C validation](https://validator.w3.org/) was used to check the markup validity of html file.
+- [Jigsaw](https://jigsaw.w3.org/css-validator/) was used to check the validity of css file.
+- [JSHint](https://jshint.com/) was used to check the validity of js files.
+- [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
+- [Am I Responsive](https://ui.dev/amiresponsive) was used to get a screenshot of a final look of the website on various devices.
+- [Github](https://github.com/) was used to store the code of the website.
+- [Django](https://www.djangoproject.com) used as the Python framework for the site.
+- [PostgreSQL](https://www.postgresql.org) used as the relational database management.
+- [Cloudinary](https://cloudinary.com) used for images
+- [Gunicorn](https://gunicorn.org/) used for WSGI server
+- [Crispy Forms](https://pypi.org/project/django-crispy-forms/)
+- Photoshop: Resizing and editing pictures
+
+
+### Create a PostgreSQL Code Institute database
+
+- Log into [CIdatabase maker](https://dbs.ci-dbs.net/)
+- Add your email address in input field and submit the form
+- Open database link in your email
+- Paste dabase URL in your DATABASE_URL variable in env.py file and in Heroku config vars
+
+### Cloudinary
+
+- Navigate to https://cloudinary.com/ and log in to your account.
+- Navigate to dashboard/console https://console.cloudinary.com/console/  copy API Enviroment variable starting with "cloudinary://".
+- Paste copied url CLOUDINARY_URL variable in env.py file and in Heroku config vars
+- Update settings.py
+
+### Django secret key
+
+You need to include you Django secret key that you can generate using any of the Django secret keys generators online.
+In order to protect django app secret key it was set as an enviroment variable and stored in env.py.
+
+```
+os.environ.setdefault(
+    "SECRET_KEY", "your secret key")
+```
 
 ## Bugs:
 #### Category Migration 
@@ -522,62 +636,6 @@ There is a number of additions that could be made to the app to increase it’s 
 - ### Event Reviews and Ratings:
   Allow attendees to leave a review and rating for the past event
 
-## Languages
-- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
-- [HTML5](https://en.wikipedia.org/wiki/HTML) - Provides the content and structure for the website.
-- [CSS3](https://en.wikipedia.org/wiki/CSS) - Provides the styling for the website.
-- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Provides interactive elements of the website
-
-
-## Frameworks & Software
-- [Gitpod](http://gitpod.io) - Cloud based IDE
-- [Bootstrap](https://getbootstrap.com/) - A CSS framework that helps building solid, responsive, mobile-first sites
-- [Django](https://www.djangoproject.com/) 
-- [Figma](https://www.figma.com/) was used to create the final design of a website.
-- [Github](https://github.com/) - Used to host and edit the website.
-- [Heroku](https://en.wikipedia.org/wiki/Heroku) - A cloud platform that the application is deployed to.
-- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - Used to test performance of site.
-- [Font Awesome](https://fontawesome.com/) was used for social media icons in the footer.
-- [Favicon](https://favicon.io/) was used for favicon.
-- [LucidChart](https://lucid.co/) was used for creating ERD.
-- [Google Fonts](https://fonts.google.com/) was used to add specific font family to the stylesheet.
-- [W3C validation](https://validator.w3.org/) was used to check the markup validity of html file.
-- [Jigsaw](https://jigsaw.w3.org/css-validator/) was used to check the validity of css file.
-- [JSHint](https://jshint.com/) was used to check the validity of js files.
-- [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
-- [Am I Responsive](https://ui.dev/amiresponsive) was used to get a screenshot of a final look of the website on various devices.
-- [Github](https://github.com/) was used to store the code of the website.
-- [Django](https://www.djangoproject.com) used as the Python framework for the site.
-- [PostgreSQL](https://www.postgresql.org) used as the relational database management.
-- [Cloudinary](https://cloudinary.com) used for images
-- [Gunicorn](https://gunicorn.org/) used for WSGI server
-- [Crispy Forms](https://pypi.org/project/django-crispy-forms/)
-- Photoshop: Resizing and editing pictures
-
-
-### Create a PostgreSQL Code Institute database
-
-- Log into [CIdatabase maker](https://dbs.ci-dbs.net/)
-- Add your email address in input field and submit the form
-- Open database link in your email
-- Paste dabase URL in your DATABASE_URL variable in env.py file and in Heroku config vars
-
-### Cloudinary
-
-- Navigate to https://cloudinary.com/ and log in to your account.
-- Navigate to dashboard/console https://console.cloudinary.com/console/  copy API Enviroment variable starting with "cloudinary://".
-- Paste copied url CLOUDINARY_URL variable in env.py file and in Heroku config vars
-- Update settings.py
-
-### Django secret key
-
-You need to include you Django secret key that you can generate using any of the Django secret keys generators online.
-In order to protect django app secret key it was set as an enviroment variable and stored in env.py.
-
-```
-os.environ.setdefault(
-    "SECRET_KEY", "your secret key")
-```
 
 ## Deployment
 
@@ -755,6 +813,42 @@ The 4 lines in setting.py that are too long is the AUTH_PASSWORD_VALIDATORS. The
 
 [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
 
-### Lighthouse
+### Google's Lighthouse Performance
+
+I checked the app for Performance, Accessibility, SEO and Best Practices using google's Lighthouse
+Over all I was please with the results:
+- Accessibility: 100%
+  - Accessible to screen readers
+  - Sufficient colour contract for readability
+- SEO: 100%
+  - Properly structured data, mobile optimization, and fast loading times
+- Performance: 98% & 95%
+  - Fast performance
+  - Image sizing
+- Best Practice: 79%
+  - Third party warnings because of using cloudinary for the images. Google Chrome indicates issues with web standard and future-proofing of the site. "Support for third-party cookies will be removed in a future version of Chrome".
+  - This will be something to resolve in the future but for now cloudinary is the best option for users to upload images to their event. 
+  - It would not be an option to not use cloudinary as without the ability to use images to make their events stand out and be immediately visable with brand recognition, user would not engage with the site fully. They could see less rewards for their time.
 
 
+![Lighthouse Performance](static/readme-img/code-validated/lighthouse-score.png)
+
+
+### Browser Compatibility
+
+The Following Browsers were checked:
+
+- Google Chrome
+- Safari
+- Opera
+- Firefox
+- Microsoft Edge
+
+On all browsers the site performed smoothly with consistent functionality and appearance. All features were tested and worked as expected.
+
+### Responsiveness
+
+The app is responsive on all screen sizes. The event card display using bootstrap is shown above as is the calendar view.
+The image below will show the event details page and create events form.
+
+![Responsiveness](static/readme-img/code-validated/Responsive_test.png)

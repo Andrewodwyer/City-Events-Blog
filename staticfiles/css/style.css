@@ -312,6 +312,7 @@ border-color: #377d78;
 
 .faded {
     color: rgb(172, 175, 175);
+    background-color: rgb(198, 198, 198);
 }
 
 .approval {
@@ -429,7 +430,7 @@ border-color: #377d78;
 
 /* Comment section */
 .comments {
-    background-color: #f8f9fa;
+    background-color: #fff;
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 8px;

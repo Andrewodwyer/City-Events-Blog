@@ -151,4 +151,4 @@ class Attending(models.Model):
 
     def __str__(self):
         return f'{self.attending_user.username} attending {self.event.title}'
-        # for the admin panel. to easly know which post is which
+        # for the admin panel. to easily know which post is which
