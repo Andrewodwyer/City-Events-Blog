@@ -148,8 +148,13 @@ For this project I created a Kansan board in GitHub to display the stages and st
 ##### W. Will not have
 - This manages expectations and prevents scope creep. They are not expected in this specific time frame.
 
+<br>
+
+<details><summary><b>MoSCoW Prioritisation Image</b></summary>
+
 ![MoSCoW Prioritisation](static/readme-img/Agile/MoSCoW.png)
 
+</details>
 
 ## Epics
 
@@ -363,28 +368,28 @@ The list below has CRUD abilities for the registered user
 
 #### base.html
 
-base.html allows us to keep the look and feel of our site consistent. The header and the footer are constant throughout the entire website. Template inheritance goes hand in hand with DRY principles - Don't Repeat Yourself. Using inheritance, we only need to write them once. After that, we can inject the content from each page into named blocks. {% block content %}
+The base.html keeps the look and feel of the site consistent. 
+Template inheritance goes hand in hand with DRY principles - Don't Repeat Yourself. Using inheritance, we only need to write them once. After that, we can inject the content from each page into named blocks. {% block content %}
 
-This extends tag {% extends "base.html" %}  tells index.html that it is a child template of base.html. Then, everything we have inside our block fills the corresponding blocks in base.html, giving us a fully rendered web page.
+This extends tag {% extends "base.html" %}  tells each .html that it is a child template of base.html. Unique html to each page is injected into the base.
 
 I use this base.html for all pages to create the same look and feel for all our pages. The base.html template however is not the only one that can be reused. After writing each pages Html I saw there was other pages that could reuse code. There pages were
-- index.html
+- index.html (home page)
 - events_by_category.html
 - my_events.html
 
 #### Pagination:
-Pagination is a fancy word meaning "divide up into pages”.
+Pagination, meaning "divide up into pages”.
 paginate_by = 6,  tells Django to display 6 posts at a time.
 is_paginated is a boolean (set to true) more than the paginate number that was set to 6, add pagination. paginate number was set in the app view.py
     template_name = "event/index.html"
     paginate_by = 6
-The key points to remember are the paginate_by setting in the view, and then the is_paginated boolean and page_obj object that is passed through to the template.
-I first used this just on the index.html page. As the same pagination would be used on 3 html pages (index.html, events_by_category.html and my_events.html) I decided to place the pagination in its own template called pagination.html and include it in those 3 pages using the {%include%} tag.        
+I first used this just on the index.html (home) page. As the same pagination would be used on 3 html pages (index.html, events_by_category.html and my_events.html) I decided to place the pagination in its own template called pagination.html and include it in those 3 pages using the {%include%} tag.        
 {% include "event/pagination.html" with page_obj=page_obj %}
-The page_obj contains the current page’s events and pagination details of there is a next or previous
+The page_obj contains the current page’s events and pagination details if there is a next or previous
 
 #### Event Card Display
-Like the Pagination on these pages the majority of the code was the same. The only major difference was the h3 element at the start of the page and a message that displays at the end of the page if there is an if else statement {%if%}
+Like the Pagination on these pages the majority of the code was the same. The only major difference was the h3 element at the start of the page and a message that displays at the end of the page {%if%} statement
 The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include "event/event_card.html" with event=event %} tag.
 
 ![Pagination cards and buttons](static/readme-img/UX/pagination-6-card-and-button.png)
@@ -393,17 +398,17 @@ The card_display.html template was created in response to this. This template us
 ### Cards
 
 - In keeping with the dark background the cards are white to standout, indicating importance. 
-- The card displays an image with text under it. There is a Learn more link element that is a "signifier" to click to view more information. 
+- The card displays an image with text under it. There is a "Learn more" link element that is a "signifier" to click to view more information. 
 - I have made the whole card a link even though it looks like the blue "Learn more" is the link. This was done to make it easier for the user to move to the next page. All designed with the user in mind. 
-- There is a slight drop shadow on the cards as well.
+- There is a slight drop shadow on the cards as well to elevate it.
 
 
 ### Buttons and Icons
 
-The action buttons like signup, edit, delete and next/previus are solid colours when inactive and white with colour text and border when hovered over.
+The action buttons like sign up, edit, delete and next/previous are solid colours when inactive and white with colour text and border when hovered over.
 This was due to the type of button is was. Once clicked they were gone. 
-- The icon buttons for the categories and attending buttons are differnt however. 
-  - The categories are on a white bar and would be distracting if they were block colours initially. Once a category is active it colour needs to inform the user of their location with a obvious sign. A quote from Steve Krug from his book "don't make me think" 
+- The icon buttons for the categories and attending buttons are differnet however. 
+  - The categories are on a white bar and would be distracting if they were block colours initially. Once a category is active its colour needs to inform the user of their location with a obvious sign. A quote from Steve Krug from his book "don't make me think" 
     - “The fact that the people who built the site didn’t care enough to make things obvious—and easy—can erode our confidence in the site and the organization behind it.”
   - Icons provide a visual shortcut
 
@@ -417,7 +422,7 @@ This was due to the type of button is was. Once clicked they were gone.
 
 
 ### Design familiarity
-  - Attending button: Just like the categories buttons, this had to be obvious. There is many apps with this idea of liking or attening. This grey to green concept is intuitive. This leverages the users prior experiences, making it feel familiar and natural.
+  - Attending button: Just like the categories buttons, this had to be obvious. There is many apps with this idea of liking or attending. This grey to green concept is intuitive. This leverages the users prior experiences, making it feel familiar and natural.
   <hr>
 
 ![Attending Button](static/readme-img/UX/attending-icon.png)
@@ -425,14 +430,14 @@ This was due to the type of button is was. Once clicked they were gone.
 
 ### Authentication-Authorisation, User Interaction with messages & signafiers
 
-- Information/Messages: When an action is proformed, like creating a comment or event, a relevant message displays to the user. These are styled to blend smoothly into the page without overwhelming the user.
+- Information/Messages: When an action is preformed, like creating a comment or event, a relevant message displays to the user. These are styled to blend smoothly into the page without overwhelming the user.
 - Authentication Indicators: Users are reminded whether they are logged in or not through a simple text message displayed to the left of the screen near the header.
 
 ![Messages and signafiers](static/readme-img/UX/Message-signafiers.png)
 
 ### Bootstrap
 
-Bootstrap was used in the app to create a responsive, mobile-first websites quickly and efficiently using it's libarary. Bootstrap provides a collection of pre-designed HTML, CSS, and JavaScript components, like buttons, forms, navigation bars, and grid layouts. By using Bootstrap, I was able to build a visually consistent app without writing extensive custom code. It was easy to customise and it adapted to all screen sizes without having to write additional media queries. Saying this, I did customise the css and added js in this build.
+Bootstrap was used in the app to create a responsive, mobile-first websites quickly and efficiently using it's library. Bootstrap provides a collection of pre-designed HTML, CSS, and JavaScript components, like buttons, forms, navigation bars, and grid layouts. By using Bootstrap, I was able to build a visually consistent app without writing extensive custom code. It was easy to customise and it adapted to all screen sizes without having to write additional media queries. Saying this, I did customise the css and added js in this build.
 
 
 ### Additional App Features
@@ -443,7 +448,7 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
   - View the events you've created
 
 - 2. User Authentication
-  - Users can register, sign in and signout
+  - Users can register, sign in and sign out
   - Registered users have additional benefits: add events, comments and indicate attendance
 
 - 3. Create Events
@@ -453,7 +458,7 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
   - Discuss earlier
 
 - 5. Interactive Calendar View
-  - Users can see upcomming events on a specific date
+  - Users can see upcoming events on a specific date
   - Clicking the event title (link) brings the user the event details page
   - Beneficial for users that only want to see events by date that they're available for.
 
@@ -464,12 +469,12 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
   - The click icon turning from grey to green provides a sense of accomplishment and interaction enhancing the user experience
 
 - 7. Comments
-  - Organiser and update the event with a comment.
-  - A user can ask a question.
+  - Organiser can update the event with a comment.
+  - A user can ask a question or comment.
   - Benefits to the user as they feel more connected to the event
 
 - 8. Social Media
-  - Links to social media were the app and event can be more visable 
+  - Links to social media were the app and event can be more visible 
 
 - 9. Image display. 
   - The organiser when creating the event can add their own image. 
@@ -506,10 +511,10 @@ As a user/ site visitor, I want to browse events without needing to register so 
 | Register | Selected Register on the nav menu, input Username, Email(optional), password, password again to confirm they are identical, click sign up. Redirected to home page if correctly done. Message to show what additional steps if not successful | &check; |
 | Login | Select Login from the nav menu, input username and password, click Sign in button. Redirected to home page if no issues. I message "The username and/or password you specified are not correct." if you are a new user or inputs are incorrect | &check; |
 | Logout | Select logout from nav menu, click sign out, redirected to home page | &check; |
-| Filling in create event form | Registered users click create an event button, Fill in the required fields in the form, submit event. There is a message to indicate that the event was successfully created. If there is an issuw with the required fields, a message will be displayed to show the issues | &check; |
-| Add a comment to an event | In the event details page under the event description is a comment field. Make a comment and click the button sunmit. The user will be returned to that event page and a message will be displayed so the user know the comment has been sent to be reviewed before being published | &check; |
-| Edit and delete comment | This created comment can be edited or deleted by the comment writter. They will see two buttons, edit and delete. Clicking edit will display the previously submitted commend in the comment field to be edited and submitted again. Clicking delete will bring up a bootstrap modal to confirm delete. Two buttons are displayed on the modal. close or delete | &check; |
-| Social media links| links in the footer takes the user to the relivant websites | &check; |
+| Filling in create event form | Registered users click create an event button, Fill in the required fields in the form, submit event. There is a message to indicate that the event was successfully created. If there is an issue with the required fields, a message will be displayed to show the issues | &check; |
+| Add a comment to an event | In the event details page under the event description is a comment field. Make a comment and click the button submit. The user will be returned to that event page and a message will be displayed so the user know the comment has been sent to be reviewed before being published | &check; |
+| Edit and delete comment | This created comment can be edited or deleted by the comment writer. They will see two buttons, edit and delete. Clicking edit will display the previously submitted commend in the comment field to be edited and submitted again. Clicking delete will bring up a bootstrap modal to confirm delete. Two buttons are displayed on the modal. close or delete | &check; |
+| Social media links| links in the footer takes the user to the relevant websites | &check; |
 | Admin panel view | admin applies /admin to the end of the home url to see admin panel. Admin panel is only available to the admin and not a regular user | &check; |
 | Admin Display | Once in the admin panel, they will be able to view 3 columns, first for options, middle for description and right for filter | &check; |
 | Link to events page added in form, available in event details | The link can be added to the field in the form and the link is available in the event details page. The link is to open a new tab with the link | &check; |
@@ -717,7 +722,6 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 ## Testing
 
 
-
 ### Validator Testing 
 
 
@@ -891,3 +895,6 @@ The app is responsive on all screen sizes. The event card display using bootstra
 The image below will show the event details page and create events form.
 
 ![Responsiveness](static/readme-img/code-validated/Responsive_test.png)
+
+
+## Credits
