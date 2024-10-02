@@ -2,22 +2,18 @@
 
 # THE WORD 
 
-[Andy O'Dwyer](https://github.com/Andrewodwyer)
+[Andy O'Dwyer github](https://github.com/Andrewodwyer)
 
-# Live App
+### Live App
 
 [Link to THE WORD site](https://events-blog-f44bf5c7d7d5.herokuapp.com/)
 
 City events website.
 
 <hr>
-The Work is an events website where a registered user can input events and also indicate if they will attend other events. Users will be able to search by categories with a nav bar dedicated to 4 different categories. They can also view events by dates in a calendar. Registered users have 4 additional options over none registered users. 
+The Word is a local events app. Allowing user to view all posted event listings or using two search options, 1. by category and 2. by date on a calendar view. The app encourages users to sign up to gain the additional options of posting their own events, commenting on upcoming events and RSVPing.
 
-- Create an event
-- View their events, Draft and published
-- leave a comment
-- Indicate attendance
-- All of which have CRUD functionality
+#### All of which have CRUD functionality
 
 <hr>
 
@@ -46,19 +42,18 @@ The registered user or organiser is interested in creating and managing their ow
 #### How people will use the app:
 
 - None Registered Users
-  - 1 Users who are interested in seeing local events, what’s on now and in the future.
-  - 2 Users that want to search by a certain category, Music, Sports, Classes and Culture. 
-  - 3 People that want to choose an event by a certain date. Viewing upcoming events on a calendar.
+  1. Users who are interested in seeing local events, what’s on now and in the future.
+  2. Users that want to search by a certain category, Music, Sports, Classes and Culture. 
+  3. People that want to choose an event by a certain date. Viewing upcoming events on a calendar.
 
 - Registers Users
   They will have the same abilities as the none registered users plus the following
-  - 4 Add their own event
-  - 5 Update and delete their event
-  - 6 See a list of event they’ve created
-  - 7 Indicate if they will be attending an event
-  - 8 Write a comment on an event
-  - 9 Edit and delete their comment
-
+  4. Add their own event
+  5. Update and delete their event
+  6. See a list of event they’ve created
+  7. Indicate if they will be attending an event
+  8. Write a comment on an event
+  9. Edit and delete their comment
 
 
 #### Why users will use the app:
@@ -87,12 +82,12 @@ For Organisers:
 - Users who create events are looking for an easy way to promote their events, manage their listings, and interact with potential attendees. The platform’s CRUD (Create, Read, Update, Delete) functionality provides them with the flexibility to create, edit, or remove events as needed. Giving them full control over their event.
 
 ### User Stories
-The user stories are available on the kanban board and some will be discussed in the EPics below.
+The user stories are available on the kanban board and some will be discussed in the EPICs below.
 There as three main users
-- Admin: This is the site owner that will have full control over the publishing of events, and comments.
-- Registered Users: User and organisers who are logged, allowing for more functionality 
+- Admin: These are the site owner that will have full control over the publishing of events, and comments.
+- Registered Users: User and organisers who are logged in, allowing for more functionality 
 - Non-registered users: limited functionality
-These users have been groupled in the kanban board with tags and their user stories have been given epics for each type of user
+These users have been grouped in the kanban board with tags and their user stories have been given epics for each type of user
 
 ### Database Models
 
@@ -140,9 +135,9 @@ For this project I created a Kansan board in GitHub to display the stages and st
 ##### M: Must Have
  - Non-negotiable product needs that are mandatory.
  - Deciding factors for Must haves: 
-What will happen if this is not included
-Is there a simpler way to accomplish this?
-Will the product work without it?
+  - What will happen if this is not included
+  - Is there a simpler way to accomplish this?
+  - Will the product work without it?
 
 ##### S. Should-have
 -  They are essential to the product/project but they are not vital. The product will still function without it. However, the addition will add significant value. They can be scheduled for a future date.
@@ -168,7 +163,7 @@ This epic groups together all the functionality and user stories related to the 
 - Abilities:
   -	Admins can create, edit, or delete user accounts
   -	Admins can create, approve, edit, and delete events, comments and attendance submitted by registered users.
-  -	Admins have the ability to review user-generated content (e.g., events, comments, or attendance) and edit/delete if required.
+  -	Admins have the ability to review user-generated content in an admin panel
 
 - Example User Stories:
   -	“As the Admin I can view event request and comment requests, so that I can review and approve them”
@@ -183,7 +178,7 @@ This epic encompasses all the features and interactions available to Registered 
   -	My Events: Registered users can see the events they've created.
   - They have CRUD functionality
     - Adding an event (editing the event),
-    - Writing a comment (edit the comment),
+    - Writing a comment / ask a question (edit the comment / question),
     - Show attendance (indicate attendance and also remove attendance)
 
 - Example User Stories:
@@ -203,7 +198,7 @@ This epic covers the functionality accessible to Non-Registered Users, or users 
 	- “As a user I can open a event listing from the calendar so that see more details of the event”
 	- “As a User, I want to browse and search for events so that I can find events that interest me.”
 
-Each of these epics groups together the relevant user stories under a common theme, making it easier to manage and visualize progress on your Kanban board. The Epics are grouped using Tags on the User Stories eg. Tag: "Epic 1: Registered Users"
+Each of these epics groups together the relevant user stories under a common theme, making it easier to manage and visualise progress on the Kanban board. The Epics are grouped using Tags on the User Stories eg. Tag: "Epic 1: Registered Users"
 
 ![Kanban Board](static/readme-img/Agile/Kanban-Board.png)
 
@@ -222,7 +217,7 @@ Instead of estimating in terms of time (e.g., hours or days), which can be subje
 
   2.	User Story: “View Comments” (Admin)
 	 - T-shirt Size: XS (Extra Small), Story Points: 1
-	 - Reason: For an admin, viewing comments is a read-only task with minimal complexity. The admin doesn’t need to interact with or modify the comments, making it a low-effort task that can be implemented quickly.
+   - Reason: Django admin panel is set up for this with minimal adjustments
 
   3.	User Story: “View Calendar” (Non-Registered User)
 	 - T-shirt Size: L (Large); 	Story Points: 5
@@ -281,10 +276,10 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
 
 - The Navbar contains 6 links when the user is not signed in and 5 links when they are
   - All Events
-  - Calander
+  - Calendar
   - Create an event
   - My events
-  - Register, This button is not visable when logged in
+  - Register, This button is not visible when logged in
   - Login / login changes to logout when the user is logged in
 
 There are the main option in the app and the most relevant to any user, whether they are a registered or non-registered user.
@@ -295,24 +290,24 @@ There are the main option in the app and the most relevant to any user, whether 
 
 - The links are grey when not active and black when active. The user will always know where they are on the app.
 
-- I decided to keep the categories section seperate to the navbar for a more asthetic design. This design is familiar to other event sites, making it intuitive.
+- I decided to keep the categories section separate to the navbar for a more aesthetic design. This design is familiar to other event sites, making it intuitive.
 
 
 ### Footer:
 
-- Dark-Grey Background with white text ensures that the footer remains subtle but clear. It contains social media links, styled with white icons against the dark background, providing easy access to external community pages without dominating the visual hierarchy. User are used to having these external links on the footer.
+- Dark-Grey Background with white text ensures that the footer remains subtle but clear. It contains social media links, styled with white icons against the dark background, providing easy access to external community pages without dominating the page design. External links on the footer is expected and would be the area users would look for them.
 
 ![Footer](static/readme-img/UX/Footer.png)
 
 
 ### Home Page
 
-- The home page uses the base.html, event_card.html and pagination.html together, allowing for a fluid theme throughout the app.
+- The home page uses the base.html, event_card.html and pagination.html together, allowing for a fluid theme throughout the app
 - Logo, "W" and "THE WORD" displaying the brand, immediate recognition of the app. Users feel more comfortable when they are reassured by the brand.
 - Hero section. This image signals the purpose of the app and the text in the white box "FIND YOUR EVENT" is a clear call to action, encouraging users to begin browsing for events.
-- Category. The location and use of icons makes it easy and familiar to the user when selecting a category to 
-- Grid Layout for Events. Each page contains 6 event cards so not to overwhelm the user. 
-- Pagination button, to show where the user is at any time.
+- Category. The location and use of icons makes it easy and familiar to the user when selecting a category
+- Grid Layout for Events. Each page contains 6 event cards so not to overwhelm the user
+- Pagination button, to show where the user is at any time
 
 
 ### Event Calendar
@@ -320,36 +315,39 @@ There are the main option in the app and the most relevant to any user, whether 
 - Like google calendar a time/date and event title is added to the days/dates in the chosen month
 - FullCalendar was used
 - Base.html used for UX
-- Users can click on the event title to be brough to the event details page
+- Users can click on the event title to be brought to the event details page
 
 ### Create an Event
 - A form for the user to add their event details
-- Diplayed using Crispy-form
+- Displayed using Crispy-form
 - Image upload using cloudinay
-- Once the event is submitted, a message displays to indicate to the user that the event has been submitted
-- If the form is missing required information or if it has not been filled out correctly, a message will desplay regarding the issue to correct.
+- Once the event is submitted, a message displays to indicate to the user that the event has been submitted.
+- If the form is missing required information or if it has not been filled out correctly, a message will display regarding the issue to correct.
 
 
 ### My Events
 - A grid display of your events as cards, like the home page
-- Events that are not published/ in drafts have a transparent element over then to indicate that it is not published.
+- Events that are not published/ in drafts have a transparent element over then to indicate that it is not published. Image below
 - Both published and draft events can be clicked on and edited/deleted
-- If the user is not logged in, they will be brought to the signin page
+- If the user is not logged in, they will be brought to the sign in page
+
+![My Event Draft Display](static/readme-img/UX/draft-event.png)
+
 
 ### Register
-- sign up page if the user does not have an account
-- A form page that required, username, email(optional) password and password confirmation. Details regarding passwords are displayed
-- A message will be displayed if the there is an error with the form
+- Sign up page if the user does not have an account
+- A form page that requires: username, email(optional) password and password confirmation. Details regarding passwords are displayed
+- A message will be displayed if the there is an error with the form.
 - When registered, the user will then be redirected to the home page with a message "Successfully signed in as USERNAME."
 
 ### Log out
 - This page contains a message "Are you sure you want to sign out?" and a button
-- user redirected to home page after signing out
+- The user is redirected to home page after signing out
 
 ### log in
 - Message displayed in a container
 - Container with form for username and password.
-- Sign in button will direct the user to the home page if form is corrected fill out.
+- Sign in button will direct the user to the home page if the form is correctly filled out.
 
 ### CRUD
 The list below has CRUD abilities for the registered user
