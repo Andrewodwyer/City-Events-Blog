@@ -31,6 +31,7 @@ class EventList(generic.ListView):
     # paginate by 6 tells Django to display 6 posts at a time
 
 
+@login_required
 def add_event(request):
     """
     Create a view that allows authenticated users to submit their events.
@@ -120,7 +121,6 @@ def delete_event(request, slug, event_id):
     # return HttpResponseRedirect(reverse('addevent_detail', args=[slug]))
 
 
-# Look at this in the future
 @login_required
 def my_events(request):
     """
@@ -146,8 +146,10 @@ def addevent_detail(request, slug):
     comments = addevent.comments.all().order_by("-created_at")
     comment_count = addevent.comments.filter(is_approved=True).count()
 
-    user_attending = request.user.is_authenticated and addevent.attendees.filter(
-        attending_user=request.user).exists()
+    user_attending = (
+        request.user.is_authenticated and addevent.attendees.filter(
+            attending_user=request.user).exists()
+    )
     """
     if the user is logged in, get all the attendance records for that event.
     The attendees he filter sees if the current user matches any objects in
@@ -163,7 +165,10 @@ def addevent_detail(request, slug):
             comment.user = request.user
             comment.event = addevent
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment submitted and awaiting approval')
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Comment submitted and awaiting approval'
+            )
 
     comment_form = CommentForm()
 
@@ -231,12 +236,13 @@ class EventListByCategory(generic.ListView):
     def get_queryset(self):
         """
         A custom queryset.
-        The default ListView queryset would return all objects of the specifiied model.
-        Now customised to filter events by category
+        The default ListView queryset would return all objects of the
+        specifiied model. Now customised to filter events by category
         self.kwargs['category_id'] will extract the category_id from the URL
         """
         category = get_object_or_404(Category, id=self.kwargs['category_id'])
-        self.category = category  # Store the category in self.category variable
+        self.category = category
+        # Store the category in self.category variable
         return get_filtered_events_by_category(category)
         # using the earlier function for categories and future events
 
@@ -244,7 +250,8 @@ class EventListByCategory(generic.ListView):
         """
         Adds the category to the context dictionary
         super() called parents class .get_context_data, the id
-        Adds the variable self.category to context dictionary under the key 'category'
+        Adds the variable self.category to context dictionary under
+        the key 'category'
         """
         context = super().get_context_data(**kwargs)
         context['category'] = self.category
@@ -268,9 +275,13 @@ def comment_edit(request, slug, comment_id):
             comment.post = post
             comment.approved = False
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            messages.add_message(
+                request, messages.SUCCESS, 'Comment Updated!'
+            )
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(
+                request, messages.ERROR, 'Error updating comment!'
+            )
 
     return HttpResponseRedirect(reverse('addevent_detail', args=[slug]))
 
@@ -287,7 +298,9 @@ def comment_delete(request, slug, comment_id):
         comment.delete()
         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.add_message(
+            request, messages.ERROR, 'You can only delete your own comments!'
+        )
 
     return HttpResponseRedirect(reverse('addevent_detail', args=[slug]))
 

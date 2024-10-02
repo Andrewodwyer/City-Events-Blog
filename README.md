@@ -479,6 +479,18 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
 - 10. Additional information from the Organiser aids to better Search Engine Optimisation
 
 
+### Manual Testing user stories
+
+User Story |  Test | Pass
+--- | --- | :---:
+paste here you user story | what is visible to the user and what action they should perform | &check;
+
+### Manual Testing features
+
+| Feature | Action | Status | 
+|:-------:|:--------| :--------|
+| description | user steps | &check; |
+attach screenshot
 
 ## Languages
 - [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
