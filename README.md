@@ -515,6 +515,10 @@ As a user/ site visitor, I want to browse events without needing to register so 
 | Admin panel view | admin applies /admin to the end of the home url to see admin panel. Admin panel is only available to the admin and not a regular user | &check; |
 | Admin Display | Once in the admin panel, they will be able to view 3 columns, first for options, middle for description and right for filter | &check; |
 
+
+![Delete modal](static/readme-img/UX/delete-event-modal-bootstrap.webp)
+
+
 ## Languages
 - [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
 - [HTML5](https://en.wikipedia.org/wiki/HTML) - Provides the content and structure for the website.
