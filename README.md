@@ -313,7 +313,7 @@ The initial wireframe was designed using figma. The figma project page can be fo
 
 The UI design for the app was to be a modern, clean and userfriendly. Balancing functionality and aesthetics, so the user can easily navigate through the app.
 
-#### Colour Palette:
+### Colour Palette:
 <a name="colour-palette"></a>
 - Primary background colour of dark blue #1B4965. 
   - Giving a strong rich coloured canvas for the event cards. By doing this the cards stand out and draws the users eye inward.
@@ -328,7 +328,7 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
 
 ![Colour Palette](static/readme-img/UX/colours.png)
 
-#### Typography:
+### Typography:
 <a name="typography"></a>
 - Font Bondoni Moda SC, Serif
   - The choice of a serif over a more modern font was a nod to the past, or an acknowledgment of Djangos start. The idea that news was initally printed in serif.
