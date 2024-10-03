@@ -15,10 +15,10 @@ The Word is a local events app that allows user to view event listings. It utili
 
 ## Table Of Contents:
 1. [UX & User-Centred Design](#ux)
-    * [User Centred Design](#User-Centred-Design)	
+    * [User Centred Design](#user-centred-design)	
     * [Target Audience](#target-audience)
     * [User Goals](#user-goals)
-    * [User Stories](#user-stories)
+    * [User Stories](#user-story)
     * [Database Diagram](#database-diagram)
     * [Kanban](#kanban)
     * [Typography](#typography)
@@ -26,7 +26,7 @@ The Word is a local events app that allows user to view event listings. It utili
     * [Epics](#epics)
     * [Story points](#story-point)
 2. [UI](#ui-design)
-    * [UI Design](#dui-design)
+    * [UI Design](#ui-design)
     * [Wireframes](#wireframes)
     * [Design](#design-style)
     * [Colour Palette](#colour-palette)
@@ -56,7 +56,7 @@ The Word is a local events app that allows user to view event listings. It utili
 <a name="ux"></a>
 
 ### User-Centred Design Approach for planning and design.
-<a name="ucd"></a>
+<a name="user-centred-design"></a>
 
 The primary goal in the planning and design of the Events App is to create an intuitive, user-friendly experience that addresses the needs of its primary users, event seekers and event organisers. Insuring that every design decision is made with the end user in mind, focusing on making the app both functional and enjoyable to use. 
 
@@ -130,7 +130,7 @@ For Organisers:
 - Users who create events are looking for an easy way to promote their events, manage their listings, and interact with potential attendees. The platform’s CRUD (Create, Read, Update, Delete) functionality provides them with the flexibility to create, edit, or remove events as needed. Giving them full control over their event.
 
 ### User Stories
-<a name="user-stories"></a>
+<a name="user-story"></a>
 The user stories are available on the kanban board and some will be discussed in the EPICs below.
 There as three main users
 - Admin: These are the site owner that will have full control over the publishing of events, and comments.
