@@ -25,11 +25,15 @@ The Word is a local events app. Allowing user to view all posted event listings 
 
 The Word’s events platform is designed for people who are interested in discovering, attending, and organising local and online events. The app concept is like a bulletin board in a shop or office space. People can post and see events in the local area. In the same way this site encourages users to both search for events and post their own events. 
 
-The Word is geared to both casual event attendees and engaged organisers / registered users, providing a platform that encourages social engagement and participation.
+The Word is geared to both casual event attendees and engaged organisers / registered users, providing a platform that encourages social engagement and participation. Through the comment and attending sections on each event page.
 
 Information on users:
-Age:The apps expected user will be over 18, due to a lot of music venues having age restrictions.
-Location: The intention of the app is to have one for each city e.g THE WORD Cork/Waterford/Dublin/Limerick etc. In this way the user will utilise an app relevant to their location.
+- Age: There is something for all ages, from art and crafts to live music. 
+  - User are anyone with access to the app
+  - However the apps expected user will be over 18, due to a lot of music venues having age restrictions. Secondly, perents will be the ones researching classes and events for their children.
+
+Location: 
+- The intention of the app is to have one for each city e.g THE WORD Cork/Waterford/Dublin/Limerick etc. In this way the user will utilise an app relevant to their location.
 
 Users interests in finding information in numerous categories
 - Music
@@ -37,7 +41,9 @@ Users interests in finding information in numerous categories
 - Classes
 - Culture
 
-The registered user or organiser is interested in creating and managing their own events, either as a hobby or professional service.
+Regular user who add content:
+- The registered user or organiser are interested in creating and managing their own events, either as a hobby or professional service.
+
 
 #### How people will use the app:
 
@@ -47,29 +53,30 @@ The registered user or organiser is interested in creating and managing their ow
   3. People that want to choose an event by a certain date. Viewing upcoming events on a calendar.
 
 - Registers Users
-  They will have the same abilities as the none registered users plus the following
+  - They will have the same abilities as the none registered users plus the following.
+
   4. Add their own event
   5. Update and delete their event
   6. See a list of event they’ve created
   7. Indicate if they will be attending an event
-  8. Write a comment on an event
-  9. Edit and delete their comment
+  8. Write a comment or ask a question on an event
+  9. Edit and delete their comment/question
 
 
 #### Why users will use the app:
 
 -  Search flexibility: 
-  - Users can easily search for events through categories (music, sports, classes, culture) and dates, improving event discoverability.
+   - Users can easily search for events through categories (music, sports, classes, culture) and dates, improving event discoverability.
 
 -  Event attendance: 
-  - Registered users can indicate whether they plan to attend an event, which enhances event visibility and participation.
-  - Organiser can also track interest
+   - Registered users can indicate whether they plan to attend an event, which enhances event visibility and participation.
+   - Organiser can also track interest
 
-  - User-generated content: 
-    - The site allows users to create, read, edit and delete their own events. They have the ability to create events and manage details like location, time, and description.
+- User-generated content: 
+   - The site allows users to create, read, edit and delete their own events. They have the ability to create events and manage details like location, time, and description.
 
-  - Engagement through comments: 
-    - Registered users can leave comments on event pages, encouraging engagement and conversation around events.
+- Engagement through comments: 
+   - Registered users can leave comments on event pages, encouraging engagement and conversation around events.
 
 ### User Goals
 
@@ -93,29 +100,29 @@ These users have been grouped in the kanban board with tags and their user stori
 
 One of the first steps in producing this app was to design and implement custom models based on the information that users would want to store and access.
 
-An entity relationship diagram was created as part of planning these custom models.
+An entity relationship diagram was created of planning these custom models.
 
-As you can see from the ERD, the relationships play a important role in how the information will be stored and accessed. Here are the main relationship and you'll also be able to view them in this Diagram
+As you can see from the ERD, the relationships plays a important role in how the information will be stored and accessed. Here are the main relationship and you'll also be able to view them in this Diagram
 
 - Category model:
- - One-to-Many: A category can have many events (AddEvent model), but each event belongs to one category.
+   - One-to-Many: A category can have many events (AddEvent model), but each event belongs to one category.
 
 - AddEvent model:
- - One-to-Many: A single category can be associated with multiple events.
- - One-to-Many: A single user can create multiple events, but each event has one organiser.
- - One-to-Many: An event can have multiple comments, but each comment is linked to one event.
+  - One-to-Many: A single category can be associated with multiple events.
+  - One-to-Many: A single user can create multiple events, but each event has one organiser.
+  - One-to-Many: An event can have multiple comments, but each comment is linked to one event.
 
 - Comments model:
- - One-to-Many: A single event can have many comments, but each comment is linked to one event.
- - One-to-Many: A single user can write many comments, but each comment is linked to one user.
+  - One-to-Many: A single event can have many comments, but each comment is linked to one event.
+  - One-to-Many: A single user can write many comments, but each comment is linked to one user.
 
 - Attending model:
 	- Many-to-Many: A user can attend multiple events, and an event can have many attendees.
 
 - User:
- - One-to-Many: A single user can create multiple events.
- - One-to-Many: A single user can comment on multiple events.
- - Many-to-Many: A user can attend multiple events, and events can have multiple attendees.
+  - One-to-Many: A single user can create multiple events.
+  - One-to-Many: A single user can comment on multiple events.
+  - Many-to-Many: A user can attend multiple events, and events can have multiple attendees.
 
 
 ![ER Diagram](static/readme-img/erd/ERD.png)
@@ -201,7 +208,7 @@ This epic covers the functionality accessible to Non-Registered Users, or users 
 
 - Example User Stories:
 	- “As a user I can open a event listing from the calendar so that see more details of the event”
-	- “As a User, I want to browse and search for events so that I can find events that interest me.”
+	- “As a User, I want to browse and search for events so that I can find events that interests me.”
 
 Each of these epics groups together the relevant user stories under a common theme, making it easier to manage and visualise progress on the Kanban board. The Epics are grouped using Tags on the User Stories eg. Tag: "Epic 1: Registered Users"
 
@@ -226,7 +233,7 @@ Instead of estimating in terms of time (e.g., hours or days), which can be subje
 
   3.	User Story: “View Calendar” (Non-Registered User)
 	 - T-shirt Size: L (Large); 	Story Points: 5
-	 - Reason: Viewing a calendar html and include events title based on dates. This involved an external library called FullCallendar. The make the events show in the calendar was a complex feature requiring significant development time, particularly in the use of JS, views and uls. JSONResponse was required.
+	 - Reason: Viewing a calendar html and include events title based on dates. This involved an external library called FullCallendar. To make the events show in the calendar was a complex feature requiring significant development time, particularly in the use of JS, views and uls. JsonResponse was required.
 
 By using T-shirt size Agile story points, you can effectively estimate the workload for each epic and user story
 
@@ -274,6 +281,17 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
 - Font Bondoni Moda SC, Serif
   - The choice of a serif over a more modern font was a nod to the past, or an acknowledgment of Djangos start. The idea that news was initally printed in serif.
 
+### Logo
+
+- The logo is made up of 2 parts.
+  - 'W' 
+  - 'THE WORD' text
+
+- I used favicon.io to create the “W” icon for the website. The colour and font matching the design.
+
+### Favicon
+
+- Designed in favicon.io
 
 ## Features:
 
@@ -360,7 +378,7 @@ The list below has CRUD abilities for the registered user
  2. Comment: Full CRUD
  3. Attending: Going/Not going
 
-## DRY principles for app
+## DRY principles
 
 #### Three main benefits: Reusability, Maintainability & Customisation
 
@@ -385,12 +403,12 @@ is_paginated is a boolean (set to true) more than the paginate number that was 
     template_name = "event/index.html"
     paginate_by = 6
 I first used this just on the index.html (home) page. As the same pagination would be used on 3 html pages (index.html, events_by_category.html and my_events.html) I decided to place the pagination in its own template called pagination.html and include it in those 3 pages using the {%include%} tag.        
-{% include "event/pagination.html" with page_obj=page_obj %}
+{% include "event/pagination.html" with page_obj=page_obj %}. 
 The page_obj contains the current page’s events and pagination details if there is a next or previous
 
 #### Event Card Display
 Like the Pagination on these pages the majority of the code was the same. The only major difference was the h3 element at the start of the page and a message that displays at the end of the page {%if%} statement
-The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include "event/event_card.html" with event=event %} tag.
+The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include %} tag.
 
 ![Pagination cards and buttons](static/readme-img/UX/pagination-6-card-and-button.png)
 
@@ -398,7 +416,7 @@ The card_display.html template was created in response to this. This template us
 ### Cards
 
 - In keeping with the dark background the cards are white to standout, indicating importance. 
-- The card displays an image with text under it. There is a "Learn more" link element that is a "signifier" to click to view more information. 
+- The card displays an image with text under it. There is a "Learn more" link element that is a "signifier" to click to view more information. I saw this style link on apples website. The classic blue style link is a perfect signifier, separating itself from the other text.
 - I have made the whole card a link even though it looks like the blue "Learn more" is the link. This was done to make it easier for the user to move to the next page. All designed with the user in mind. 
 - There is a slight drop shadow on the cards as well to elevate it.
 
@@ -422,7 +440,7 @@ This was due to the type of button is was. Once clicked they were gone.
 
 
 ### Design familiarity
-  - Attending button: Just like the categories buttons, this had to be obvious. There is many apps with this idea of liking or attending. This grey to green concept is intuitive. This leverages the users prior experiences, making it feel familiar and natural.
+  - Attending button: Just like the categories buttons, this had to be obvious. There are many apps with this idea of liking or attending. This grey to green concept is intuitive. This leverages the users prior experiences, making it feel familiar and natural.
   <hr>
 
 ![Attending Button](static/readme-img/UX/attending-icon.png)
@@ -442,44 +460,44 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
 
 ### Additional App Features
 
-- 1. Event Browsing and Filtering 
-  - Filter by category
-  - Filter by calendar view. Events are displayed in the calendar dates
-  - View the events you've created
+1. Event Browsing and Filtering 
+- Filter by category
+- Filter by calendar view. Events are displayed in the calendar dates
+- View the events you've created
 
-- 2. User Authentication
-  - Users can register, sign in and sign out
-  - Registered users have additional benefits: add events, comments and indicate attendance
+2. User Authentication
+- Users can register, sign in and sign out
+- Registered users have additional benefits: add events, comments and indicate attendance
 
-- 3. Create Events
-  - This feature encourages users to actively contribute on the app, creating a sense of community and ownership. 
+3. Create Events
+- This feature encourages users to actively contribute on the app, creating a sense of community and ownership. 
 
-- 4. Category Icon:
-  - Discuss earlier
+4. Category Icon:
+- Discuss earlier
 
-- 5. Interactive Calendar View
-  - Users can see upcoming events on a specific date
-  - Clicking the event title (link) brings the user the event details page
-  - Beneficial for users that only want to see events by date that they're available for.
+5. Interactive Calendar View
+- Users can see upcoming events on a specific date
+- Clicking the event title (link) brings the user the event details page
+- Beneficial for users that only want to see events by date that they're available for.
 
 ![Calendar View](static/readme-img/UX/calendar-view-desktop-mobile.png)
 
-- 6. Event Interaction
-  - Mark as Attending
-  - The click icon turning from grey to green provides a sense of accomplishment and interaction enhancing the user experience
+6. Event Interaction
+- Mark as Attending
+- The click icon turning from grey to green provides a sense of accomplishment and interaction enhancing the user experience
 
-- 7. Comments
-  - Organiser can update the event with a comment.
-  - A user can ask a question or comment.
-  - Benefits to the user as they feel more connected to the event
+7. Comments
+- Organiser can update the event with a comment.
+- A user can ask a question or comment.
+- Benefits to the user as they feel more connected to the event
 
-- 8. Social Media
-  - Links to social media were the app and event can be more visible 
+8. Social Media
+- Links to social media were the app and event can be more visible 
 
-- 9. Image display. 
-  - The organiser when creating the event can add their own image. 
+9. Image display. 
+- The organiser when creating the event can add their own image. 
 
-- 10. Additional information from the Organiser aids to better Search Engine Optimisation
+10. Additional information from the Organiser aids to better Search Engine Optimisation
 
 
 ### Manual Testing user stories
@@ -495,8 +513,8 @@ As a user I can see the nav-bar so that I can easily go back to the home screen 
 As a user I can log in to my account so that I can add events | log in, click the link Create an Event, fill in form and submit | &check;
 As a site user I can create, update and delete events | Once logged in, click on My Events page, select the event to edit or delete. Once in the details page, press the edit or delete button, delete button will display a modal to confirm delete. Edit button will bring you to a form page with the current input information. Edit event details and submit. If selecting delete, a bootstrap modal is shown with two buttons, close and delete. Close, closes the modal, delete deletes the event| &check;
 As a Registered User, I want to comment on events so that I can share my opinions or ask questions. | login, select the event you'd like to comment or ask a question to, and click submit | &check;
-As site user I can view events in a paginated way so that i can select one that interests me. | on the home page, category page or my events page, you'll see a button under the events. the button is numbered relating to current page and an arrow for next or previous | &check;
-As a user I can open a event listing from the calendar so that see more details of the event | Click on the Calendar button on the nav-bar, select the date that has a event listed by title. Click title and you'' be brought to that event details page | &check;
+As site user I can view events in a paginated way so that I can select one that interests me. | on the home page, category page or my events page, you'll see a button under the events. The button is numbered relating to current page and an arrow for next or previous | &check;
+As a user I can open a event listing from the calendar so that see more details of the event | Click on the Calendar button on the nav-bar, select the date that has a event listed by title. Click title and you'll be brought to that event details page | &check;
 As a User, I want to browse and search for events by category so that I can find events that interest me. | User chooses a category from the category tab. Choose one of the four buttons. User sees a new listing of filtered events by that category| &check;
 Sign up prompt. As a non-registered user I can register for an account so that I add events, write comments & show attendance | Non logged in users will be directed to the sign in page when click create an event, my events or indicate attendance | &check;
 As a user/ site visitor, I want to browse events without needing to register so that I can see what’s happening in my area. | all users can see the events by all, category and calendar | &check;
@@ -509,13 +527,13 @@ As a user/ site visitor, I want to browse events without needing to register so 
 | Feature | Action | Status | 
 |:-------:|:--------| :--------|
 | Register | Selected Register on the nav menu, input Username, Email(optional), password, password again to confirm they are identical, click sign up. Redirected to home page if correctly done. Message to show what additional steps if not successful | &check; |
-| Login | Select Login from the nav menu, input username and password, click Sign in button. Redirected to home page if no issues. I message "The username and/or password you specified are not correct." if you are a new user or inputs are incorrect | &check; |
+| Login | Select Login from the nav menu, input username and password, click Sign in button. Redirected to home page if no issues. A message "The username and/or password you specified are not correct." if you are a new user or inputs are incorrect | &check; |
 | Logout | Select logout from nav menu, click sign out, redirected to home page | &check; |
 | Filling in create event form | Registered users click create an event button, Fill in the required fields in the form, submit event. There is a message to indicate that the event was successfully created. If there is an issue with the required fields, a message will be displayed to show the issues | &check; |
-| Add a comment to an event | In the event details page under the event description is a comment field. Make a comment and click the button submit. The user will be returned to that event page and a message will be displayed so the user know the comment has been sent to be reviewed before being published | &check; |
+| Add a comment to an event | In the event details page under the event description is a comment field. Make a comment and click the button submit. The user will be returned to that event page and a message will be displayed so the user knows the comment has been sent to be reviewed before being published | &check; |
 | Edit and delete comment | This created comment can be edited or deleted by the comment writer. They will see two buttons, edit and delete. Clicking edit will display the previously submitted commend in the comment field to be edited and submitted again. Clicking delete will bring up a bootstrap modal to confirm delete. Two buttons are displayed on the modal. close or delete | &check; |
 | Social media links| links in the footer takes the user to the relevant websites | &check; |
-| Admin panel view | admin applies /admin to the end of the home url to see admin panel. Admin panel is only available to the admin and not a regular user | &check; |
+| Admin panel view | add /admin to the end of the home url to see admin panel. Admin panel is only available to the admin and not a regular user | &check; |
 | Admin Display | Once in the admin panel, they will be able to view 3 columns, first for options, middle for description and right for filter | &check; |
 | Link to events page added in form, available in event details | The link can be added to the field in the form and the link is available in the event details page. The link is to open a new tab with the link | &check; |
 | Image Upload | In the Create an Events form a image can be uploaded to cloudinary and available to display on the events details page and event card | &check; |
@@ -668,8 +686,7 @@ There is a number of additions that could be made to the app to increase it’s 
   Enable users to mark events as “favourites” or add them to a wish list. The user will be able to track these events on a personal page
 
 - ### User Convenience: 
-  Users can visually browse events based on proximity to their location
-  Alongside filters, users can find events based on geographic areas.
+  Users can visually browse events based on proximity to their location.
 
 - ### Event Reminders: 
   Reminders and calendar integration to help users remember to attend events they’ve indicated attendance.
@@ -891,10 +908,64 @@ On all browsers the site performed smoothly with consistent functionality and ap
 
 ### Responsiveness
 
-The app is responsive on all screen sizes. The event card display using bootstrap is shown above as is the calendar view.
+The app is responsive on all screen sizes. The event card display using bootstrap is shown above (at the start of the read me) and the calendar view (in the calendar description).
 The image below will show the event details page and create events form.
 
 ![Responsiveness](static/readme-img/code-validated/Responsive_test.png)
 
 
 ## Credits
+
+#### Resources Used
+- Code Institute walkthrough videos in modules 'Hello Django' and 'I think therefore I blog'
+
+- Django 5 by example, Antonio Melé
+
+- [Center Align Navbar video](https://www.youtube.com/watch?v=1quNxUhmZNQ)
+- [Stackoverflow bootstrap navbar](https://stackoverflow.com/questions/20024463/bootstrap-3-how-do-i-place-the-brand-in-the-center-of-the-navbar)
+- [Stackoverflow:](https://stackoverflow.com/questions/19733447/bootstrap-navbar-with-left-center-or-right-aligned-items)
+- [Django Documentation Making queries:](https://docs.djangoproject.com/en/5.1/topics/db/queries/)
+- [Django filter Documentation Getting started:](https://django-filter.readthedocs.io/en/stable/guide/usage.html)
+- [Django QuerySet](https://docs.djangoproject.com/en/3.0/ref/models/querysets/#exclude)
+- [Django Aggregation](https://docs.djangoproject.com/en/1.10/topics/db/aggregation/#generating-aggregates-for-each-item-in-a-queryset)
+- [Model instance reference in Django](https://docs.djangoproject.com/en/5.1/ref/models/instances/)
+- [Django request and response](https://docs.djangoproject.com/en/5.1/ref/request-response/#module-django.http)
+- [Django request.FILES](https://stackoverflow.com/questions/3111779/how-can-i-get-the-file-name-from-request-files)
+- [Django .get_or_create()](https://stackoverflow.com/questions/1941212/how-to-use-get-or-create-in-django)
+- [Bootstrap Nav:](https://getbootstrap.com/docs/4.0/components/navs/)
+- [Bootstrap Nav Customisation](https://stackoverflow.com/questions/61396714/i-cant-change-the-font-size-or-family-in-my-bootstrap-4-navbar)
+- [Bootstrap Footer](https://getbootstrap.com/docs/5.2/examples/footers/)
+- [Bootstrap borders:](https://getbootstrap.com/docs/4.0/utilities/borders/)
+- [Bootstrap Spacing](https://getbootstrap.com/docs/4.0/utilities/spacing/d)
+- [Bootstrap pagination](https://getbootstrap.com/docs/4.0/components/pagination/)
+- [CSS borders:](https://www.w3schools.com/css/css3_borders.asp)
+- [FullCalender Getting started:](https://fullcalendar.io/docs/getting-started)
+- [Django QuerySet:](https://docs.djangoproject.com/en/4.2/ref/models/querysets/#first)
+- [Django Built-in class-based generic views](https://docs.djangoproject.com/fr/2.2/topics/class-based-views/generic-display/)
+- [Google Font](https://fonts.google.com/selection/embed)
+- [favicon.io](https://favicon.io/favicon-generator/)
+- [blog.hubspot for entering an image with HTML and CSS](https://blog.hubspot.com/website/center-an-image-in-html#:~:text=Inside%20the%20curly%20brackets%2C%20I,container%20to%20a%20proportionate%20height.)
+- [Center image in a div freeCodeCamp](https://www.freecodecamp.org/news/how-to-center-an-image-in-a-div-css/)
+- [Bootstrap close-button](https://getbootstrap.com/docs/5.0/components/close-button/)
+- [Sorting events by date vintasoftware](https://www.vintasoftware.com/blog/advanced-django-querying-sorting-events-date)
+- [Django Conditional Expressions in Queries](https://micropyramid.com/blog/django-conditional-expression-in-queries)
+- [Difference between the__lte and __gte in Django stack overflow](https://stackoverflow.com/questions/64309821/difference-between-the-lte-and-gte-in-django)
+- [Python slugify](https://pypi.org/project/python-slugify/)
+- [Bootstrap hover customisation](https://stackoverflow.com/questions/25923623/change-hover-color-on-a-button-with-bootstrap-customization)
+- [Bootstrap flex](https://getbootstrap.com/docs/4.0/utilities/flex/)
+- [Bootstrap remove margin under <p>](https://stackoverflow.com/questions/67309695/how-to-remove-the-margins-added-by-bootstrap)
+- [Centering element css bootstrap](https://stackoverflow.com/questions/42388989/bootstrap-centering-elements-vertically-and-horizontally)
+- [Django filter date and time](https://stackoverflow.com/questions/1317714/how-can-i-filter-a-date-of-a-datetimefield-in-django)
+- [Django user auth for edit and delete](https://stackoverflow.com/questions/40506827/django-how-to-allow-only-the-owner-of-a-new-post-to-edit-or-delete-the-post)
+- [Django calendar options](https://www.reddit.com/r/django/comments/1dowgs1/django_calendar_options/)
+- [Vanilla Calendar research](https://vanilla-calendar.pro/docs/learn/getting-started/installation)
+- [CSS semi transparent background](https://stackoverflow.com/questions/4790563/how-do-i-make-a-semi-transparent-background)
+- [Markdown checkbox ](https://stackoverflow.com/questions/47344571/how-to-draw-checkbox-or-tick-mark-in-github-markdown-table)
+- [404 Page setup for Django](https://www.youtube.com/watch?v=06Ae9FVnEOI)
+- [Confirm Delete modal Youtube](https://www.youtube.com/watch?v=cufh9cOs-A4)
+- [Confirm Delete](https://www.youtube.com/watch?v=3RPGYPKeXFo)
+- [enctype=“multipart/form-data for image POST](https://www.w3schools.com/tags/att_form_enctype.asp)
+- [enctype=“multipart/form-data](https://www.geeksforgeeks.org/what-does-enctypemultipart-form-data-mean-in-an-html-form/)
+
+
+ICONS from fontawesome
