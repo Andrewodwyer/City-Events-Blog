@@ -8,20 +8,60 @@
 
 [Link to THE WORD site](https://events-blog-f44bf5c7d7d5.herokuapp.com/)
 
-City events website.
+### App description
 
 <hr>
-The Word is a local events app. Allowing user to view all posted event listings or using two search options, 1. by category and 2. by date on a calendar view. The app encourages users to sign up to gain the additional options of posting their own events, commenting on upcoming events and RSVPing.
+The Word is a local events app that allows user to view event listings. It utilises two main search options, 1. by category and 2. by date on a calendar view. The app encourages users to sign up to gain the additional benefits of posting their own events, commenting on upcoming events and RSVPing.
 
-#### All of which have CRUD functionality
+## Table Of Contents:
+1. [UX & User-Centred Design](#ux)
+    * [User Centred Design](#User-Centred-Design)	
+    * [Target Audience](#target-audience)
+    * [User Goals](#user-goals)
+    * [User Stories](#user-stories)
+    * [Database Diagram](#database-diagram)
+    * [Kanban](#kanban)
+    * [Typography](#typography)
+    * [MoSCow Prioritisation](#moscow-prioritisation)
+    * [Epics](#epics)
+    * [Story points](#story-point)
+2. [UI](#ui-design)
+    * [UI Design](#dui-design)
+    * [Wireframes](#wireframes)
+    * [Design](#design-style)
+    * [Colour Palette](#colour-palette)
+    * [Typography](#typography)
+3. [Features](#features)
+    * [Navigation](#navigation)
+    * [Footer](#footer)
+    * [Home page](#home-page)
+    * [Event Calendar](#event-calendar)
+    * [Create an Event](#create-an-event)
+    * [My Events](#my-events)
+    * [CRUD](#crud)
+    * [DRY principles](#dry-principles)
+    * [Authentication and Authorisation](#authentication-authorisation)
+4. [Technologies Used](#languages)
+    * [BootStrap](#bootstrap)
+5. [Libraries](#libraries)
+6. [Testing](#user-testing)
+7. [Bugs](#bugs)
+8. [Deployment](#deployment)
+9. [Credits](#credits)
 
-<hr>
 
 ![Am I Responsive Image](static/readme-img/amiresponsive.png)
 
 ## UX
+<a name="ux"></a>
 
-### Target Audience
+### User-Centred Design Approach for planning and design.
+<a name="ucd"></a>
+
+The primary goal in the planning and design of the Events App is to create an intuitive, user-friendly experience that addresses the needs of its primary users, event seekers and event organisers. Insuring that every design decision is made with the end user in mind, focusing on making the app both functional and enjoyable to use. 
+
+#### Target Audience
+<a name="target-audience"></a>
 
 The Word’s events platform is designed for people who are interested in discovering, attending, and organising local and online events. The app concept is like a bulletin board in a shop or office space. People can post and see events in the local area. In the same way this site encourages users to both search for events and post their own events. 
 
@@ -79,6 +119,7 @@ Regular user who add content:
    - Registered users can leave comments on event pages, encouraging engagement and conversation around events.
 
 ### User Goals
+<a name="user-goals"></a>
 
 For Attendees: 
 - Users primarily visit The Word to discover new events that match their interests and schedule.
@@ -89,6 +130,7 @@ For Organisers:
 - Users who create events are looking for an easy way to promote their events, manage their listings, and interact with potential attendees. The platform’s CRUD (Create, Read, Update, Delete) functionality provides them with the flexibility to create, edit, or remove events as needed. Giving them full control over their event.
 
 ### User Stories
+<a name="user-stories"></a>
 The user stories are available on the kanban board and some will be discussed in the EPICs below.
 There as three main users
 - Admin: These are the site owner that will have full control over the publishing of events, and comments.
@@ -96,7 +138,8 @@ There as three main users
 - Non-registered users: limited functionality
 These users have been grouped in the kanban board with tags and their user stories have been given epics for each type of user
 
-### Database Models
+### Database Diagram
+<a name="database-diagram"></a>
 
 One of the first steps in producing this app was to design and implement custom models based on the information that users would want to store and access.
 
@@ -128,6 +171,7 @@ As you can see from the ERD, the relationships plays a important role in how the
 ![ER Diagram](static/readme-img/erd/ERD.png)
 
 ## Kanban
+<a name="kanban"></a>
 
 For this project I created a Kansan board in GitHub to display the stages and status of each user-story. I assigned priority to each user-story using the MoSCoW method. The User-story were grouped into Epics and each User-story was given a Story Point using the T-shirt Sizing method. 
 
@@ -137,7 +181,8 @@ For this project I created a Kansan board in GitHub to display the stages and st
 - Story Points: to estimate the work required
 - Status: What stage it’s on.
 
-### MoSCow Prioritisation
+## MoSCow Prioritisation
+<a name="moscow"></a>
 
 ##### M: Must Have
  - Non-negotiable product needs that are mandatory.
@@ -164,6 +209,7 @@ For this project I created a Kansan board in GitHub to display the stages and st
 </details>
 
 ## Epics
+<a name="epics"></a>
 
 In a Kanban board, an epic is a large body of work that can be broken down into multiple smaller user stories and tasks. Each epic generally corresponds to a specific area. The epics are organised by three types of users in the system: Admin, Registered Users, and Non-Registered Users.
 
@@ -217,7 +263,8 @@ Each of these epics groups together the relevant user stories under a common the
 [View Kanban Board here](https://github.com/users/Andrewodwyer/projects/6)
 
 
-## Agile Story points in Scrum
+## Agile Story points
+<a name="story-point"></a>
 
 Story points are a unit of measure used in Agile project management in Scrum, to estimate the relative effort or complexity of user stories or backlog items.
 Instead of estimating in terms of time (e.g., hours or days), which can be subjective and vary based on individual team members’ skill levels, story points focus on the overall effort or complexity involved. Story points represent a combination of factors, including the effort required, technical complexity, risks, and dependencies.I have used T-shirt Sizing for this.
@@ -245,11 +292,13 @@ By using T-shirt size Agile story points, you can effectively estimate the workl
 
 <br>
 
-# UI Design
+## UI Design
+<a name="ui-design"></a>
 
 The initial wireframe was designed using figma. The figma project page can be found here [FIGMA THE WORD](https://www.figma.com/design/xioX2poOx76Zg7R8lG8Ret/The-Word!-Events?node-id=218-1347&node-type=frame&t=6gK5eYLXELZdjBK1-0)
 
 ## Wireframes
+<a name="wireframes"></a>
 
 #### Mobile Wireframe
 
@@ -260,10 +309,12 @@ The initial wireframe was designed using figma. The figma project page can be fo
 ![Desktop wireframe](static/readme-img/UX/Desktop-wireframe.png)
 
 ### Design Style
+<a name="design style"></a>
 
 The UI design for the app was to be a modern, clean and userfriendly. Balancing functionality and aesthetics, so the user can easily navigate through the app.
 
 #### Colour Palette:
+<a name="colour-palette"></a>
 - Primary background colour of dark blue #1B4965. 
   - Giving a strong rich coloured canvas for the event cards. By doing this the cards stand out and draws the users eye inward.
 - Accent Colours: Orange and teal-green for the action buttons.
@@ -278,11 +329,11 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
 ![Colour Palette](static/readme-img/UX/colours.png)
 
 #### Typography:
+<a name="typography"></a>
 - Font Bondoni Moda SC, Serif
   - The choice of a serif over a more modern font was a nod to the past, or an acknowledgment of Djangos start. The idea that news was initally printed in serif.
 
 ### Logo
-
 - The logo is made up of 2 parts.
   - 'W' 
   - 'THE WORD' text
@@ -294,8 +345,9 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
 - Designed in favicon.io
 
 ## Features:
-
-### Navbar.
+<a name="features"></a>
+### Navigation
+<a name="navigation"></a>
 
 - The Navbar contains 6 links when the user is not signed in and 5 links when they are
   - All Events
@@ -317,14 +369,14 @@ There are the main option in the app and the most relevant to any user, whether 
 
 
 ### Footer:
-
+<a name="footer"></a>
 - Dark-Grey Background with white text ensures that the footer remains subtle but clear. It contains social media links, styled with white icons against the dark background, providing easy access to external community pages without dominating the page design. External links on the footer is expected and would be the area users would look for them.
 
 ![Footer](static/readme-img/UX/Footer.png)
 
 
 ### Home Page
-
+<a name="home-page"></a>
 - The home page uses the base.html, event_card.html and pagination.html together, allowing for a fluid theme throughout the app
 - Logo, "W" and "THE WORD" displaying the brand, immediate recognition of the app. Users feel more comfortable when they are reassured by the brand.
 - Hero section. This image signals the purpose of the app and the text in the white box "FIND YOUR EVENT" is a clear call to action, encouraging users to begin browsing for events.
@@ -334,6 +386,7 @@ There are the main option in the app and the most relevant to any user, whether 
 
 
 ### Event Calendar
+<a name="event-calendar"></a>
 - Displays the events on a Calendar
 - Like google calendar a time/date and event title is added to the days/dates in the chosen month
 - FullCalendar was used
@@ -341,6 +394,7 @@ There are the main option in the app and the most relevant to any user, whether 
 - Users can click on the event title to be brought to the event details page
 
 ### Create an Event
+<a name="create-an-event"></a>
 - A form for the user to add their event details
 - Displayed using Crispy-form
 - Image upload using cloudinay
@@ -349,6 +403,7 @@ There are the main option in the app and the most relevant to any user, whether 
 
 
 ### My Events
+<a name="my-events"></a>
 - A grid display of your events as cards, like the home page
 - Events that are not published/ in drafts have a transparent element over then to indicate that it is not published. Image below
 - Both published and draft events can be clicked on and edited/deleted
@@ -372,13 +427,18 @@ There are the main option in the app and the most relevant to any user, whether 
 - Container with form for username and password.
 - Sign in button will direct the user to the home page if the form is correctly filled out.
 
-### CRUD
+## CRUD
+<a name="crud"></a>
+The Events App’s CRUD functionalities for events, comments, and attending are designed to give logged in users control over their interactions with the app.
 The list below has CRUD abilities for the registered user
- 1. Add Events: Full CRUD
- 2. Comment: Full CRUD
- 3. Attending: Going/Not going
+| **Entity**    | **Create**                               | **Read**                                   | **Update**                               | **Delete**                               |
+|---------------|------------------------------------------|--------------------------------------------|------------------------------------------|------------------------------------------|
+| **Events**    | Event organisers can submit new events.   | Users can view event lists and details.     | Organisers can edit their own events.    | Organisers can delete their own events.  |
+| **Comments**  | Logged-in users can post comments.        | All users can view approved comments.       | Logged-in users can edit their own comments.       | Logged-in users or admins can delete comments.     |
+| **Attending** | Logged-in users can RSVP to an event.               | Logged-in users can view attendance.   | Logged-in users can change their RSVP status.      | Logged-in users can remove their RSVP.             |
 
 ## DRY principles
+<a name="dry-principles"></a>
 
 #### Three main benefits: Reusability, Maintainability & Customisation
 
@@ -414,7 +474,6 @@ The card_display.html template was created in response to this. This template us
 
 
 ### Cards
-
 - In keeping with the dark background the cards are white to standout, indicating importance. 
 - The card displays an image with text under it. There is a "Learn more" link element that is a "signifier" to click to view more information. I saw this style link on apples website. The classic blue style link is a perfect signifier, separating itself from the other text.
 - I have made the whole card a link even though it looks like the blue "Learn more" is the link. This was done to make it easier for the user to move to the next page. All designed with the user in mind. 
@@ -422,7 +481,7 @@ The card_display.html template was created in response to this. This template us
 
 
 ### Buttons and Icons
-
+<a name="buttons-and-icons"></a>
 The action buttons like sign up, edit, delete and next/previous are solid colours when inactive and white with colour text and border when hovered over.
 This was due to the type of button is was. Once clicked they were gone. 
 - The icon buttons for the categories and attending buttons are differnet however. 
@@ -447,6 +506,11 @@ This was due to the type of button is was. Once clicked they were gone.
 
 
 ### Authentication-Authorisation, User Interaction with messages & signafiers
+<a name="authentication-authorisation"></a>
+
+- Authentication is the process of verifying a user’s identity when they log in or register for the first time.
+  - Django Allauth is used for user authentication and registration, providing pre-built views and forms for registering new users.
+- Authorization defines what a user is allowed to do once authenticated. In this app, different actions are available based on whether the user is logged in and whether they own specific resources
 
 - Information/Messages: When an action is preformed, like creating a comment or event, a relevant message displays to the user. These are styled to blend smoothly into the page without overwhelming the user.
 - Authentication Indicators: Users are reminded whether they are logged in or not through a simple text message displayed to the left of the screen near the header.
@@ -454,12 +518,12 @@ This was due to the type of button is was. Once clicked they were gone.
 ![Messages and signafiers](static/readme-img/UX/Message-signafiers.png)
 
 ### Bootstrap
-
+<a name="bootstrap"></a>
 Bootstrap was used in the app to create a responsive, mobile-first websites quickly and efficiently using it's library. Bootstrap provides a collection of pre-designed HTML, CSS, and JavaScript components, like buttons, forms, navigation bars, and grid layouts. By using Bootstrap, I was able to build a visually consistent app without writing extensive custom code. It was easy to customise and it adapted to all screen sizes without having to write additional media queries. Saying this, I did customise the css and added js in this build.
 
 
 ### Additional App Features
-
+<a name="additional-features"></a>
 1. Event Browsing and Filtering 
 - Filter by category
 - Filter by calendar view. Events are displayed in the calendar dates
@@ -500,7 +564,17 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
 10. Additional information from the Organiser aids to better Search Engine Optimisation
 
 
+### Libraries
+<a name="libraries"></a>
+
+- Django-cloudinary-storage: handling the images
+- Crispy-forms: making it easier to work with forms, providing better rendering and handling.
+- Django-summernote: Handling text
+- Crispy-bootstrap5==0.7 - A Crispy Forms template pack for Bootstrap 5
+
 ### Manual Testing user stories
+
+<a name="user-testing"></a>
 
 User Story |  Test | Pass
 --- | --- | :---:
@@ -542,7 +616,6 @@ As a user/ site visitor, I want to browse events without needing to register so 
 ![Delete modal](static/readme-img/UX/delete-event-modal-bootstrap.webp)
 
 ### User flow test, Happy path for new user
-
 A happy path covers the core functionality and user experience of the event app, ensuring smooth navigation, registration, and interaction with events.
 
 
@@ -563,7 +636,6 @@ A happy path covers the core functionality and user experience of the event app,
 
 ### User flow test, Happy path for event creator
 
-
 | Action | Expectation | Pass |
 |:-------:|:--------| :--------|
 | The user clicks the "Login" button. | The login form is displayed, and the user logs in successfully. | &check; |
@@ -579,205 +651,7 @@ A happy path covers the core functionality and user experience of the event app,
 | The user marks their intention to attend their own event. | The attendance icon turns green, and a visual confirmation is shown that the action was successful. | &check; |
 | The user leaves the site. | All actions were completed successfully, and the event is live. | &check; |
 
-## Languages
-- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
-- [HTML5](https://en.wikipedia.org/wiki/HTML) - Provides the content and structure for the website.
-- [CSS3](https://en.wikipedia.org/wiki/CSS) - Provides the styling for the website.
-- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Provides interactive elements of the website
-
-
-## Frameworks & Software
-- [Gitpod](http://gitpod.io) - Cloud based IDE
-- [Bootstrap](https://getbootstrap.com/) - A CSS framework that helps building solid, responsive, mobile-first sites
-- [Django](https://www.djangoproject.com/) 
-- [Figma](https://www.figma.com/) was used to create the final design of a website.
-- [Github](https://github.com/) - Used to host and edit the website.
-- [Heroku](https://en.wikipedia.org/wiki/Heroku) - A cloud platform that the application is deployed to.
-- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - Used to test performance of site.
-- [Font Awesome](https://fontawesome.com/) was used for social media icons in the footer.
-- [Favicon](https://favicon.io/) was used for favicon.
-- [LucidChart](https://lucid.co/) was used for creating ERD.
-- [Google Fonts](https://fonts.google.com/) was used to add specific font family to the stylesheet.
-- [W3C validation](https://validator.w3.org/) was used to check the markup validity of html file.
-- [Jigsaw](https://jigsaw.w3.org/css-validator/) was used to check the validity of css file.
-- [JSHint](https://jshint.com/) was used to check the validity of js files.
-- [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
-- [Am I Responsive](https://ui.dev/amiresponsive) was used to get a screenshot of a final look of the website on various devices.
-- [Github](https://github.com/) was used to store the code of the website.
-- [Django](https://www.djangoproject.com) used as the Python framework for the site.
-- [PostgreSQL](https://www.postgresql.org) used as the relational database management.
-- [Cloudinary](https://cloudinary.com) used for images
-- [Gunicorn](https://gunicorn.org/) used for WSGI server
-- [Crispy Forms](https://pypi.org/project/django-crispy-forms/)
-- Photoshop: Resizing and editing pictures
-
-
-### Create a PostgreSQL Code Institute database
-
-- Log into [CIdatabase maker](https://dbs.ci-dbs.net/)
-- Add your email address in input field and submit the form
-- Open database link in your email
-- Paste dabase URL in your DATABASE_URL variable in env.py file and in Heroku config vars
-
-### Cloudinary
-
-- Navigate to https://cloudinary.com/ and log in to your account.
-- Navigate to dashboard/console https://console.cloudinary.com/console/  copy API Enviroment variable starting with "cloudinary://".
-- Paste copied url CLOUDINARY_URL variable in env.py file and in Heroku config vars
-- Update settings.py
-
-### Django secret key
-
-You need to include you Django secret key that you can generate using any of the Django secret keys generators online.
-In order to protect django app secret key it was set as an enviroment variable and stored in env.py.
-
-```
-os.environ.setdefault(
-    "SECRET_KEY", "your secret key")
-```
-
-## Bugs:
-#### Category Migration 
--  I had to roll back the migrations from 0006 to 0003, using the terminal command
-  python3 manage.py migrate events 0003 
-  This was because I had set a default=“music” in the AddEvents model and had made a migration. The default had to be an integer so I checked what ID music had. This was done by using this command in the shell.
-  from event.models import Category
-  music_category = Category.objects.get(id=1)
-  print(music_category.name)
-  The result id was 1.
-  I updated the code to reflect this. Below code, default=‘Music’ is now default=1
-      event_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events', default=1)
-  This still didn’t resolve the issue. When trying to make a migration using the integer 1 I was given an error of database is expecting a integer and instead got ‘Music’.
-  I rolled back the migrations, deleted the last 2 migrations and made a new makemigration and migrate. 
-  This resolved all the issues. I did have to set the categories in the admin panel again.
-
-#### Load Static bug
--  I had used Django Template Language tag to include the images in the static directory for the events template html file but I didn’t do the same for the index.html file. Once I did this the images loaded as intended.
-
-#### Categories in events bug
--  Fixed the bug in event_by_category.html, the loop was category in categories but it should of been events in events to show the events with the category_id, ie music has a category id of 1
-  I used a function in the view.py called event_list_by_category and it got the Category object from the AddEvents 
-
-#### Load Static in events_by_category.html bug
--  The static images on the events_by_category.html file weren’t loading and this gave me an error indicating it was expecting a {%endfor%} tag as it couldn’t see the static folder.
-  This was easily fix by adding the {% load static %} tag at the top of the html file
-
-#### Pagination for function based views Bug
--  Pagination for function based views. I was trying to add a function that used paginator = Paginator(events, 6). Because it was a function and not a generic class I had to add page_obj and is_paginated Django tags in a certain sequence. The issue was the page_obj wasn’t properly accessed in the template, which is causing the issue with the pagination displaying "Page of ." with no next or previous buttons. I consulted https://docs.djangoproject.com/en/5.1/topics/pagination/ and tried a number of different options but it didn’t work. In the EventList class the generic ListView automatically handles context variables like page_obj for pagination. I decided to use a generic list view class for the categories html template too.
-  To have a simple class view I needed to set up a function that filtered the events by category and by current and future dates. For the dates I used the class AddEventManager(models.Manager): in the models.py that filtered by time. and set it’s status to 1 (published). Then I used the .filter(event_category=category) that got the category.
-
-#### Loading Image in the index.html and then the addevent_detail.html
--  img src was different for index.html and addevent_details.html. This was because of the for loop {% for event in addevent_list %} in index which took the name addevent_list from the generic.ListView class EventList. While addevent_details.html used the variable name addevent. When I used the variable name addevent in the index.html it didn’t load because or the for loop. I decided to make a note of the issue and review it if needed.
-
-
-#### Model issues: Comments and AddEvents user/organiser field Bug
--  In the AddEvents model I used ‘organiser’ as the field for the user. However in the Comment model the field was ‘user’ for the user and not ‘organiser’. This caused confusion when putting the conditional if and elif statements in the addevent_detail.html. In your template, I was using comment.organiser == user, but in my Comment model, the field that stores the user who created the comment is user, not organiser. To resolve this I replaced comment.organiser with comment.user. replaced comment.organiser  with comment.user.username to display the username of the comment. The edit button was the real issue and the change of comment.user == user so that it checks the user is the comment author.
-
-#### URL pattern matching in urls.py. my-events path matching addevent_detail Bug
--  The path('event/<slug:slug>/', views.addevent_detail, name='addevent_detail') is being matched before path('event/my-events/', views.my_events, name='my_events'). Django matches the URLs in order from top to bottom, so when it saw event/my-events/, it treated "my-events" as a slug and tries to look up a corresponding AddEvent object, leading to the 404 error.
-  To fix the issue I placed the event/my-events/ path before the event/<slug:slug>. So the more specific patterns (event/my-events) should come before less specific one.
-
-#### Mixed Content bug
- - I was getting this error in the Issues section of Chrome inspect.
-  Mixed Content: The page at '<URL>' was loaded over HTTPS, but requested an insecure element '<URL>'. This request was automatically upgraded to HTTPS, For more information see <URL>
-  After researching and seeing a number of different articles, I found a fix on Slack. To fixed the mixed content i did the following. In settings.py file 
-  ensure cloudinary uses https paths
-  import cloudinary
-  cloudinary.config(secure=True,)
-  Thanks to tim_mentor for the code.
-
-#### Summernote w3 validator error for <p> tag bug
--  Error: No p element in scope but a p end tag seen. Django Summernote.
-  tim_mentor regarding issue
-  It's a known bug that it adds extra paragraph tags to the body content in your posts. I think the same for the placeholders error?
-  I’m aware of the issue/bug coming from Django Summernote.
-
-#### My_events tab not Active when selected bug
--  I had added the my_events tab later then the other tabs in the nav as this was a could have in my list. I had added the link, DTL in the 'li' in the nav and the links worked bu the tab didn’t stay active. The issue was that the my_events_url was not defined in the base.html template using {% url ‘my_events” as my_events_url %}. Once I did this, it worked as expected.
-
-#### FullCalendar and Django bug:
--  FullCalendar and Django are expecting different values for times. To resolve this a function was added to AddEventForm so the seconds are rounded down and both the front end and the backend receive the required information. 
-
-#### FullCalendar Displaying all events and not just Published ones bug:
--  The views get_events collected all the events .all(). so it included the draft events that were not published by the admin. I needed to filter this my using the .filter(status=1) so only the status=1(Published) events are selected.
-
-<hr>
-
-## Future Features:
-
-There is a number of additions that could be made to the app to increase it’s potential and appeal to users. 
-
-- ### Develop the My_Events page to be more a profile page with more features:
-  Currently the page shows the events created by the user/organiser. An added feature would be for a devision in this page. I column for created event  and a separate one for the events they’ve shown interest in, reserved seats for, shared events etc
-
-- ### Reserve tickets:
-  Similar to restaurant booking app, registers users could reserve a table or seat for an event. This feature would work well with most events, like workshops, seats at a concert etc
-
-- ### Search bar:
-  Add a search bar in the navigation menu to allow users to search for events using key words, some examples would be a venue name, a sub category, or event organiser. The search for organiser would be useful as they could be a venue that would have a number of events each week. This functionality not only saves time but also increases the likelihood of user satisfaction and retention.
-
-- ### Sharing icon:
-  Social Sharing & Friend Invites: Let users see what events their friends are attending and invite friends to join events, boosting community engagement.
-
-- ### Favorites/Wish List: 
-  Enable users to mark events as “favourites” or add them to a wish list. The user will be able to track these events on a personal page
-
-- ### User Convenience: 
-  Users can visually browse events based on proximity to their location.
-
-- ### Event Reminders: 
-  Reminders and calendar integration to help users remember to attend events they’ve indicated attendance.
-
-- ### Share user comments: 
-  As well as the share events, users can share their comments relation to an event.
-
-- ### Event Reviews and Ratings:
-  Allow attendees to leave a review and rating for the past event
-
-
-## Deployment
-
-### Heroku Deployment
-This site was deployed to and is currently [hosted on the Heroku platform](https://astroshare-blog-6a7ca9d34749.herokuapp.com/). The steps for deploying to Heroku, using PostgreSQL as the database host, are as follows:
-
-1. Create a list of requirements in the requirements.txt file by using the command pip3 freeze > requirements.txt
-2. Log in (or sign up) to Heroku
-3. Click on the New button and select *Create new app*
-4. Give it a unique name and choose the region *Europe*
-5. Click the Settings tab, go to the *Config Vars* section and click on the Reveal Config Vars button
-6. Add all variables from *env.py* to ConfigVars of Heroku
-
-<details><summary><b>Click to view details Config Vars Heroku</b></summary>
-
-![Config vars](static/readme-img/code/Config-Vars.png)
-</details>
-
-7. Click the *Add* button
-8. Click the *Deploy* tab, go to the *Deployment method section*, select *GitHub* and confirm this selection by clicking on the *Connect to Github* button
-9. Search for the repository name on github *Astro Blog* and click the *Connect* button
-10. Add in the *setting.py* the Heroku app URL into ALLOWED HOSTS
-11. Gather all static files of the project by using the command *python3 manage.py collectstatic* in the terminal
-12. Make sure that DEBUG=FALSE in *settings.py*
-13. Create a *Procfile* in the root directory and add *web: gunicorn astroshare-blog.wsgi*
-14. In Heroku enable the automatic deploy or manually deploy the code from the main branch
-
-### Local Deployment
-1. Generate an *env.py* file in the root directory of the project
-2. Configure the environment variables within this file
-3. Create a virtual environment
-4. Install all required dependencies using pip install command into the .venv
-5. Add dependencies to the requirements.txt file using pip3 freeze > requirements.txt command
-
-### Final Deployment
-
-1. Make sure to set DEBUG = False.
-
-
-## Testing
-
-
 ### Validator Testing 
-
 
 ### HTML
 
@@ -887,6 +761,7 @@ eventsComments.js
 
 #### PIP8 Compliant
 
+
 | File                   | Result |
 |------------------------|--------|
 | settings.py            | Pass AUTH_PASSWORD_VALIDATORS line too long|
@@ -911,7 +786,7 @@ The 4 lines in setting.py that are too long is the AUTH_PASSWORD_VALIDATORS. The
 [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
 
 ### Google's Lighthouse Performance
-
+<a name="lighthouse"></a>
 I checked the app for Performance, Accessibility, SEO and Best Practices using google's Lighthouse
 Over all I was please with the results:
 - Accessibility: 100%
@@ -932,7 +807,7 @@ Over all I was please with the results:
 
 
 ### Browser Compatibility
-
+<a name="browser"></a>
 The Following Browsers were checked:
 
 - Google Chrome
@@ -944,19 +819,221 @@ The Following Browsers were checked:
 On all browsers the site performed smoothly with consistent functionality and appearance. All features were tested and worked as expected.
 
 ### Responsiveness
-
+<a name="responsiveness"></a>
 The app is responsive on all screen sizes. The event card display using bootstrap is shown above (at the start of the read me) and the calendar view (in the calendar description).
 The image below will show the event details page and create events form.
 
 ![Responsiveness](static/readme-img/code-validated/Responsive_test.png)
 
 
+## Languages
+<a name="languages"></a>
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
+- [HTML5](https://en.wikipedia.org/wiki/HTML) - Provides the content and structure for the website.
+- [CSS3](https://en.wikipedia.org/wiki/CSS) - Provides the styling for the website.
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Provides interactive elements of the website
+
+
+## Frameworks & Software
+<a name="frameworks-software"></a>
+- [Gitpod](http://gitpod.io) - Cloud based IDE
+- [Bootstrap](https://getbootstrap.com/) - A CSS framework that helps building solid, responsive, mobile-first sites
+- [Django](https://www.djangoproject.com/) 
+- [Figma](https://www.figma.com/) was used to create the final design of a website.
+- [Github](https://github.com/) - Used to host and edit the website.
+- [Heroku](https://en.wikipedia.org/wiki/Heroku) - A cloud platform that the application is deployed to.
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - Used to test performance of site.
+- [Font Awesome](https://fontawesome.com/) was used for social media icons in the footer.
+- [Favicon](https://favicon.io/) was used for favicon.
+- [LucidChart](https://lucid.co/) was used for creating ERD.
+- [Google Fonts](https://fonts.google.com/) was used to add specific font family to the stylesheet.
+- [W3C validation](https://validator.w3.org/) was used to check the markup validity of html file.
+- [Jigsaw](https://jigsaw.w3.org/css-validator/) was used to check the validity of css file.
+- [JSHint](https://jshint.com/) was used to check the validity of js files.
+- [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
+- [Am I Responsive](https://ui.dev/amiresponsive) was used to get a screenshot of a final look of the website on various devices.
+- [Github](https://github.com/) was used to store the code of the website.
+- [Django](https://www.djangoproject.com) used as the Python framework for the site.
+- [PostgreSQL](https://www.postgresql.org) used as the relational database management.
+- [Cloudinary](https://cloudinary.com) used for images
+- [Gunicorn](https://gunicorn.org/) used for WSGI server
+- [Crispy Forms](https://pypi.org/project/django-crispy-forms/)
+- Photoshop: Resizing and editing pictures
+
+
+### Create a PostgreSQL Code Institute database
+<a name="postgreSQL"></a>
+- Log into [CIdatabase maker](https://dbs.ci-dbs.net/)
+- Add your email address in input field and submit the form
+- Open database link in your email
+- Paste dabase URL in your DATABASE_URL variable in env.py file and in Heroku config vars
+
+### Cloudinary
+<a name="cloudinary"></a>
+- Navigate to https://cloudinary.com/ and log in to your account.
+- Navigate to dashboard/console https://console.cloudinary.com/console/  copy API Enviroment variable starting with "cloudinary://".
+- Paste copied url CLOUDINARY_URL variable in env.py file and in Heroku config vars
+- Update settings.py
+
+### Django secret key
+
+You need to include you Django secret key that you can generate using any of the Django secret keys generators online.
+In order to protect django app secret key it was set as an enviroment variable and stored in env.py.
+
+```
+os.environ.setdefault(
+    "SECRET_KEY", "your secret key")
+```
+
+## Bugs:
+<a name="bugs"></a>
+
+#### Category Migration 
+-  I had to roll back the migrations from 0006 to 0003, using the terminal command
+  python3 manage.py migrate events 0003 
+  This was because I had set a default=“music” in the AddEvents model and had made a migration. The default had to be an integer so I checked what ID music had. This was done by using this command in the shell.
+  from event.models import Category
+  music_category = Category.objects.get(id=1)
+  print(music_category.name)
+  The result id was 1.
+  I updated the code to reflect this. Below code, default=‘Music’ is now default=1
+      event_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events', default=1)
+  This still didn’t resolve the issue. When trying to make a migration using the integer 1 I was given an error of database is expecting a integer and instead got ‘Music’.
+  I rolled back the migrations, deleted the last 2 migrations and made a new makemigration and migrate. 
+  This resolved all the issues. I did have to set the categories in the admin panel again.
+
+#### Load Static bug
+-  I had used Django Template Language tag to include the images in the static directory for the events template html file but I didn’t do the same for the index.html file. Once I did this the images loaded as intended.
+
+#### Categories in events bug
+-  Fixed the bug in event_by_category.html, the loop was category in categories but it should of been events in events to show the events with the category_id, ie music has a category id of 1
+  I used a function in the view.py called event_list_by_category and it got the Category object from the AddEvents 
+
+#### Load Static in events_by_category.html bug
+-  The static images on the events_by_category.html file weren’t loading and this gave me an error indicating it was expecting a {%endfor%} tag as it couldn’t see the static folder.
+  This was easily fix by adding the {% load static %} tag at the top of the html file
+
+#### Pagination for function based views Bug
+-  Pagination for function based views. I was trying to add a function that used paginator = Paginator(events, 6). Because it was a function and not a generic class I had to add page_obj and is_paginated Django tags in a certain sequence. The issue was the page_obj wasn’t properly accessed in the template, which is causing the issue with the pagination displaying "Page of ." with no next or previous buttons. I consulted https://docs.djangoproject.com/en/5.1/topics/pagination/ and tried a number of different options but it didn’t work. In the EventList class the generic ListView automatically handles context variables like page_obj for pagination. I decided to use a generic list view class for the categories html template too.
+  To have a simple class view I needed to set up a function that filtered the events by category and by current and future dates. For the dates I used the class AddEventManager(models.Manager): in the models.py that filtered by time. and set it’s status to 1 (published). Then I used the .filter(event_category=category) that got the category.
+
+#### Loading Image in the index.html and then the addevent_detail.html
+-  img src was different for index.html and addevent_details.html. This was because of the for loop {% for event in addevent_list %} in index which took the name addevent_list from the generic.ListView class EventList. While addevent_details.html used the variable name addevent. When I used the variable name addevent in the index.html it didn’t load because or the for loop. I decided to make a note of the issue and review it if needed.
+
+
+#### Model issues: Comments and AddEvents user/organiser field Bug
+-  In the AddEvents model I used ‘organiser’ as the field for the user. However in the Comment model the field was ‘user’ for the user and not ‘organiser’. This caused confusion when putting the conditional if and elif statements in the addevent_detail.html. In your template, I was using comment.organiser == user, but in my Comment model, the field that stores the user who created the comment is user, not organiser. To resolve this I replaced comment.organiser with comment.user. replaced comment.organiser  with comment.user.username to display the username of the comment. The edit button was the real issue and the change of comment.user == user so that it checks the user is the comment author.
+
+#### URL pattern matching in urls.py. my-events path matching addevent_detail Bug
+-  The path('event/<slug:slug>/', views.addevent_detail, name='addevent_detail') is being matched before path('event/my-events/', views.my_events, name='my_events'). Django matches the URLs in order from top to bottom, so when it saw event/my-events/, it treated "my-events" as a slug and tries to look up a corresponding AddEvent object, leading to the 404 error.
+  To fix the issue I placed the event/my-events/ path before the event/<slug:slug>. So the more specific patterns (event/my-events) should come before less specific one.
+
+#### Mixed Content bug
+ - I was getting this error in the Issues section of Chrome inspect.
+  Mixed Content: The page at '<URL>' was loaded over HTTPS, but requested an insecure element '<URL>'. This request was automatically upgraded to HTTPS, For more information see <URL>
+  After researching and seeing a number of different articles, I found a fix on Slack. To fixed the mixed content i did the following. In settings.py file 
+  ensure cloudinary uses https paths
+  import cloudinary
+  cloudinary.config(secure=True,)
+  Thanks to tim_mentor for the code.
+
+#### Summernote w3 validator error for <p> tag bug
+-  Error: No p element in scope but a p end tag seen. Django Summernote.
+  tim_mentor regarding issue
+  It's a known bug that it adds extra paragraph tags to the body content in your posts. I think the same for the placeholders error?
+  I’m aware of the issue/bug coming from Django Summernote.
+
+#### My_events tab not Active when selected bug
+-  I had added the my_events tab later then the other tabs in the nav as this was a could have in my list. I had added the link, DTL in the 'li' in the nav and the links worked bu the tab didn’t stay active. The issue was that the my_events_url was not defined in the base.html template using {% url ‘my_events” as my_events_url %}. Once I did this, it worked as expected.
+
+#### FullCalendar and Django bug:
+-  FullCalendar and Django are expecting different values for times. To resolve this a function was added to AddEventForm so the seconds are rounded down and both the front end and the backend receive the required information. 
+
+#### FullCalendar Displaying all events and not just Published ones bug:
+-  The views get_events collected all the events .all(). so it included the draft events that were not published by the admin. I needed to filter this my using the .filter(status=1) so only the status=1(Published) events are selected.
+
+<hr>
+
+## Future Features:
+<a name="future-features"></a>
+There is a number of additions that could be made to the app to increase it’s potential and appeal to users. 
+
+- ### Develop the My_Events page to be more a profile page with more features:
+  Currently the page shows the events created by the user/organiser. An added feature would be for a devision in this page. I column for created event  and a separate one for the events they’ve shown interest in, reserved seats for, shared events etc
+
+- ### Reserve tickets:
+  Similar to restaurant booking app, registers users could reserve a table or seat for an event. This feature would work well with most events, like workshops, seats at a concert etc
+
+- ### Search bar:
+  Add a search bar in the navigation menu to allow users to search for events using key words, some examples would be a venue name, a sub category, or event organiser. The search for organiser would be useful as they could be a venue that would have a number of events each week. This functionality not only saves time but also increases the likelihood of user satisfaction and retention.
+
+- ### Sharing icon:
+  Social Sharing & Friend Invites: Let users see what events their friends are attending and invite friends to join events, boosting community engagement.
+
+- ### Favorites/Wish List: 
+  Enable users to mark events as “favourites” or add them to a wish list. The user will be able to track these events on a personal page
+
+- ### User Convenience: 
+  Users can visually browse events based on proximity to their location.
+
+- ### Event Reminders: 
+  Reminders and calendar integration to help users remember to attend events they’ve indicated attendance.
+
+- ### Share user comments: 
+  As well as the share events, users can share their comments relation to an event.
+
+- ### Event Reviews and Ratings:
+  Allow attendees to leave a review and rating for the past event
+
+
+## Deployment
+<a name="deployment"></a>
+### Heroku Deployment
+This site was deployed to and is currently [hosted on the Heroku platform](https://astroshare-blog-6a7ca9d34749.herokuapp.com/). The steps for deploying to Heroku, using PostgreSQL as the database host, are as follows:
+
+1. Create a list of requirements in the requirements.txt file by using the command pip3 freeze > requirements.txt
+2. Log in (or sign up) to Heroku
+3. Click on the New button and select *Create new app*
+4. Give it a unique name and choose the region *Europe*
+5. Click the Settings tab, go to the *Config Vars* section and click on the Reveal Config Vars button
+6. Add all variables from *env.py* to ConfigVars of Heroku
+
+<details><summary><b>Click to view details Config Vars Heroku</b></summary>
+
+![Config vars](static/readme-img/code/Config-Vars.png)
+</details>
+
+7. Click the *Add* button
+8. Click the *Deploy* tab, go to the *Deployment method section*, select *GitHub* and confirm this selection by clicking on the *Connect to Github* button
+9. Search for the repository name on github *Astro Blog* and click the *Connect* button
+10. Add in the *setting.py* the Heroku app URL into ALLOWED HOSTS
+11. Gather all static files of the project by using the command *python3 manage.py collectstatic* in the terminal
+12. Make sure that DEBUG=FALSE in *settings.py*
+13. Create a *Procfile* in the root directory and add *web: gunicorn astroshare-blog.wsgi*
+14. In Heroku enable the automatic deploy or manually deploy the code from the main branch
+
+### Local Deployment
+1. Generate an *env.py* file in the root directory of the project
+2. Configure the environment variables within this file
+3. Create a virtual environment
+4. Install all required dependencies using pip install command into the .venv
+5. Add dependencies to the requirements.txt file using pip3 freeze > requirements.txt command
+
+### Final Deployment
+
+1. Make sure to set DEBUG = False.
+
+
 ## Credits
+<a name="credits"></a>
 
 #### Resources Used
 - Code Institute walkthrough videos in modules 'Hello Django' and 'I think therefore I blog'
 
 - Django 5 by example, Antonio Melé
+
+- [Pictures](https://www.purecork.ie/whats-on)
+- [event pictures](https://www.corkoperahouse.ie/) 
 
 - [Center Align Navbar video](https://www.youtube.com/watch?v=1quNxUhmZNQ)
 - [Stackoverflow bootstrap navbar](https://stackoverflow.com/questions/20024463/bootstrap-3-how-do-i-place-the-brand-in-the-center-of-the-navbar)
@@ -1004,5 +1081,3 @@ The image below will show the event details page and create events form.
 - [enctype=“multipart/form-data for image POST](https://www.w3schools.com/tags/att_form_enctype.asp)
 - [enctype=“multipart/form-data](https://www.geeksforgeeks.org/what-does-enctypemultipart-form-data-mean-in-an-html-form/)
 
-
-ICONS from fontawesome
