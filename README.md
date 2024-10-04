@@ -1,4 +1,4 @@
-![The Work Logo](static/readme-img/favicon.ico)
+![The Work Logo](static/favicon/favicon.ico)
 
 # THE WORD 
 
@@ -291,7 +291,9 @@ By using T-shirt size Agile story points, you can effectively estimate the workl
 </details>
 
 ### Sprints
-Two-week sprints provide a manageable and focused time frame, promoting iterative progress and allowing quick adjustments based on feedback. This rhythm ensures regular deliverables, promotes agile development, and allows for more efficient planning, testing, and review within each sprint. The sprints were broken into 
+Two-week sprints provide a manageable and focused time frame, promoting iterative progress and allowing quick adjustments based on feedback. This rhythm ensures regular deliverables, promotes agile development, and allows for more efficient planning, testing, and review within each sprint. This project used 4, 2 week sprints. After each sprint the work was evaluated and tasks and user stories were moved onto the following sprint if they we're finished.
+
+![Sprints](static/readme-img/Agile/Sprints.png)
 
 <br>
 
@@ -333,8 +335,10 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
 
 ### Typography:
 <a name="typography"></a>
-- Font Bondoni Moda SC, Serif
-  - The choice of a serif over a more modern font was a nod to the past, or an acknowledgment of Djangos start. The idea that news was initally printed in serif.
+- Montserrat for the logo text
+- Source Code Pro for the body
+
+These are modern style fonts that work well with the clean, minimal design.
 
 ### Logo
 - The logo is made up of 2 parts.
@@ -616,7 +620,7 @@ As a user/ site visitor, I want to browse events without needing to register so 
 | Image Upload | In the Create an Events form a image can be uploaded to cloudinary and available to display on the events details page and event card | &check; |
 
 
-![Delete modal](static/readme-img/UX/delete-event-modal-bootstrap.webp)
+![Delete modal](static/readme-img/UX/delete-event-modal-bootstrap.png)
 
 ### User flow test, Happy path for new user
 A happy path covers the core functionality and user experience of the event app, ensuring smooth navigation, registration, and interaction with events.
@@ -1037,6 +1041,7 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 
 - [Pictures](https://www.purecork.ie/whats-on)
 - [event pictures](https://www.corkoperahouse.ie/) 
+- [band picture](https://cosmopolite.no/en/program/cosmopolite/2024/september/orchestra-baobab)
 
 - [Center Align Navbar video](https://www.youtube.com/watch?v=1quNxUhmZNQ)
 - [Stackoverflow bootstrap navbar](https://stackoverflow.com/questions/20024463/bootstrap-3-how-do-i-place-the-brand-in-the-center-of-the-navbar)
