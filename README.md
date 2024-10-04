@@ -63,7 +63,7 @@ The primary goal in the planning and design of the Events App is to create an in
 #### Target Audience
 <a name="target-audience"></a>
 
-The Word’s events platform is designed for people who are interested in discovering, attending, and organising local and online events. The app concept is like a bulletin board in a shop or office space. People can post and see events in the local area. In the same way this site encourages users to both search for events and post their own events. 
+The Word is designed for people who are interested in discovering, attending, and organising local and online events. The app's concept is like a bulletin board in a shop or office space. People can post and see events in the local area. In the same way this site encourages users to both search for events and post their own events. 
 
 The Word is geared to both casual event attendees and engaged organisers / registered users, providing a platform that encourages social engagement and participation. Through the comment and attending sections on each event page.
 
@@ -97,7 +97,7 @@ Regular user who add content:
 
   4. Add their own event
   5. Update and delete their event
-  6. See a list of event they’ve created
+  6. See a list of events they’ve created
   7. Indicate if they will be attending an event
   8. Write a comment or ask a question on an event
   9. Edit and delete their comment/question
@@ -180,6 +180,7 @@ For this project I created a Kansan board in GitHub to display the stages and st
 - Epics to group user-stories
 - Story Points: to estimate the work required
 - Status: What stage it’s on.
+- Sprints: 
 
 ## MoSCow Prioritisation
 <a name="moscow"></a>
@@ -229,7 +230,7 @@ This epic groups together all the functionality and user stories related to the 
 
 #### Epic 2: Registered User
 
-This epic encompasses all the features and interactions available to Registered Users. These users have accounts and have increase abilities over non-registered users.
+This epic encompasses all the features and interactions available to Registered Users. These users have accounts and have increased abilities over non-registered users.
 - Abilities:
   -	Registered users can create new events and submit them for admin approval.
   - Registered users can view, show attendance, and write comments on events.
@@ -240,8 +241,8 @@ This epic encompasses all the features and interactions available to Registered 
     - Show attendance (indicate attendance and also remove attendance)
 
 - Example User Stories:
- - “As a user I can log in to my account so that I can add events, comment and indicate attendance”
- - “As a Registered User, I want to comment on events so that I can share my opinions or ask questions.”
+  - “As a user I can log in to my account so that I can add events, comment and indicate attendance”
+  - “As a Registered User, I want to comment on events so that I can share my opinions or ask questions.”
 
 #### Epic 3: Non-Registered User
 
@@ -364,7 +365,7 @@ These are modern style fonts that work well with the clean, minimal design.
   - Register, This button is not visible when logged in
   - Login / login changes to logout when the user is logged in
 
-There are the main option in the app and the most relevant to any user, whether they are a registered or non-registered user.
+These are the main option in the app and the most relevant to any user, whether they are a registered or non-registered user.
 
 ![Navbar](static/readme-img/UX/navbar-desktop-mobile.png)
 
@@ -475,7 +476,7 @@ The page_obj contains the current page’s events and pagination details if ther
 
 #### Event Card Display
 Like the Pagination on these pages the majority of the code was the same. The only major difference was the h3 element at the start of the page and a message that displays at the end of the page {%if%} statement
-The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include %} tag.
+The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include "event/event_card.html" with event=event %} tag.
 
 ![Pagination cards and buttons](static/readme-img/UX/pagination-6-card-and-button.png)
 
@@ -517,7 +518,7 @@ This was due to the type of button is was. Once clicked they were gone.
 
 - Authentication is the process of verifying a user’s identity when they log in or register for the first time.
   - Django Allauth is used for user authentication and registration, providing pre-built views and forms for registering new users.
-- Authorization defines what a user is allowed to do once authenticated. In this app, different actions are available based on whether the user is logged in and whether they own specific resources
+- Authorization defines what a user is allowed to do once authenticated. In this app, different actions are available based on whether the user is logged in and whether they've created the event, wrote the comment or RSVPed.
 
 - Information/Messages: When an action is preformed, like creating a comment or event, a relevant message displays to the user. These are styled to blend smoothly into the page without overwhelming the user.
 - Authentication Indicators: Users are reminded whether they are logged in or not through a simple text message displayed to the left of the screen near the header.
@@ -801,7 +802,7 @@ Over all I was please with the results:
   - Sufficient colour contract for readability
 - SEO: 100%
   - Properly structured data, mobile optimization, and fast loading times
-- Performance: 98% & 95%
+- Performance: 99% & 93%
   - Fast performance
   - Image sizing
 - Best Practice: 79%
