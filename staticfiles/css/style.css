@@ -130,8 +130,8 @@ border-color: #377d78;
 .image-container img {
     object-fit: cover;  /* Ensures the image fills the space without stretching */
     object-position: center; /* Focus on the center of the image */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height to cover the container */
+    width: 100%; 
+    height: 100%; 
 }
 
 /* White box positioned on the right, centered vertically */
@@ -176,7 +176,6 @@ border-color: #377d78;
     background-color: #fff; /* Light background on hover */
     background-color: #377d78;
     color: #fff;
-    /* border-color: #377d78; */
 }
 
 .underline {
@@ -232,7 +231,6 @@ border-color: #377d78;
 }
 
 .post-link:hover {
-    /* background-color: #E84610; */
     color: grey;
 }
 
@@ -346,8 +344,6 @@ border-color: #377d78;
 
 
 .log-box {
-    /* background-color: #fff; */
-    /* color: #585858; */
     color: #fff;
     width: 250px;
     margin-left: auto;
@@ -356,7 +352,7 @@ border-color: #377d78;
 }
 
 .transparent-color {
-    background-color: rgba(211, 211, 211, 0.5)
+    background-color: rgba(211, 211, 211, 0.7)
 }
 
 .object-fit-cover {
@@ -366,11 +362,11 @@ border-color: #377d78;
 }
 /* Crispy Forms text */
 .form-text {
-    color: 	#C9C8C7/* Light grey color */
+    color: 	#C9C8C7
 }
 
 .navbar-link-smaller {
-    font-size: 0.5rem; /* Half the default size */
+    font-size: 0.5rem;
 }
 
 /* Floating event info container */
@@ -378,7 +374,7 @@ border-color: #377d78;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 50%);
-    width: 66.66667%; /* 8 columns (out of 12) in Bootstrap */
+    width: 66.66667%;
 }
 
 .event-info {
@@ -434,13 +430,13 @@ border-color: #377d78;
 
 /* Event date and location container */
 .event-details {
-    display: block;  /* Ensure this is not using flexbox */
+    display: block; 
     text-align: left;  /* Left-align date and location */
 }
 
 /* Event date and location paragraphs */
 .event-details p {
-    margin-bottom: 0.2rem; /* Add slight space between date and location */
+    margin-bottom: 0.2rem;
 }
 
 /* Attending section */
@@ -466,9 +462,9 @@ border-color: #377d78;
     width: 88%;
     height: 90%;
     background-color: rgba(207, 217, 221, 0.75); /* 50% transparent white */
-    z-index: 10; /* Ensure it is above the content */
+    z-index: 10; /* above the content */
     display: flex;
-    text-align: center; /* Ensures text is centered */
+    text-align: center; 
     pointer-events: none;
     padding: 5px;
 }
@@ -483,9 +479,9 @@ border-color: #377d78;
 
 /* Image focus to the top */
 .event-image {
-    max-height: 600px; /*Set maximum height for large screens*/
-    min-height: 300px; /*Set minimum height for smaller screens*/
-    width: 100%; /* Make the image responsive */
+    max-height: 600px; 
+    min-height: 300px; 
+    width: 100%; /* responsive */
     object-fit: cover; /* Cover the entire area */
     object-position: top; /* Focus on the top of the image */
 }
@@ -506,39 +502,39 @@ border-color: #377d78;
 
 .pagination .page-item .page-link:hover, 
 .pagination .page-item.active .page-link {
-    background-color: #f0f0f0; /* Light grey background on hover and active */
-    color: #001f3f; /* Navy blue text on hover/active */
+    background-color: #f0f0f0; 
+    color: #001f3f; 
     border-color: #f0f0f0;
 }
 
 .pagination .page-item .arrow {
-    color: #ffffff; /* White arrow text */
+    color: #ffffff; 
 }
 
 .pagination .page-item .arrow:hover {
-    color: #f0f0f0; /* Light grey arrow on hover */
+    color: #f0f0f0; 
 }
 
 .pagination .page-item.active .page-link {
-    background-color: #f0f0f0; /* Light grey for active link */
-    color: #001f3f; /* Navy blue for active text */
+    background-color: #f0f0f0; 
+    color: #001f3f; 
 }
 
 @media (max-width: 768px) {
     .event-image {
-        max-height: 300px; /* Adjust max height for medium screens */
+        max-height: 300px;
     }
 }
 
 /* Custom min-height for different screen sizes for the 404 image, 404 page*/
 .img-responsive {
     min-height: 60vh; /* At least 60% of the viewport height */
-    object-fit: cover; /* Ensures the image maintains its aspect ratio */
+    object-fit: cover; /* image maintains its aspect ratio */
 }
 
 @media (min-width: 992px) {
 /* On large screens (≥ 992px) */
     .img-responsive {
-        min-height: 60vh; /* Ensure that 60% of the viewport height is used on large screens as well */
+        min-height: 60vh; /* 60% of the viewport height is used on large screens as well */
         }
 }
