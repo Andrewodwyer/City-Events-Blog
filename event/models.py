@@ -15,7 +15,8 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 class Category(models.Model):
     """
-    Stores categories. Foreign key field event_cateory in AddEvent model
+    Stores categories. Foreign key field event_cateory
+    in :model:`event.AddEvent`.
     """
     name = models.CharField(max_length=255)
 
@@ -31,11 +32,11 @@ class Category(models.Model):
 class AddEventManager(models.Manager):
     """
     Not a model
+    Custom manager for the :model:`event.AddEvent` model.
+    Provides future event filtering through
+    the `future_events()` method.
     This is a custom manager seperate to all() etc
     models.Manager extends Djangos base models.Manager.
-    The model is called future_events() that returns events
-    that are in the future or today. This keeps the functions
-    in the views simpler and more readable.
     """
     def future_events(self):
         """
@@ -53,8 +54,10 @@ class AddEventManager(models.Manager):
 class AddEvent(models.Model):
     """
     AddEvent model
-    Stores a single event post related to :model:`auth.User`
-    It has a custom manger to filter by date
+    Stores a single event entry related to :model:`auth.User`
+    and :model:`event.Category`.
+    Includes a custom manager to filter events
+    based on date and status.
     """
     title = models.CharField(max_length=255, unique=True)
     # slug is a semantic URL path rather than an integer or database row ID
@@ -103,10 +106,9 @@ class AddEvent(models.Model):
 
 class Comment(models.Model):
     """"
-    Stores comments on an event
-    The event the comment relates to
-    The user that made the comment
-    When it was created and if it is approved by the admin
+    Stores a single comment related to :model:`event.AddEvent`
+    and :model:`auth.User`.
+    Requires admin approval before being visible.
     """
     event = models.ForeignKey(
         AddEvent, on_delete=models.CASCADE, related_name='comments')
@@ -127,8 +129,9 @@ class Comment(models.Model):
 # Attending model to track which users are attending which events
 class Attending(models.Model):
     """
-    Stores the User that is attending
-    User is foreign key for the attending_user.
+    Tracks attendance of users for events,
+    related to :model:`event.AddEvent` and :model:`auth.User`.
+    Ensures unique attendance per event for each user.
     AddEvents is the foreign key for the event.
     on_delete=models.CASCADE will delete all indications
     of attending if user is deleted

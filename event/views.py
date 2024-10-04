@@ -23,7 +23,7 @@ class EventList(generic.ListView):
     .future_events() comes from the AddEventManager class in the models.py
     It filters on time and has a status of 1 (published)
     Displays all future events from :model:`event.AddEvent`.
-    
+
     **Context**
     ``queryset`` All published future events.
 
@@ -41,7 +41,8 @@ def add_event(request):
     Create a view that allows authenticated users to submit their events.
     @login_required will redirect to sign in page if not logged in
     Handles file uploads
-    Allows authenticated users to create a new event using :model:`event.AddEvent`.
+    Allows authenticated users to create a new event
+    using :model:`event.AddEvent`.
 
     **Context**
     ``form`` An instance of :form:`event.AddEventForm`.
@@ -122,7 +123,6 @@ def delete_event(request, slug, event_id):
     """
     Get an event by it's primary key, event_id
     If the request came from the event organiser(addevent field), delete.
-    
     """
 
     event = get_object_or_404(AddEvent, pk=event_id)
@@ -315,9 +315,20 @@ def comment_edit(request, slug, comment_id):
     """
     Allows a user to edit their comment on an event
     from :model:`comment.Comment`.
+    **Context**
+    ``post``
+        Instance of :model:`event.AddEvent`
+        representing the event the comment is associated with.
+    ``comment``
+        Instance of :model:`comment.Comment` that the user is
+        editing.
+    ``comment_form``
+        Instance of :form:`event.CommentForm` used for editing
+        the comment.
 
     **Template**
-    No template rendered. Redirects to event detail page.
+    Redirects to :template:`event/addevent_detail.html` after
+    successful comment edit.
     """
     if request.method == "POST":
 
@@ -345,6 +356,15 @@ def comment_edit(request, slug, comment_id):
 def comment_delete(request, slug, comment_id):
     """
     Allows a user to delete their comment from :model:`comment.Comment`.
+    **Context**
+    ``post``
+        Instance of :model:`event.AddEvent`
+    ``comment``
+        Instance of :model:`comment.Comment` that is to be deleted.
+
+    **Template**
+    Redirects to :template:`event/addevent_detail.html`
+    after the comment is deleted.
     """
     queryset = AddEvent.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
@@ -364,7 +384,20 @@ def comment_delete(request, slug, comment_id):
 def toggle_attendance(request):
     """
     Toggles the attendance status of the current user for a specific event
-    from :model:`event.AddEvent`.
+    from :model:`event.Attending`.
+
+    **Context**
+    ``event``
+        Instance of :model:`event.AddEvent`
+    ``attendance``
+        Instance of :model:`event.Attending`
+        showing whether the user is attending.
+    ``attending_count``
+        Total number of attendees for the event.
+
+    **Response**
+    Returns a :json:`JsonResponse` indicating the updated
+    attendance status and count.
     """
     if request.method == 'POST':
         #  If the request is post

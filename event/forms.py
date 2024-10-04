@@ -8,6 +8,7 @@ from .models import AddEvent, Comment
 class AddEventForm(forms.ModelForm):
     class Meta:
         """
+        Model: :model:`event.AddEvent`
         Meta data give information to the form, Which model
         it is and a list of fields that will be in the form.
         The widgets dictionary allows overriding the default
@@ -90,8 +91,13 @@ class AddEventForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     """
-    A form that allows user to input content for a comment.
-    linked to the Comment model in the database
+    A form for creating and editing comments.
+    :model:`event.Comment`.
+
+    **Meta**
+    - Model: :model:`event.Comment`
+    - Fields:
+        - ``content``: The text content of the comment.
     """
     class Meta:
         model = Comment
