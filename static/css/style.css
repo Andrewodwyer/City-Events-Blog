@@ -1,12 +1,10 @@
 /* General Styles */
 body {
     background-color: #1B4965;
-    font-family: "Bodoni Moda SC", serif;
-}
-
-.font-1 {
-    font-family: "Bodoni Moda SC", serif;
-    font-size: medium;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
 }
 
 .navbar {
@@ -57,15 +55,15 @@ border-color: #377d78;
 }
 
 .btn-delete1{
-    background-color: red;
+    background-color: #C73200;
     color: #fff;
 }
 
 
 .btn-delete1:hover {
     background-color: #f8f9fa; /* Light background on hover */
-    color: red;
-    border-color: red;
+    color: #C73200;
+    border-color: #C73200;
 }
 
 .learn-more-link:hover {
@@ -77,13 +75,35 @@ border-color: #377d78;
 }
 
 .brand {
-    font-size: 1.4rem;
-    /* font-weight: 700; */
+    font-size: 1.6rem;
     color: #4A4A4F;
     /* position: absolute; */
     left: 50%;
     transform: translateX(-50%) translateY(-50%); /* centre logo brand*/
+    font-family: "Source Code Pro", monospace;
+    font-weight: 350;
+    font-style: normal;
+    letter-spacing: 0.1em; /* Adds spacing between letters */
 }
+
+.font-family-source {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.font-1 {
+    font-family: "Bodoni Moda SC", serif;
+    font-size: medium;
+}
+
+.text-muted {
+    font-weight: 400;
+    color: #6c757d;
+    font-size: small;
+}
+
 
 .logo{
     height: 30px;
@@ -468,6 +488,40 @@ border-color: #377d78;
     width: 100%; /* Make the image responsive */
     object-fit: cover; /* Cover the entire area */
     object-position: top; /* Focus on the top of the image */
+}
+
+/* Pagination Styles */
+.pagination {
+    background-color: #1B4965; /* Dark navy blue background */
+    padding: 10px;
+    text-align: center;
+}
+
+.pagination .page-item .page-link {
+    color: #ffffff; /* White text for links */
+    background-color: transparent;
+    padding: 8px 16px;
+    border: 1px solid #ffffff; /* White border */
+}
+
+.pagination .page-item .page-link:hover, 
+.pagination .page-item.active .page-link {
+    background-color: #f0f0f0; /* Light grey background on hover and active */
+    color: #001f3f; /* Navy blue text on hover/active */
+    border-color: #f0f0f0;
+}
+
+.pagination .page-item .arrow {
+    color: #ffffff; /* White arrow text */
+}
+
+.pagination .page-item .arrow:hover {
+    color: #f0f0f0; /* Light grey arrow on hover */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #f0f0f0; /* Light grey for active link */
+    color: #001f3f; /* Navy blue for active text */
 }
 
 @media (max-width: 768px) {

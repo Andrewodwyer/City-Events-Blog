@@ -18,8 +18,8 @@
             <div class="container p-4 bg-light event-info">
                 <h5 class="event-title">{{ addevent.title }}</h5>
                 <div>
-                    <p class="m-0 text-start">Date: {{ addevent.start_date_time }}</p>
-                    <p class="event-location m-0 text-start">Location: {{ addevent.location }}</p>
+                    <p class="m-0 mt-1 text-start">Date: {{ addevent.start_date_time }}</p>
+                    <p class="event-location m-0 mt-1 text-start">Location: {{ addevent.location }}</p>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
         <!-- Event description -->
         <div class="row">
             <div class="col-md-12">
-                <p class="font-1">{{ addevent.description | safe}}</p>
+                <p class="font-family-source">{{ addevent.description | safe}}</p>
             </div>
         </div>
 
@@ -69,9 +69,9 @@
         <!-- Organiser Info -->
         <div class="row">
             <div class="col-md-12">
-                <p>Organiser: {{ addevent.organiser }}</p>
+                <p class="text-muted">Organiser: {{ addevent.organiser }}</p>
                 <hr>
-                <p class="mt-4 mb-0 large-text">Show your interest</p>
+                <h5 class="mt-4 mb-0">Show your interest</h5>
             </div>
         </div>
 
@@ -103,7 +103,7 @@
                     </form>
                 </div>
                 <div class="ml-4">
-                    <p id="attendance-count" class="mb-0 mt-2 large-text text-secondary">{{ attending_count }} attending</p>
+                    <p id="attendance-count" class="mb-0 mt-2 text-secondary">{{ attending_count }} attending</p>
                 </div>
             </div>
             {% else %}

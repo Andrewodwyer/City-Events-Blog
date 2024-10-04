@@ -290,6 +290,9 @@ By using T-shirt size Agile story points, you can effectively estimate the workl
 
 </details>
 
+### Sprints
+Two-week sprints provide a manageable and focused time frame, promoting iterative progress and allowing quick adjustments based on feedback. This rhythm ensures regular deliverables, promotes agile development, and allows for more efficient planning, testing, and review within each sprint. The sprints were broken into 
+
 <br>
 
 ## UI Design
