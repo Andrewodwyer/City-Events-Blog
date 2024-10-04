@@ -356,7 +356,7 @@ border-color: #377d78;
 }
 
 .transparent-color {
-    background-color: #445261;
+    background-color: rgba(211, 211, 211, 0.5)
 }
 
 .object-fit-cover {

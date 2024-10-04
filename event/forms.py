@@ -1,8 +1,8 @@
 from django import forms
-from .models import AddEvent, Comment
 from django.core.exceptions import ValidationError
 from django.utils import timezone  # for comparing the current time
 from datetime import timedelta
+from .models import AddEvent, Comment
 
 
 class AddEventForm(forms.ModelForm):

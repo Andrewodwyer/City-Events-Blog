@@ -1,6 +1,6 @@
+from django.urls import path
 from . import views  # Function-based view is imported
 from .views import EventListByCategory
-from django.urls import path
 # from .views import add_event
 
 
