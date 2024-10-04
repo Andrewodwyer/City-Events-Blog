@@ -5,6 +5,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
+    line-height: 1.5;
 }
 
 .navbar {
@@ -91,6 +92,7 @@ border-color: #377d78;
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
+    line-height: 1.5;
 }
 
 .font-1 {
