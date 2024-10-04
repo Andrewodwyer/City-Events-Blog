@@ -61,33 +61,35 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == home_url %}active{% endif %}" aria-current="page" 
+                        <a class="nav-link small {% if request.path == home_url %}active" aria-current="page {% endif %}" 
                             href="{% url 'home' %}" aria-label="View All Events Page">ALL EVENTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == calendar_url %}active{% endif %}" 
+                        <a class="nav-link small {% if request.path == calendar_url %}active" aria-current="page {% endif %}"
                             href="{% url 'calendar' %}" aria-label="View Calendar Page">CALENDAR</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == add_event_url %}active{% endif %}"
+                        <a class="nav-link small {% if request.path == add_event_url %}active" aria-current="page {% endif %}"
                             href="{% url 'add_event' %}" aria-label="View Add an Event Page">CREATE AN EVENT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == my_events_url %}active{% endif %}"
+                        <a class="nav-link small {% if request.path == my_events_url %}active" aria-current="page {% endif %}"
                             href="{% url 'my_events' %}" aria-label="View Add an Event Page">MY EVENTS</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}" aria-label="View Logout Page">LOGOUT</a>
+                        <a class="nav-link small {% if request.path == logout_url %}active" aria-current="page {% endif %}"
+                            href="{% url 'account_logout' %}" aria-label="View Logout Page">LOGOUT</a>
                     </li>
 
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == signup_url %}active{% endif %}" 
+                        <a class="nav-link small {% if request.path == signup_url %}active" aria-current="page {% endif %}"
                             href="{% url 'account_signup' %}" aria-label="View sign up Page">REGISTER</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link small {% if request.path == login_url %}active{% endif %}" href="{% url 'account_login' %}" aria-label="View Login Page">LOGIN</a>
+                        <a class="nav-link small {% if request.path == login_url %}active" aria-current="page {% endif %}"
+                            href="{% url 'account_login' %}" aria-label="View Login Page">LOGIN</a>
                     </li>
                     {% endif %}
 
