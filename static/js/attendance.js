@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const attendanceIcon = document.getElementById('attendance-icon');
     const attendanceText = document.getElementById('attendance-text');
     const attendanceCount = document.getElementById('attendance-count');
-    const attendanceContainer = document.getElementById('attendance-container');
 
-    attendanceContainer.addEventListener('click', function() {
+    document.getElementById('attendance-container').addEventListener('click', function() {
+        // Prevent the default form submission
         const formData = new FormData(attendanceForm);
 
         fetch(attendanceForm.action, {
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
+            // Update icon and text based on response
             if (data.user_attending) {
                 attendanceIcon.classList.remove('icon-primary');
                 attendanceIcon.classList.add('icon-success');
