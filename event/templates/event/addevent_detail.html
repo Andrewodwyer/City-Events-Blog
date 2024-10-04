@@ -34,7 +34,7 @@
         <!-- Event description -->
         <div class="row">
             <div class="col-md-12">
-                <p class="font-family-source">{{ addevent.description | safe}}</p>
+                <article class="font-family-source">{{ addevent.description | linebreaks }}</article>
             </div>
         </div>
 
@@ -124,7 +124,7 @@
                 {% for comment in comments %}
                 <div class="p-2 comments {% if not comment.is_approved and comment.user == user %}faded{% elif not comment.is_approved %} d-none{% endif %}">
                     <p class="font-weight-bold">{{ comment.user.username }} <span class="font-weight-normal">{{ comment.updated_on }}</span> wrote:</p>
-                    <div id="comment{{ comment.id }}">{{ comment.content | linebreaks }}</div>
+                    <article id="comment{{ comment.id }}">{{ comment.content | linebreaks }}</article>
                     {% if not comment.is_approved and comment.user == user %}
                     <p class="approval text-muted">This comment is awaiting approval</p>
                     {% endif %}
