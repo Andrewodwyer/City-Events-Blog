@@ -22,13 +22,17 @@ class EventList(generic.ListView):
     Displaying events from the AddEvent model
     .future_events() comes from the AddEventManager class in the models.py
     It filters on time and has a status of 1 (published)
+    Displays all future events from :model:`event.AddEvent`.
+    
+    **Context**
+    ``queryset`` All published future events.
+
+    **Template**
+    :template: `event/index.html`
     """
     queryset = AddEvent.objects.future_events()
-    # Gets all 'AddEvent' objects from the database and sends them
-    # to the template.
     template_name = "event/index.html"
     paginate_by = 6
-    # paginate by 6 tells Django to display 6 posts at a time
 
 
 @login_required
@@ -37,6 +41,13 @@ def add_event(request):
     Create a view that allows authenticated users to submit their events.
     @login_required will redirect to sign in page if not logged in
     Handles file uploads
+    Allows authenticated users to create a new event using :model:`event.AddEvent`.
+
+    **Context**
+    ``form`` An instance of :form:`event.AddEventForm`.
+
+    **Template**
+    :template: `event/add_event.html`
     """
     if request.method == 'POST':
         form = AddEventForm(request.POST, request.FILES)  # Handle file uploads
@@ -63,9 +74,14 @@ def add_event(request):
 # edit event
 def edit_event(request, slug):
     """
-    It fetches the event that the user wants to edit.
-    It uses the slug passed in the URL to find the specific
-    event in the AddEvent model.
+    Allows a user to edit an existing event from :model:`event.AddEvent`.
+
+    **Context**
+    ``event`` The event instance being edited.
+    ``form`` An instance of :form:`event.AddEventForm`.
+
+    **Template**
+    :template: `event/add_event.html`
     """
     event = get_object_or_404(AddEvent, slug=slug)
 
@@ -106,6 +122,7 @@ def delete_event(request, slug, event_id):
     """
     Get an event by it's primary key, event_id
     If the request came from the event organiser(addevent field), delete.
+    
     """
 
     event = get_object_or_404(AddEvent, pk=event_id)
@@ -127,6 +144,13 @@ def my_events(request):
     Users can view and manage their own events,
     It lists only the events created by this logged-in user, including drafts.
     @login_required will redirect to sign in page if not logged in
+    Displays the current user's events from :model:`event.AddEvent`.
+
+    **Context**
+    ``events`` A list of events created by the user.
+
+    **Template**
+    :template: `event/my_events.html`
     """
     events = AddEvent.objects.filter(organiser=request.user)
     return render(request, 'event/my_events.html', {'events': events})
@@ -134,7 +158,18 @@ def my_events(request):
 
 def addevent_detail(request, slug):
     """
-    Display an individual event, only the organizer can view draft events.
+    Displays the details of a specific event from :model:`event.AddEvent`,
+    along with comments and attendance information.
+
+    **Context**
+    ``addevent`` The event instance.
+    ``comments`` List of event comments.
+    ``comment_form`` A form to submit new comments.
+    ``user_attending`` Boolean indicating if the user is attending.
+    ``attending_count`` Number of users attending the event.
+
+    **Template**
+    :template: `event/addevent_detail.html`
     """
     # Fetch published events and drafts for the organizer
     addevent = get_object_or_404(AddEvent, slug=slug)
@@ -213,6 +248,15 @@ def get_events(request):
 
 
 def calendar_view(request):
+    """
+    Renders the calendar view page.
+
+    **Context**
+    No additional context.
+
+    **Template**
+    :template: `event/calendar.html`
+    """
     return render(request, 'event/calendar.html')
 
 
@@ -227,8 +271,15 @@ def get_filtered_events_by_category(category):
 
 class EventListByCategory(generic.ListView):
     """
-    Using Djangos ListView it will show the model (AddEvent) in the template
-    (events_by_category.html) paginated by 6.
+    Displays a paginated list of events filtered by category
+    from :model:`event.AddEvent`.
+
+    **Context**
+    ``category`` The selected category.
+    ``object_list`` The filtered list of events.
+
+    **Template**
+    :template: `event/events_by_category.html`
     """
     model = AddEvent
     template_name = 'event/events_by_category.html'
@@ -262,7 +313,11 @@ class EventListByCategory(generic.ListView):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+    Allows a user to edit their comment on an event
+    from :model:`comment.Comment`.
+
+    **Template**
+    No template rendered. Redirects to event detail page.
     """
     if request.method == "POST":
 
@@ -289,7 +344,7 @@ def comment_edit(request, slug, comment_id):
 
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+    Allows a user to delete their comment from :model:`comment.Comment`.
     """
     queryset = AddEvent.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
@@ -308,7 +363,8 @@ def comment_delete(request, slug, comment_id):
 
 def toggle_attendance(request):
     """
-    The user attending status
+    Toggles the attendance status of the current user for a specific event
+    from :model:`event.AddEvent`.
     """
     if request.method == 'POST':
         #  If the request is post
