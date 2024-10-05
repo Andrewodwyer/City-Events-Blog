@@ -687,6 +687,12 @@ I’m aware of the issue/bug coming from Django Summernote.
 
 </details>
 
+<details><summary><b>Events Details with description fields containing a number of paragraphs, passed.</b>No errors but some warnings relating to paragraphs in larger description fields when the entry contained a number of paragraphs. This is a know summernote warning. The paragraph elements are in a 'article' element so they do not produce and error.</summary>
+
+![Event details](static/readme-img/code-validated/event-details-warning-paragraphs.png)
+
+</details>
+
 <details><summary><b>Calendar page, passed</b></summary>
 
 ![Calendar page](static/readme-img/code-validated/Calendar-page-html-checker.png)
