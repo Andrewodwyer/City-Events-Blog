@@ -435,6 +435,17 @@ These are the main option in the app and the most relevant to any user, whether 
 - Container with form for username and password.
 - Sign in button will direct the user to the home page if the form is correctly filled out.
 
+### 404
+- I created a 404 page in the event templates. As it was not in the app directory but in templates it would be displayed if there was an 404 error. This is a built in django feature. I used the base.html template, an image and a message to allow the user to navigate back to the home page.
+
+<details><summary><b>404 page</b></summary>
+
+![404 page](static/readme-img/UX/404-page.png)
+
+</details>
+
+
+
 ## CRUD
 <a name="crud"></a>
 The Events App’s CRUD functionalities for events, comments, and attending are designed to give logged in users control over their interactions with the app.
